@@ -1,1 +1,23 @@
-/data/
+# Build artifacts
+/build/
+/CMakeFiles/
+/Makefile
+/cmake_install.cmake
+/compile_commands.json
+
+# Archivos temporales de IDEs
+.vscode/
+/.idea/
+
+# Metadatos de PCD en Windows
+data/*.pcd:Zone.Identifier
+
+# No trackear las nubes de puntos grandes
+data/*.pcd
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Otros temporales
+*~ 
