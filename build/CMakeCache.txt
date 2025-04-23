@@ -681,6 +681,9 @@ TIFF_LIBRARY_DEBUG:FILEPATH=TIFF_LIBRARY_DEBUG-NOTFOUND
 //Path to a library.
 TIFF_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libtiff.so
 
+//Use the optimized Octree version
+USE_OPTIMIZED_OCTREE:BOOL=ON
+
 //The directory containing VTKConfig.cmake
 VTK_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1
 

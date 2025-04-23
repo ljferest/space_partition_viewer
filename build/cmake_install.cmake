@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/luis/projects/space_partition/build/src/octree/cmake_install.cmake")
+  include("/home/luis/projects/space_partition/build/src/octree_optimized/cmake_install.cmake")
   include("/home/luis/projects/space_partition/build/src/kdtree/cmake_install.cmake")
   include("/home/luis/projects/space_partition/build/src/bsp/cmake_install.cmake")
   include("/home/luis/projects/space_partition/build/src/viewer/cmake_install.cmake")

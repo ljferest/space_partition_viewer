@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named octree_optimized
+
+# Build rule for target.
+octree_optimized: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 octree_optimized
+.PHONY : octree_optimized
+
+# fast build rule for target.
+octree_optimized/fast:
+	$(MAKE) $(MAKESILENT) -f src/octree_optimized/CMakeFiles/octree_optimized.dir/build.make src/octree_optimized/CMakeFiles/octree_optimized.dir/build
+.PHONY : octree_optimized/fast
+
+#=============================================================================
 # Target rules for targets named kdtree
 
 # Build rule for target.
@@ -165,6 +178,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... bsp"
 	@echo "... kdtree"
+	@echo "... octree_optimized"
 	@echo "... viewer"
 .PHONY : help
 

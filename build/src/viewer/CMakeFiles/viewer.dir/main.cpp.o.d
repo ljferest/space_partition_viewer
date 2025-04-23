@@ -996,9 +996,10 @@ src/viewer/CMakeFiles/viewer.dir/main.cpp.o: \
  /usr/include/GLFW/glfw3.h /usr/include/GL/gl.h /usr/include/GL/glext.h \
  /usr/include/KHR/khrplatform.h /usr/include/GL/glu.h \
  /usr/include/GL/glut.h /usr/include/GL/freeglut_std.h \
- /home/luis/projects/space_partition/src/octree/Vec3.h \
- /home/luis/projects/space_partition/src/octree/OctreePoint.h \
- /home/luis/projects/space_partition/src/octree/Vec3.h \
- /home/luis/projects/space_partition/src/octree/Octree.h \
- /home/luis/projects/space_partition/src/octree/OctreePoint.h \
- /home/luis/projects/space_partition/src/viewer/OctreeRenderer.h
+ /home/luis/projects/space_partition/include/IOctreeAdapter.h \
+ /home/luis/projects/space_partition/include/octree_basic/Vec3.h \
+ /home/luis/projects/space_partition/include/octree_optimized/OctreeOptimizedAdapter.h \
+ /home/luis/projects/space_partition/include/octree_optimized/Octree.h \
+ /home/luis/projects/space_partition/include/octree_optimized/CNode.h \
+ /home/luis/projects/space_partition/include/octree_optimized/Point3D.h \
+ /home/luis/projects/space_partition/include/octree_optimized/Point3D.h
