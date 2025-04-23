@@ -1,14 +1,1 @@
-/build/
-/compile_command.json
-/CMakeFiles/
-/Makefile
-/cmake_install.cmakr
-cat > .gitignore <<EOF 
-/build/
-/compile_command.json
-/CMakeFiles/
-/Makefile
-/cmake_install.cmake
-.vscode/
-.DS_Store
-EOf
+/data/

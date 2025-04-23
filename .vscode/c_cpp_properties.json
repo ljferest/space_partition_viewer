@@ -1,0 +1,21 @@
+{
+    "version": 4,
+    "configurations": [
+      {
+        "name": "Linux",
+        "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+        "intelliSenseMode": "linux-gcc-x64",
+        "cStandard": "c17",
+        "cppStandard": "c++17",
+        "includePath": [
+          "${workspaceFolder}/src",
+          "${workspaceFolder}/src/octree",
+          "${workspaceFolder}/src/viewer",
+          "/usr/include",
+          "/usr/include/pcl-1.14",
+          "/usr/include/eigen3"
+        ]
+      }
+    ]
+  }
+  

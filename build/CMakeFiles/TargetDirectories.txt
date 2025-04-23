@@ -1,0 +1,13 @@
+/home/luis/projects/space_partition/build/CMakeFiles/edit_cache.dir
+/home/luis/projects/space_partition/build/CMakeFiles/rebuild_cache.dir
+/home/luis/projects/space_partition/build/src/octree/CMakeFiles/edit_cache.dir
+/home/luis/projects/space_partition/build/src/octree/CMakeFiles/rebuild_cache.dir
+/home/luis/projects/space_partition/build/src/kdtree/CMakeFiles/kdtree.dir
+/home/luis/projects/space_partition/build/src/kdtree/CMakeFiles/edit_cache.dir
+/home/luis/projects/space_partition/build/src/kdtree/CMakeFiles/rebuild_cache.dir
+/home/luis/projects/space_partition/build/src/bsp/CMakeFiles/bsp.dir
+/home/luis/projects/space_partition/build/src/bsp/CMakeFiles/edit_cache.dir
+/home/luis/projects/space_partition/build/src/bsp/CMakeFiles/rebuild_cache.dir
+/home/luis/projects/space_partition/build/src/viewer/CMakeFiles/viewer.dir
+/home/luis/projects/space_partition/build/src/viewer/CMakeFiles/edit_cache.dir
+/home/luis/projects/space_partition/build/src/viewer/CMakeFiles/rebuild_cache.dir

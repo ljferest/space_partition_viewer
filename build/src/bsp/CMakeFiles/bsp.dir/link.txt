@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbsp.a CMakeFiles/bsp.dir/BSPTree.cpp.o
+/usr/bin/ranlib libbsp.a
