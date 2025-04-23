@@ -18,13 +18,23 @@ include_directories(
   ${OPENGL_INCLUDE_DIR}
   ${GLUT_INCLUDE_DIRS}
   ${CMAKE_SOURCE_DIR}/src
+  ${CMAKE_SOURCE_DIR}/include
 )
+
 link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
-# Añade los subdirectorios con sus propios CMakeLists
-add_subdirectory(src/octree)
+# Activar Octree optimizado (flag de compilación)
+option(USE_OPTIMIZED_OCTREE "Use the optimized Octree version" ON)
+
+if(USE_OPTIMIZED_OCTREE)
+    add_definitions(-DUSE_OPTIMIZED_OCTREE)
+    add_subdirectory(src/octree_optimized)
+else()
+    add_subdirectory(src/octree)
+endif()
+
+# Otros módulos (no dependen del flag)
 add_subdirectory(src/kdtree)
 add_subdirectory(src/bsp)
 add_subdirectory(src/viewer)
-

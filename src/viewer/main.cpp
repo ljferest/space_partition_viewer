@@ -12,19 +12,28 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 
+#include "IOctreeAdapter.h"
+
+#if defined(USE_OPTIMIZED_OCTREE)
+#include "octree_optimized/OctreeOptimizedAdapter.h"
+#else
+#include "octree_basic/OctreeBasicAdapter.h"
+#endif
+
+
 // Tus módulos header-only
-#include "octree/Vec3.h"
-#include "octree/OctreePoint.h"
-#include "octree/Octree.h"
-#include "OctreeRenderer.h"
+//#include "octree/Vec3.h"
+//#include "octree/OctreePoint.h"
+//#include "octree/Octree.h"
+//#include "OctreeRenderer.h"
 // (más tarde) #include "kdtree/KdTree.h"
 //             #include "bsp/BSPTree.h"
 
-using namespace brandonpelfrey;
+//using namespace brandonpelfrey;
 
 // variables globales
 pcl::PointCloud<pcl::PointXYZ>::Ptr cloud;
-Octree* octreePtr = nullptr;
+IOctreeAdapter* octreePtr = nullptr;
 int currentLevel = -1;
 
 Vec3 cameraCenter;
@@ -35,7 +44,15 @@ float cameraDistance;
 
 void drawPartition() {
     if (octreePtr) {
-        drawOctree(*octreePtr, currentLevel);
+        auto nodes = octreePtr->getDrawableNodes(currentLevel);
+        glColor3f(0.0f, 1.0f, 0.0f);
+        for (auto& node : nodes) {
+            glPushMatrix();
+            glTranslatef(node.center.x, node.center.y, node.center.z);
+            glScalef(node.halfSize.x * 2, node.halfSize.y * 2, node.halfSize.z * 2);
+            glutWireCube(1.0f);
+            glPopMatrix();
+        }
     }
 }
 
@@ -76,11 +93,22 @@ int main(int argc, char** argv) {
     Vec3 halfDim(maxHalf, maxHalf, maxHalf);
 
     // 3) Construye octree
-    octreePtr = new Octree(center, halfDim);
+    #if defined(USE_OPTIMIZED_OCTREE)
+        octreePtr = new OctreeOptimizedAdapter(center, halfDim);
+        std::cout << "Usando Octree optimizado" << std::endl;
+    #else
+        octreePtr = new OctreeBasicAdapter(center, halfDim);
+        std::cout << "Usando Octree básico" << std::endl;
+    #endif
+
     for (auto& pt : cloud->points) {
-        OctreePoint* p = new OctreePoint(Vec3(pt.x,pt.y,pt.z));
-        octreePtr->insert(p);
+        octreePtr->insertPoint(pt.x, pt.y, pt.z);
     }
+
+    #if defined(USE_OPTIMIZED_OCTREE)
+        dynamic_cast<OctreeOptimizedAdapter*>(octreePtr)->build();  // solo necesario si requiere build final
+    #endif
+
 
     // 4) Inicializa GLFW + GLUT
     glfwInit();

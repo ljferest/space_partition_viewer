@@ -1,8 +1,6 @@
-#include "OctreeRenderer.h"
+
 #include <GL/glut.h>   // glutWireCube, glTranslatef,
-#include "octree/Octree.h"
-#include "octree/Vec3.h"
-#include "octree/OctreePoint.h"
+
 
 using namespace brandonpelfrey;
 

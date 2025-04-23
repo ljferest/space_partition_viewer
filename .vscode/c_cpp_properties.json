@@ -7,9 +7,12 @@
         "intelliSenseMode": "linux-gcc-x64",
         "cStandard": "c17",
         "cppStandard": "c++17",
+        "compilerPath": "/usr/bin/g++",
         "includePath": [
           "${workspaceFolder}/src",
+          "${workspaceFolder}/include/octree_optimized",
           "${workspaceFolder}/src/octree",
+          "${workspaceFolder}/include/octree_basic",
           "${workspaceFolder}/src/viewer",
           "/usr/include",
           "/usr/include/pcl-1.14",
