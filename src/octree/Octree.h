@@ -58,6 +58,22 @@ namespace brandonpelfrey {
 			return oct;
 		}
 
+		// getter para el centro del nodo
+		Vec3 getOrigin() const {
+			return origin;
+		}
+		
+		// getter para la mitad de la dimensión (el “halfSize”)
+		Vec3 getHalfDimension() const {
+			return halfDimension;
+		}
+		
+		// getter para acceder a cada hijo
+		Octree* getChild(int i) const {
+			return children[i];
+		}
+		
+
 		bool isLeafNode() const {
 			// This is correct, but overkill. See below.
 			/*

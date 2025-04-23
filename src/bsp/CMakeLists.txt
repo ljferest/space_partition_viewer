@@ -1,8 +1,8 @@
 add_library(bsp STATIC
-    Bsp.h
-    Bsp.cpp          # más adelante, aquí copiarás/pegarás la implementación
+  BSPTree.h
+  BSPTree.cpp
 )
 
 target_include_directories(bsp PUBLIC
-    ${CMAKE_SOURCE_DIR}/include
+  ${CMAKE_SOURCE_DIR}/src/bsp
 )
