@@ -1,26 +1,89 @@
 #include "CNode.h"
+#include <cmath>
+
+int CNode::getChildIndex(Point3D* pt) const {
+    return (pt->x > centerX) * 4 + (pt->y > centerY) * 2 + (pt->z > centerZ);
+}
 
 void CNode::addPoint(Point3D* pt, int maxDepth) {
-    if (depth == maxDepth) {
+    if (depth == maxDepth || (isLeaf && points.size() < MAX_POINTS)) {
         points.push_back(pt);
         return;
     }
 
-    int index = 0;
-    if (pt->x > centerX) index |= 1;
-    if (pt->y > centerY) index |= 2;
-    if (pt->z > centerZ) index |= 4;
-
-    if (!children[index]) {
-        float offset = size / 4.0f;
-        float childSize = size / 2.0f;
-        float childCenterX = centerX + ((index & 1) ? offset : -offset);
-        float childCenterY = centerY + ((index & 2) ? offset : -offset);
-        float childCenterZ = centerZ + ((index & 4) ? offset : -offset);
-        children[index] = std::make_unique<CNode>(depth + 1, childCenterX, childCenterY, childCenterZ, childSize);
-    
+    if (isLeaf) {
+        subdivide(maxDepth);
+        for (auto* p : points) {
+            int idx = getChildIndex(p);
+            children[idx]->addPoint(p, maxDepth);
+        }
+        points.clear();
         isLeaf = false;
     }
 
-    children[index]->addPoint(pt, maxDepth);
+    int idx = getChildIndex(pt);
+    children[idx]->addPoint(pt, maxDepth);
 }
+
+void CNode::subdivide(int maxDepth) {
+    float h = size / 2.0f;
+    for (int i = 0; i < 8; ++i) {
+        float dx = (i & 4) ? h : -h;
+        float dy = (i & 2) ? h : -h;
+        float dz = (i & 1) ? h : -h;
+        children[i] = std::make_unique<CNode>(
+            depth + 1,
+            centerX + dx / 2.0f,
+            centerY + dy / 2.0f,
+            centerZ + dz / 2.0f,
+            h
+        );
+    }
+}
+
+void CNode::getPointsInBox(float minX, float minY, float minZ,
+                            float maxX, float maxY, float maxZ,
+                            std::vector<Point3D*>& result) {
+    float nodeMinX = centerX - size / 2, nodeMaxX = centerX + size / 2;
+    float nodeMinY = centerY - size / 2, nodeMaxY = centerY + size / 2;
+    float nodeMinZ = centerZ - size / 2, nodeMaxZ = centerZ + size / 2;
+
+    if (nodeMaxX < minX || nodeMinX > maxX ||
+        nodeMaxY < minY || nodeMinY > maxY ||
+        nodeMaxZ < minZ || nodeMinZ > maxZ)
+        return;
+
+    if (isLeaf) {
+        for (auto* pt : points) {
+            if (pt->x >= minX && pt->x <= maxX &&
+                pt->y >= minY && pt->y <= maxY &&
+                pt->z >= minZ && pt->z <= maxZ)
+                result.push_back(pt);
+        }
+    } else {
+        for (auto& child : children)
+            if (child) child->getPointsInBox(minX, minY, minZ, maxX, maxY, maxZ, result);
+    }
+}
+
+void CNode::traverseLeaves(std::function<void(float, float, float, float, const std::vector<Point3D*>&)> visitor) {
+    if (isLeaf) {
+        visitor(centerX, centerY, centerZ, size, points);
+    } else {
+        for (auto& child : children) {
+            if (child) child->traverseLeaves(visitor);
+        }
+    }
+}
+
+void CNode::traverseLeavesUpToDepth(int maxRenderDepth,
+    std::function<void(float, float, float, float, const std::vector<Point3D*>&)> visitor) {
+
+    if (depth >= maxRenderDepth || isLeaf) {
+        visitor(centerX, centerY, centerZ, size, points);
+    } else {
+        for (auto& child : children)
+            if (child) child->traverseLeavesUpToDepth(maxRenderDepth, visitor);
+    }
+}
+

@@ -73,24 +73,40 @@ src/viewer/CMakeFiles/viewer.dir/main.cpp.o: src/viewer/CMakeFiles/viewer.dir/fl
 src/viewer/CMakeFiles/viewer.dir/main.cpp.o: /home/luis/projects/space_partition/src/viewer/main.cpp
 src/viewer/CMakeFiles/viewer.dir/main.cpp.o: src/viewer/CMakeFiles/viewer.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/viewer/CMakeFiles/viewer.dir/main.cpp.o"
-	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/viewer/CMakeFiles/viewer.dir/main.cpp.o -MF CMakeFiles/viewer.dir/main.cpp.o.d -o CMakeFiles/viewer.dir/main.cpp.o -c /home/luis/projects/space_partition/src/viewer/main.cpp
+	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/viewer/CMakeFiles/viewer.dir/main.cpp.o -MF CMakeFiles/viewer.dir/main.cpp.o.d -o CMakeFiles/viewer.dir/main.cpp.o -c /home/luis/projects/space_partition/src/viewer/main.cpp
 
 src/viewer/CMakeFiles/viewer.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/viewer.dir/main.cpp.i"
-	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luis/projects/space_partition/src/viewer/main.cpp > CMakeFiles/viewer.dir/main.cpp.i
+	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luis/projects/space_partition/src/viewer/main.cpp > CMakeFiles/viewer.dir/main.cpp.i
 
 src/viewer/CMakeFiles/viewer.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/viewer.dir/main.cpp.s"
-	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luis/projects/space_partition/src/viewer/main.cpp -o CMakeFiles/viewer.dir/main.cpp.s
+	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luis/projects/space_partition/src/viewer/main.cpp -o CMakeFiles/viewer.dir/main.cpp.s
+
+src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.o: src/viewer/CMakeFiles/viewer.dir/flags.make
+src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.o: /home/luis/projects/space_partition/src/viewer/OctreeRenderer.cpp
+src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.o: src/viewer/CMakeFiles/viewer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.o"
+	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.o -MF CMakeFiles/viewer.dir/OctreeRenderer.cpp.o.d -o CMakeFiles/viewer.dir/OctreeRenderer.cpp.o -c /home/luis/projects/space_partition/src/viewer/OctreeRenderer.cpp
+
+src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/viewer.dir/OctreeRenderer.cpp.i"
+	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luis/projects/space_partition/src/viewer/OctreeRenderer.cpp > CMakeFiles/viewer.dir/OctreeRenderer.cpp.i
+
+src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/viewer.dir/OctreeRenderer.cpp.s"
+	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luis/projects/space_partition/src/viewer/OctreeRenderer.cpp -o CMakeFiles/viewer.dir/OctreeRenderer.cpp.s
 
 # Object files for target viewer
 viewer_OBJECTS = \
-"CMakeFiles/viewer.dir/main.cpp.o"
+"CMakeFiles/viewer.dir/main.cpp.o" \
+"CMakeFiles/viewer.dir/OctreeRenderer.cpp.o"
 
 # External object files for target viewer
 viewer_EXTERNAL_OBJECTS =
 
 src/viewer/viewer: src/viewer/CMakeFiles/viewer.dir/main.cpp.o
+src/viewer/viewer: src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.o
 src/viewer/viewer: src/viewer/CMakeFiles/viewer.dir/build.make
 src/viewer/viewer: src/octree_optimized/liboctree_optimized.a
 src/viewer/viewer: src/kdtree/libkdtree.a
@@ -187,7 +203,7 @@ src/viewer/viewer: /usr/lib/x86_64-linux-gnu/libflann_cpp_s.a
 src/viewer/viewer: /usr/lib/x86_64-linux-gnu/liblz4.so
 src/viewer/viewer: /usr/lib/x86_64-linux-gnu/libqhull_r.so.8.0.2
 src/viewer/viewer: src/viewer/CMakeFiles/viewer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable viewer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable viewer"
 	cd /home/luis/projects/space_partition/build/src/viewer && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/viewer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

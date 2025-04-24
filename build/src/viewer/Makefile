@@ -130,6 +130,30 @@ viewer/fast:
 	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/build
 .PHONY : viewer/fast
 
+OctreeRenderer.o: OctreeRenderer.cpp.o
+.PHONY : OctreeRenderer.o
+
+# target to build an object file
+OctreeRenderer.cpp.o:
+	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.o
+.PHONY : OctreeRenderer.cpp.o
+
+OctreeRenderer.i: OctreeRenderer.cpp.i
+.PHONY : OctreeRenderer.i
+
+# target to preprocess a source file
+OctreeRenderer.cpp.i:
+	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.i
+.PHONY : OctreeRenderer.cpp.i
+
+OctreeRenderer.s: OctreeRenderer.cpp.s
+.PHONY : OctreeRenderer.s
+
+# target to generate assembly for a file
+OctreeRenderer.cpp.s:
+	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.s
+.PHONY : OctreeRenderer.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -163,6 +187,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... viewer"
+	@echo "... OctreeRenderer.o"
+	@echo "... OctreeRenderer.i"
+	@echo "... OctreeRenderer.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

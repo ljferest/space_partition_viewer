@@ -73,15 +73,15 @@ src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o: src/bsp/CMakeFiles/bsp.dir/flags.make
 src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o: /home/luis/projects/space_partition/src/bsp/BSPTree.cpp
 src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o: src/bsp/CMakeFiles/bsp.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o"
-	cd /home/luis/projects/space_partition/build/src/bsp && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o -MF CMakeFiles/bsp.dir/BSPTree.cpp.o.d -o CMakeFiles/bsp.dir/BSPTree.cpp.o -c /home/luis/projects/space_partition/src/bsp/BSPTree.cpp
+	cd /home/luis/projects/space_partition/build/src/bsp && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o -MF CMakeFiles/bsp.dir/BSPTree.cpp.o.d -o CMakeFiles/bsp.dir/BSPTree.cpp.o -c /home/luis/projects/space_partition/src/bsp/BSPTree.cpp
 
 src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bsp.dir/BSPTree.cpp.i"
-	cd /home/luis/projects/space_partition/build/src/bsp && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luis/projects/space_partition/src/bsp/BSPTree.cpp > CMakeFiles/bsp.dir/BSPTree.cpp.i
+	cd /home/luis/projects/space_partition/build/src/bsp && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luis/projects/space_partition/src/bsp/BSPTree.cpp > CMakeFiles/bsp.dir/BSPTree.cpp.i
 
 src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bsp.dir/BSPTree.cpp.s"
-	cd /home/luis/projects/space_partition/build/src/bsp && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luis/projects/space_partition/src/bsp/BSPTree.cpp -o CMakeFiles/bsp.dir/BSPTree.cpp.s
+	cd /home/luis/projects/space_partition/build/src/bsp && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luis/projects/space_partition/src/bsp/BSPTree.cpp -o CMakeFiles/bsp.dir/BSPTree.cpp.s
 
 # Object files for target bsp
 bsp_OBJECTS = \

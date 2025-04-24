@@ -1,5 +1,6 @@
 add_executable(viewer
     main.cpp
+    OctreeRenderer.cpp 
 )
 
 target_link_libraries(viewer

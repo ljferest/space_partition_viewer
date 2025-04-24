@@ -1,188 +1,130 @@
+#include <GL/glut.h>
+#include <vector>
 #include <iostream>
+#include <stdexcept>
+#include "OctreeRenderer.h"
+#include "Point3D.h"
 
-// PCL: IO y tipos
+// PCL
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
-// Para getMinMax3D()
-#include <pcl/common/common.h>
 
-// OpenGL + GLFW + GLUT
-#include <GLFW/glfw3.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glut.h>
+// Globals
+OctreeRenderer renderer;
+int currentResolution = 6;
+bool showWireframe = false;
+bool wireframeMode = false;
 
-#include "IOctreeAdapter.h"
+// Cargar nube de puntos desde .pcd
+std::vector<Point3D> loadFromPCD(const std::string& path) {
+    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
+    if (pcl::io::loadPCDFile<pcl::PointXYZ>(path, *cloud) == -1) {
+        throw std::runtime_error("No se pudo cargar el archivo PCD: " + path);
+    }
 
-#if defined(USE_OPTIMIZED_OCTREE)
-#include "octree_optimized/OctreeOptimizedAdapter.h"
-#else
-#include "octree_basic/OctreeBasicAdapter.h"
-#endif
+    std::vector<Point3D> result;
+    result.reserve(cloud->size());
+    for (const auto& p : cloud->points) {
+        result.push_back({p.x, p.y, p.z});
+    }
+    return result;
+}
 
+void display() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glPushMatrix();
+    renderer.render(showWireframe);
+    glPopMatrix();
+    glutSwapBuffers();
+}
 
-// Tus módulos header-only
-//#include "octree/Vec3.h"
-//#include "octree/OctreePoint.h"
-//#include "octree/Octree.h"
-//#include "OctreeRenderer.h"
-// (más tarde) #include "kdtree/KdTree.h"
-//             #include "bsp/BSPTree.h"
+void reshape(int w, int h) {
+    if (h == 0) h = 1;
+    float ratio = 1.0f * w / h;
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(45, ratio, 0.1, 1000);
+    glMatrixMode(GL_MODELVIEW);
+    glViewport(0, 0, w, h);
+}
 
-//using namespace brandonpelfrey;
+void keyboard(unsigned char key, int x, int y) {
+    switch (key) {
+    case 27: // ESC
+        exit(0);
+        break;
 
-// variables globales
-pcl::PointCloud<pcl::PointXYZ>::Ptr cloud;
-IOctreeAdapter* octreePtr = nullptr;
-int currentLevel = -1;
+    case '+':
+        renderer.increaseResolution();
+        glutPostRedisplay();
+        break;
 
-Vec3 cameraCenter;
-float cameraDistance;
+    case '-':
+        renderer.decreaseResolution();
+        glutPostRedisplay();
+        break;
 
+    case 'w':
+    case 'W':
+        wireframeMode = !wireframeMode;
+        glutPostRedisplay();
+        break;
 
-
-
-void drawPartition() {
-    if (octreePtr) {
-        auto nodes = octreePtr->getDrawableNodes(currentLevel);
-        glColor3f(0.0f, 1.0f, 0.0f);
-        for (auto& node : nodes) {
-            glPushMatrix();
-            glTranslatef(node.center.x, node.center.y, node.center.z);
-            glScalef(node.halfSize.x * 2, node.halfSize.y * 2, node.halfSize.z * 2);
-            glutWireCube(1.0f);
-            glPopMatrix();
-        }
+    default:
+        break;
     }
 }
 
-void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    if (action == GLFW_PRESS) {
-        if (key == GLFW_KEY_KP_ADD)    currentLevel++;
-        else if (key == GLFW_KEY_KP_SUBTRACT && currentLevel > 0) currentLevel--;
-        // aquí podrías llamar a un método que “activa” solo los nodos hasta currentLevel
-    }
-}
-
-int main(int argc, char** argv) {
-    // 1) Carga PCD
-    cloud.reset(new pcl::PointCloud<pcl::PointXYZ>);
-    if (pcl::io::loadPCDFile<pcl::PointXYZ>("../data/corridor_telin.pcd", *cloud) == -1) {
-        std::cerr << "No puedo leer data/corridor_telin.pcd\n";
-        return -1;
-    }
-
-    // 2) Calcula bounding box
-    pcl::PointXYZ minPt, maxPt;
-    pcl::getMinMax3D(*cloud, minPt, maxPt);
-
-    cameraCenter = Vec3(
-        (minPt.x + maxPt.x) * 0.5f,
-        (minPt.y + maxPt.y) * 0.5f,
-        (minPt.z + maxPt.z) * 0.5f
-      );
-      Vec3 bbHalfDim = Vec3(
-        (maxPt.x - minPt.x) * 0.5f,
-        (maxPt.y - minPt.y) * 0.5f,
-        (maxPt.z - minPt.z) * 0.5f
-      );
-      float maxHalf = std::max({bbHalfDim.x, bbHalfDim.y, bbHalfDim.z});
-      cameraDistance = maxHalf * 5.0f;
-
-    Vec3 center((minPt.x+maxPt.x)/2, (minPt.y+maxPt.y)/2, (minPt.z+maxPt.z)/2);
-    Vec3 halfDim(maxHalf, maxHalf, maxHalf);
-
-    // 3) Construye octree
-    #if defined(USE_OPTIMIZED_OCTREE)
-        octreePtr = new OctreeOptimizedAdapter(center, halfDim);
-        std::cout << "Usando Octree optimizado" << std::endl;
-    #else
-        octreePtr = new OctreeBasicAdapter(center, halfDim);
-        std::cout << "Usando Octree básico" << std::endl;
-    #endif
-
-    for (auto& pt : cloud->points) {
-        octreePtr->insertPoint(pt.x, pt.y, pt.z);
-    }
-
-    #if defined(USE_OPTIMIZED_OCTREE)
-        dynamic_cast<OctreeOptimizedAdapter*>(octreePtr)->build();  // solo necesario si requiere build final
-    #endif
-
-
-    // 4) Inicializa GLFW + GLUT
-    glfwInit();
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Viewer", nullptr, nullptr);
-    glfwMakeContextCurrent(window);
-    glfwSetKeyCallback(window, keyCallback);
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-
-    // Habilita el test de profundidad y el color de fondo
+void initGL() {
     glEnable(GL_DEPTH_TEST);
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
-    // ← Y justo después de ese glClearColor, pega esto:
-    int w, h;
-    glfwGetFramebufferSize(window, &w, &h);
-    glViewport(0, 0, w, h);
-
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    // Campo de visión 45°, aspecto w/h, near=0.1, far=cameraDistance*5
-    gluPerspective(45.0, (double)w / h, 0.1, cameraDistance * 10.0);
-
     glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 
-    // Loop principal
-    while (!glfwWindowShouldClose(window)) {
-        // 1) Limpia buffers
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
-        // 2) Coloca la cámara
-        glLoadIdentity();
-        gluLookAt(
-            cameraCenter.x,                   // eye.x
-            cameraCenter.y + cameraDistance,  // eye.y
-            cameraCenter.z + cameraDistance,  // eye.z
-            cameraCenter.x,                   // center.x
-            cameraCenter.y,                   // center.y
-            cameraCenter.z,                   // center.z
-            0.0, 1.0, 0.0                     // up vector
-        );
-    
-        // — Dibuja la nube de puntos en blanco —
-        glPointSize(2.0f);
-        glColor3f(1.0f, 1.0f, 1.0f);
-        glBegin(GL_POINTS);
-        for (auto& pt : cloud->points) {
-            glVertex3f(pt.x, pt.y, pt.z);
+    float cx = renderer.getCenterX();
+    float cy = renderer.getCenterY();
+    float cz = renderer.getCenterZ();
+    float size = renderer.getSceneSize();
+
+    gluLookAt(
+        cx + size, cy + size, cz + size,  // cámara alejada en diagonal
+        cx, cy, cz,                       // mirando al centro de la escena
+        0, 0, 1                           // eje Z como "arriba"
+    );
+}
+
+
+
+
+int main(int argc, char** argv) {
+    try {
+        glutInit(&argc, argv);
+        glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+        glutInitWindowSize(800, 600);
+        glutCreateWindow("Octree Viewer");
+
+        initGL();
+
+        std::vector<Point3D> cloud = loadFromPCD("../data/hasselt.pcd");
+        std::cout << "[INFO] Puntos cargados: " << cloud.size() << std::endl;
+        for (int i = 0; i < 10 && i < cloud.size(); ++i) {
+            std::cout << "  P[" << i << "]: " << cloud[i].x << ", " << cloud[i].y << ", " << cloud[i].z << std::endl;
         }
-        glEnd();
-    
-        // — Dibuja la caja raíz en rojo —
-        {
-          Vec3 c = center;    // el mismo center que usas para construir el octree
-          Vec3 h = halfDim;   // el mismo halfDim
-          glColor3f(1.0f, 0.0f, 0.0f);
-          glPushMatrix();
-          glTranslatef(c.x, c.y, c.z);
-          glScalef(h.x * 2, h.y * 2, h.z * 2);
-          glutWireCube(1.0f);
-          glPopMatrix();
-        }
-    
-        // — Dibuja el Octree en verde —
-        drawPartition();
-    
-        // 4) Swap buffers y procesa eventos
-        glfwSwapBuffers(window);
-        glfwPollEvents();
+
+        renderer.loadPointCloud(cloud);
+        renderer.setResolution(currentResolution);
+        renderer.diagnoseOctree();
+        
+
+        glutDisplayFunc(display);
+        glutReshapeFunc(reshape);
+        glutKeyboardFunc(keyboard);
+        glutMainLoop();
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return EXIT_FAILURE;
     }
-    
 
-    // Cleanup
-    delete octreePtr;
-    glfwTerminate();
-    return 0;
+    return EXIT_SUCCESS;
 }

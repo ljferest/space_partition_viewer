@@ -225,17 +225,17 @@ src/bsp/CMakeFiles/bsp.dir/clean:
 # Target rules for target src/viewer/CMakeFiles/viewer.dir
 
 # All Build rule for target.
+src/viewer/CMakeFiles/viewer.dir/all: src/octree_optimized/CMakeFiles/octree_optimized.dir/all
 src/viewer/CMakeFiles/viewer.dir/all: src/kdtree/CMakeFiles/kdtree.dir/all
 src/viewer/CMakeFiles/viewer.dir/all: src/bsp/CMakeFiles/bsp.dir/all
-src/viewer/CMakeFiles/viewer.dir/all: src/octree_optimized/CMakeFiles/octree_optimized.dir/all
 	$(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=8,9 "Built target viewer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=8,9,10 "Built target viewer"
 .PHONY : src/viewer/CMakeFiles/viewer.dir/all
 
 # Build rule for subdir invocation for target.
 src/viewer/CMakeFiles/viewer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/viewer/CMakeFiles/viewer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 0
 .PHONY : src/viewer/CMakeFiles/viewer.dir/rule
