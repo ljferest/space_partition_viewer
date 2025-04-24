@@ -26,7 +26,6 @@ void OctreeRenderer::setResolution(int depth) {
         if (p.z > maxZ) maxZ = p.z;
     }
 
-    // Guardamos el centro y el tamaño de la escena para usar en la cámara
     centerX = (minX + maxX) / 2.0f;
     centerY = (minY + maxY) / 2.0f;
     centerZ = (minZ + maxZ) / 2.0f;
@@ -34,14 +33,18 @@ void OctreeRenderer::setResolution(int depth) {
     float dx = maxX - minX;
     float dy = maxY - minY;
     float dz = maxZ - minZ;
-    sceneSize = std::max({dx, dy, dz}) * 1.1f; // un margen extra
+    sceneSize = std::max({dx, dy, dz}) * 1.1f;
 
     std::cout << "[INFO] Bounding Box: [" << dx << " x " << dy << " x " << dz << "]\n";
     std::cout << "[INFO] Centro: (" << centerX << ", " << centerY << ", " << centerZ << ") Tamaño: " << sceneSize << "\n";
 
-    tree = std::make_unique<Octree>(centerX, centerY, centerZ, sceneSize, depth);
+    int maxTreeDepth = 10;  // ⬅️ construimos una vez a profundidad 10
+    tree = std::make_unique<Octree>(centerX, centerY, centerZ, sceneSize, maxTreeDepth);
     tree->build(points);
+
+    renderDepth = 4;  // ⬅️ empezamos renderizando a nivel 4
 }
+
 
 
 
@@ -109,11 +112,19 @@ void OctreeRenderer::diagnoseOctree() {
 }
 
 void OctreeRenderer::increaseResolution() {
-    if (renderDepth < tree->maxDepth) renderDepth++;
+    if (tree && renderDepth < tree->maxDepth) {
+        renderDepth++;
+        std::cout << "[RES] Nueva resolución: " << renderDepth << "\n";
+    }
 }
+
 void OctreeRenderer::decreaseResolution() {
-    if (renderDepth > 1) renderDepth--;
+    if (renderDepth > 1) {
+        renderDepth--;
+        std::cout << "[RES] Resolución reducida: " << renderDepth << "\n";
+    }
 }
+
 
 
 

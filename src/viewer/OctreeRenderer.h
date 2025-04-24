@@ -17,11 +17,9 @@ public:
     float getCenterZ() const { return centerZ; }
     float getSceneSize() const { return sceneSize; }
     void diagnoseOctree();
-    int renderDepth = 6;
     void increaseResolution(); // + tecla
     void decreaseResolution(); // - tecla
-
-
+    int renderDepth = 4;
 
 
 private:

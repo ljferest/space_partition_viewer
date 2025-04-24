@@ -11,7 +11,7 @@
 
 // Globals
 OctreeRenderer renderer;
-int currentResolution = 6;
+int currentResolution = 10;
 bool showWireframe = false;
 bool wireframeMode = false;
 
@@ -106,7 +106,7 @@ int main(int argc, char** argv) {
 
         initGL();
 
-        std::vector<Point3D> cloud = loadFromPCD("../data/hasselt.pcd");
+        std::vector<Point3D> cloud = loadFromPCD("../data/ufo.pcd");
         std::cout << "[INFO] Puntos cargados: " << cloud.size() << std::endl;
         for (int i = 0; i < 10 && i < cloud.size(); ++i) {
             std::cout << "  P[" << i << "]: " << cloud[i].x << ", " << cloud[i].y << ", " << cloud[i].z << std::endl;
