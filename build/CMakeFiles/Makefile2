@@ -225,9 +225,9 @@ src/bsp/CMakeFiles/bsp.dir/clean:
 # Target rules for target src/viewer/CMakeFiles/viewer.dir
 
 # All Build rule for target.
-src/viewer/CMakeFiles/viewer.dir/all: src/octree_optimized/CMakeFiles/octree_optimized.dir/all
-src/viewer/CMakeFiles/viewer.dir/all: src/kdtree/CMakeFiles/kdtree.dir/all
 src/viewer/CMakeFiles/viewer.dir/all: src/bsp/CMakeFiles/bsp.dir/all
+src/viewer/CMakeFiles/viewer.dir/all: src/kdtree/CMakeFiles/kdtree.dir/all
+src/viewer/CMakeFiles/viewer.dir/all: src/octree_optimized/CMakeFiles/octree_optimized.dir/all
 	$(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=8,9,10 "Built target viewer"
