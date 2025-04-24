@@ -48,6 +48,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/luis/projects/space_partition/build/src/kdtree/cmake_install.cmake")
   include("/home/luis/projects/space_partition/build/src/bsp/cmake_install.cmake")
   include("/home/luis/projects/space_partition/build/src/viewer/cmake_install.cmake")
+  include("/home/luis/projects/space_partition/build/src/common/cmake_install.cmake")
 
 endif()
 

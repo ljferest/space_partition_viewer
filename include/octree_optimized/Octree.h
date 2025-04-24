@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 #include "CNode.h"
-#include "Point3D.h"
+#include "common/Point3D.h"
 
 class Octree {
 public:

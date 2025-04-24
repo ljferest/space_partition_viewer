@@ -125,7 +125,7 @@ src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.o: \
  /usr/include/c++/13/pstl/execution_defs.h \
  /home/luis/projects/space_partition/include/octree_optimized/CNode.h \
  /usr/include/c++/13/array /usr/include/c++/13/compare \
- /home/luis/projects/space_partition/include/octree_optimized/Point3D.h \
+ /home/luis/projects/space_partition/include/common/Point3D.h \
  /usr/include/c++/13/functional /usr/include/c++/13/bits/std_function.h \
  /usr/include/c++/13/unordered_map \
  /usr/include/c++/13/bits/unordered_map.h \
@@ -146,12 +146,11 @@ src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/select.h \
  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
  /usr/include/alloca.h /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/c++/13/bits/std_abs.h \
- /home/luis/projects/space_partition/include/octree_optimized/Point3D.h \
- /usr/include/GL/glut.h /usr/include/GL/freeglut_std.h \
- /usr/include/GL/gl.h /usr/include/GL/glext.h \
- /usr/include/KHR/khrplatform.h /usr/include/GL/glu.h \
- /usr/include/c++/13/stdlib.h /usr/include/c++/13/algorithm \
+ /usr/include/c++/13/bits/std_abs.h /usr/include/GL/glut.h \
+ /usr/include/GL/freeglut_std.h /usr/include/GL/gl.h \
+ /usr/include/GL/glext.h /usr/include/KHR/khrplatform.h \
+ /usr/include/GL/glu.h /usr/include/c++/13/stdlib.h \
+ /usr/include/c++/13/algorithm \
  /usr/include/c++/13/pstl/glue_algorithm_defs.h \
  /usr/include/c++/13/iostream /usr/include/c++/13/ostream \
  /usr/include/c++/13/ios /usr/include/c++/13/bits/char_traits.h \

@@ -12,6 +12,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.28.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.28.3/CMakeSystem.cmake"
   "/home/luis/projects/space_partition/src/bsp/CMakeLists.txt"
+  "/home/luis/projects/space_partition/src/common/CMakeLists.txt"
   "/home/luis/projects/space_partition/src/kdtree/CMakeLists.txt"
   "/home/luis/projects/space_partition/src/octree_optimized/CMakeLists.txt"
   "/home/luis/projects/space_partition/src/viewer/CMakeLists.txt"
@@ -208,12 +209,15 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "src/kdtree/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/bsp/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/viewer/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/common/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "src/octree_optimized/CMakeFiles/octree_optimized.dir/DependInfo.cmake"
   "src/kdtree/CMakeFiles/kdtree.dir/DependInfo.cmake"
+  "src/kdtree/CMakeFiles/test_kdtree.dir/DependInfo.cmake"
   "src/bsp/CMakeFiles/bsp.dir/DependInfo.cmake"
   "src/viewer/CMakeFiles/viewer.dir/DependInfo.cmake"
+  "src/common/CMakeFiles/pointcloud_loader.dir/DependInfo.cmake"
   )

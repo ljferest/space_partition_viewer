@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/luis/projects/space_partition/src/viewer/OctreeRenderer.cpp" "src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.o" "gcc" "src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.o.d"
+  "/home/luis/projects/space_partition/src/viewer/PartitionRenderer.cpp" "src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.o" "gcc" "src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.o.d"
   "/home/luis/projects/space_partition/src/viewer/main.cpp" "src/viewer/CMakeFiles/viewer.dir/main.cpp.o" "gcc" "src/viewer/CMakeFiles/viewer.dir/main.cpp.o.d"
   )
 

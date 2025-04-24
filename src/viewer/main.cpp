@@ -2,15 +2,17 @@
 #include <vector>
 #include <iostream>
 #include <stdexcept>
-#include "OctreeRenderer.h"
-#include "Point3D.h"
+#include "PartitionRenderer.h"
+#include "common/Point3D.h"
+#include "common/PointCloudLoader.h"
+
 
 // PCL
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
 
 // Globals
-OctreeRenderer renderer;
+PartitionRenderer renderer;
 int currentResolution = 10;
 bool showWireframe = false;
 bool wireframeMode = false;
@@ -107,6 +109,10 @@ int main(int argc, char** argv) {
         initGL();
 
         std::vector<Point3D> cloud = loadFromPCD("../data/ufo.pcd");
+        renderer.setPoints(loadFromPCD("../data/ufo.pcd"));  // o el archivo que uses
+        renderer.computeBoundingBox();  // ⚠️ importante para render
+        renderer.buildKdTree();         // ⚠️ importante para que no esté vacío
+
         std::cout << "[INFO] Puntos cargados: " << cloud.size() << std::endl;
         for (int i = 0; i < 10 && i < cloud.size(); ++i) {
             std::cout << "  P[" << i << "]: " << cloud[i].x << ", " << cloud[i].y << ", " << cloud[i].z << std::endl;

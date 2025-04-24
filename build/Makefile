@@ -143,6 +143,19 @@ kdtree/fast:
 .PHONY : kdtree/fast
 
 #=============================================================================
+# Target rules for targets named test_kdtree
+
+# Build rule for target.
+test_kdtree: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_kdtree
+.PHONY : test_kdtree
+
+# fast build rule for target.
+test_kdtree/fast:
+	$(MAKE) $(MAKESILENT) -f src/kdtree/CMakeFiles/test_kdtree.dir/build.make src/kdtree/CMakeFiles/test_kdtree.dir/build
+.PHONY : test_kdtree/fast
+
+#=============================================================================
 # Target rules for targets named bsp
 
 # Build rule for target.
@@ -168,6 +181,19 @@ viewer/fast:
 	$(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/build
 .PHONY : viewer/fast
 
+#=============================================================================
+# Target rules for targets named pointcloud_loader
+
+# Build rule for target.
+pointcloud_loader: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pointcloud_loader
+.PHONY : pointcloud_loader
+
+# fast build rule for target.
+pointcloud_loader/fast:
+	$(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/pointcloud_loader.dir/build.make src/common/CMakeFiles/pointcloud_loader.dir/build
+.PHONY : pointcloud_loader/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -179,6 +205,8 @@ help:
 	@echo "... bsp"
 	@echo "... kdtree"
 	@echo "... octree_optimized"
+	@echo "... pointcloud_loader"
+	@echo "... test_kdtree"
 	@echo "... viewer"
 .PHONY : help
 

@@ -160,7 +160,7 @@ src/viewer/CMakeFiles/viewer.dir/main.cpp.o: \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc \
- /home/luis/projects/space_partition/src/viewer/OctreeRenderer.h \
+ /home/luis/projects/space_partition/src/viewer/PartitionRenderer.h \
  /home/luis/projects/space_partition/include/octree_optimized/Octree.h \
  /usr/include/c++/13/memory /usr/include/c++/13/bits/stl_tempbuf.h \
  /usr/include/c++/13/bits/stl_raw_storage_iter.h \
@@ -178,7 +178,7 @@ src/viewer/CMakeFiles/viewer.dir/main.cpp.o: \
  /usr/include/c++/13/pstl/execution_defs.h \
  /home/luis/projects/space_partition/include/octree_optimized/CNode.h \
  /usr/include/c++/13/array /usr/include/c++/13/compare \
- /home/luis/projects/space_partition/include/octree_optimized/Point3D.h \
+ /home/luis/projects/space_partition/include/common/Point3D.h \
  /usr/include/c++/13/functional /usr/include/c++/13/bits/std_function.h \
  /usr/include/c++/13/unordered_map \
  /usr/include/c++/13/bits/unordered_map.h \
@@ -190,7 +190,11 @@ src/viewer/CMakeFiles/viewer.dir/main.cpp.o: \
  /usr/include/c++/13/bits/algorithmfwd.h \
  /usr/include/c++/13/bits/stl_heap.h \
  /usr/include/c++/13/bits/uniform_int_dist.h \
- /home/luis/projects/space_partition/include/octree_optimized/Point3D.h \
+ /home/luis/projects/space_partition/include/kdtree/KdTree.h \
+ /home/luis/projects/space_partition/include/kdtree/KdNode.h \
+ /home/luis/projects/space_partition/include/common/BoundingBox.h \
+ /home/luis/projects/space_partition/include/common/Point3D.h \
+ /home/luis/projects/space_partition/include/common/PointCloudLoader.h \
  /usr/include/pcl-1.14/pcl/io/pcd_io.h /usr/include/pcl-1.14/pcl/memory.h \
  /usr/include/pcl-1.14/pcl/type_traits.h \
  /usr/include/pcl-1.14/pcl/point_struct_traits.h \

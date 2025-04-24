@@ -130,29 +130,29 @@ viewer/fast:
 	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/build
 .PHONY : viewer/fast
 
-OctreeRenderer.o: OctreeRenderer.cpp.o
-.PHONY : OctreeRenderer.o
+PartitionRenderer.o: PartitionRenderer.cpp.o
+.PHONY : PartitionRenderer.o
 
 # target to build an object file
-OctreeRenderer.cpp.o:
-	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.o
-.PHONY : OctreeRenderer.cpp.o
+PartitionRenderer.cpp.o:
+	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.o
+.PHONY : PartitionRenderer.cpp.o
 
-OctreeRenderer.i: OctreeRenderer.cpp.i
-.PHONY : OctreeRenderer.i
+PartitionRenderer.i: PartitionRenderer.cpp.i
+.PHONY : PartitionRenderer.i
 
 # target to preprocess a source file
-OctreeRenderer.cpp.i:
-	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.i
-.PHONY : OctreeRenderer.cpp.i
+PartitionRenderer.cpp.i:
+	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.i
+.PHONY : PartitionRenderer.cpp.i
 
-OctreeRenderer.s: OctreeRenderer.cpp.s
-.PHONY : OctreeRenderer.s
+PartitionRenderer.s: PartitionRenderer.cpp.s
+.PHONY : PartitionRenderer.s
 
 # target to generate assembly for a file
-OctreeRenderer.cpp.s:
-	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/OctreeRenderer.cpp.s
-.PHONY : OctreeRenderer.cpp.s
+PartitionRenderer.cpp.s:
+	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.s
+.PHONY : PartitionRenderer.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -187,9 +187,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... viewer"
-	@echo "... OctreeRenderer.o"
-	@echo "... OctreeRenderer.i"
-	@echo "... OctreeRenderer.s"
+	@echo "... PartitionRenderer.o"
+	@echo "... PartitionRenderer.i"
+	@echo "... PartitionRenderer.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

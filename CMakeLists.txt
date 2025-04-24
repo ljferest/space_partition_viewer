@@ -38,3 +38,5 @@ endif()
 add_subdirectory(src/kdtree)
 add_subdirectory(src/bsp)
 add_subdirectory(src/viewer)
+add_subdirectory(src/common)
+

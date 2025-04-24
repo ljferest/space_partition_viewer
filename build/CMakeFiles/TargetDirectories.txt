@@ -4,6 +4,7 @@
 /home/luis/projects/space_partition/build/src/octree_optimized/CMakeFiles/edit_cache.dir
 /home/luis/projects/space_partition/build/src/octree_optimized/CMakeFiles/rebuild_cache.dir
 /home/luis/projects/space_partition/build/src/kdtree/CMakeFiles/kdtree.dir
+/home/luis/projects/space_partition/build/src/kdtree/CMakeFiles/test_kdtree.dir
 /home/luis/projects/space_partition/build/src/kdtree/CMakeFiles/edit_cache.dir
 /home/luis/projects/space_partition/build/src/kdtree/CMakeFiles/rebuild_cache.dir
 /home/luis/projects/space_partition/build/src/bsp/CMakeFiles/bsp.dir
@@ -12,3 +13,6 @@
 /home/luis/projects/space_partition/build/src/viewer/CMakeFiles/viewer.dir
 /home/luis/projects/space_partition/build/src/viewer/CMakeFiles/edit_cache.dir
 /home/luis/projects/space_partition/build/src/viewer/CMakeFiles/rebuild_cache.dir
+/home/luis/projects/space_partition/build/src/common/CMakeFiles/pointcloud_loader.dir
+/home/luis/projects/space_partition/build/src/common/CMakeFiles/edit_cache.dir
+/home/luis/projects/space_partition/build/src/common/CMakeFiles/rebuild_cache.dir

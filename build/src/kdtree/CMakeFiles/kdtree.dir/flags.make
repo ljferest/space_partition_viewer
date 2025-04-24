@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = -DEIGEN_HAS_CXX17_OVERALIGN=0 -DUSE_OPTIMIZED_OCTREE
 
-CXX_INCLUDES = -I/usr/include/eigen3 -I/usr/include/pcl-1.14 -I/usr/include/ni -I/usr/include/openni2 -I/home/luis/projects/space_partition/src -I/home/luis/projects/space_partition/include -I/home/luis/projects/space_partition/src/kdtree
+CXX_INCLUDES = -I/usr/include/eigen3 -I/usr/include/pcl-1.14 -I/usr/include/ni -I/usr/include/openni2 -I/home/luis/projects/space_partition/src -I/home/luis/projects/space_partition/include
 
 CXX_FLAGS = -g -std=c++17
 

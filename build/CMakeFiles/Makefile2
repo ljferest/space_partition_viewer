@@ -67,6 +67,7 @@ all: src/octree_optimized/all
 all: src/kdtree/all
 all: src/bsp/all
 all: src/viewer/all
+all: src/common/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -74,6 +75,7 @@ preinstall: src/octree_optimized/preinstall
 preinstall: src/kdtree/preinstall
 preinstall: src/bsp/preinstall
 preinstall: src/viewer/preinstall
+preinstall: src/common/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
@@ -81,6 +83,7 @@ clean: src/octree_optimized/clean
 clean: src/kdtree/clean
 clean: src/bsp/clean
 clean: src/viewer/clean
+clean: src/common/clean
 .PHONY : clean
 
 #=============================================================================
@@ -99,10 +102,26 @@ src/bsp/clean: src/bsp/CMakeFiles/bsp.dir/clean
 .PHONY : src/bsp/clean
 
 #=============================================================================
+# Directory level rules for directory src/common
+
+# Recursive "all" directory target.
+src/common/all: src/common/CMakeFiles/pointcloud_loader.dir/all
+.PHONY : src/common/all
+
+# Recursive "preinstall" directory target.
+src/common/preinstall:
+.PHONY : src/common/preinstall
+
+# Recursive "clean" directory target.
+src/common/clean: src/common/CMakeFiles/pointcloud_loader.dir/clean
+.PHONY : src/common/clean
+
+#=============================================================================
 # Directory level rules for directory src/kdtree
 
 # Recursive "all" directory target.
 src/kdtree/all: src/kdtree/CMakeFiles/kdtree.dir/all
+src/kdtree/all: src/kdtree/CMakeFiles/test_kdtree.dir/all
 .PHONY : src/kdtree/all
 
 # Recursive "preinstall" directory target.
@@ -111,6 +130,7 @@ src/kdtree/preinstall:
 
 # Recursive "clean" directory target.
 src/kdtree/clean: src/kdtree/CMakeFiles/kdtree.dir/clean
+src/kdtree/clean: src/kdtree/CMakeFiles/test_kdtree.dir/clean
 .PHONY : src/kdtree/clean
 
 #=============================================================================
@@ -196,6 +216,33 @@ src/kdtree/CMakeFiles/kdtree.dir/clean:
 .PHONY : src/kdtree/CMakeFiles/kdtree.dir/clean
 
 #=============================================================================
+# Target rules for target src/kdtree/CMakeFiles/test_kdtree.dir
+
+# All Build rule for target.
+src/kdtree/CMakeFiles/test_kdtree.dir/all: src/kdtree/CMakeFiles/kdtree.dir/all
+src/kdtree/CMakeFiles/test_kdtree.dir/all: src/common/CMakeFiles/pointcloud_loader.dir/all
+	$(MAKE) $(MAKESILENT) -f src/kdtree/CMakeFiles/test_kdtree.dir/build.make src/kdtree/CMakeFiles/test_kdtree.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/kdtree/CMakeFiles/test_kdtree.dir/build.make src/kdtree/CMakeFiles/test_kdtree.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=10,11 "Built target test_kdtree"
+.PHONY : src/kdtree/CMakeFiles/test_kdtree.dir/all
+
+# Build rule for subdir invocation for target.
+src/kdtree/CMakeFiles/test_kdtree.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/kdtree/CMakeFiles/test_kdtree.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 0
+.PHONY : src/kdtree/CMakeFiles/test_kdtree.dir/rule
+
+# Convenience name for target.
+test_kdtree: src/kdtree/CMakeFiles/test_kdtree.dir/rule
+.PHONY : test_kdtree
+
+# clean rule for target.
+src/kdtree/CMakeFiles/test_kdtree.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/kdtree/CMakeFiles/test_kdtree.dir/build.make src/kdtree/CMakeFiles/test_kdtree.dir/clean
+.PHONY : src/kdtree/CMakeFiles/test_kdtree.dir/clean
+
+#=============================================================================
 # Target rules for target src/bsp/CMakeFiles/bsp.dir
 
 # All Build rule for target.
@@ -225,12 +272,12 @@ src/bsp/CMakeFiles/bsp.dir/clean:
 # Target rules for target src/viewer/CMakeFiles/viewer.dir
 
 # All Build rule for target.
-src/viewer/CMakeFiles/viewer.dir/all: src/bsp/CMakeFiles/bsp.dir/all
-src/viewer/CMakeFiles/viewer.dir/all: src/kdtree/CMakeFiles/kdtree.dir/all
 src/viewer/CMakeFiles/viewer.dir/all: src/octree_optimized/CMakeFiles/octree_optimized.dir/all
+src/viewer/CMakeFiles/viewer.dir/all: src/kdtree/CMakeFiles/kdtree.dir/all
+src/viewer/CMakeFiles/viewer.dir/all: src/bsp/CMakeFiles/bsp.dir/all
 	$(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=8,9,10 "Built target viewer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=12,13,14 "Built target viewer"
 .PHONY : src/viewer/CMakeFiles/viewer.dir/all
 
 # Build rule for subdir invocation for target.
@@ -248,6 +295,32 @@ viewer: src/viewer/CMakeFiles/viewer.dir/rule
 src/viewer/CMakeFiles/viewer.dir/clean:
 	$(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/clean
 .PHONY : src/viewer/CMakeFiles/viewer.dir/clean
+
+#=============================================================================
+# Target rules for target src/common/CMakeFiles/pointcloud_loader.dir
+
+# All Build rule for target.
+src/common/CMakeFiles/pointcloud_loader.dir/all:
+	$(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/pointcloud_loader.dir/build.make src/common/CMakeFiles/pointcloud_loader.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/pointcloud_loader.dir/build.make src/common/CMakeFiles/pointcloud_loader.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=8,9 "Built target pointcloud_loader"
+.PHONY : src/common/CMakeFiles/pointcloud_loader.dir/all
+
+# Build rule for subdir invocation for target.
+src/common/CMakeFiles/pointcloud_loader.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/common/CMakeFiles/pointcloud_loader.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 0
+.PHONY : src/common/CMakeFiles/pointcloud_loader.dir/rule
+
+# Convenience name for target.
+pointcloud_loader: src/common/CMakeFiles/pointcloud_loader.dir/rule
+.PHONY : pointcloud_loader
+
+# clean rule for target.
+src/common/CMakeFiles/pointcloud_loader.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/pointcloud_loader.dir/build.make src/common/CMakeFiles/pointcloud_loader.dir/clean
+.PHONY : src/common/CMakeFiles/pointcloud_loader.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -1,0 +1,69 @@
+#ifndef OCTREERENDERER_H
+#define OCTREERENDERER_H
+
+#include "Octree.h"
+#include "common/Point3D.h"
+#include <vector>
+#include <memory>
+#include "kdtree/KdTree.h"
+#include "common/BoundingBox.h"
+
+
+
+
+
+class PartitionRenderer {
+public:
+    enum class RenderMode {
+        Octree,
+        KdTree,
+        BSP
+    };
+    PartitionRenderer();
+    void loadPointCloud(const std::vector<Point3D>& pts);
+    void setResolution(int depth);
+    float getCenterX() const { return centerX; }
+    float getCenterY() const { return centerY; }
+    float getCenterZ() const { return centerZ; }
+    float getSceneSize() const { return sceneSize; }
+    void diagnoseOctree();
+    void increaseResolution(); // + tecla
+    void decreaseResolution(); // - tecla
+    void render(bool wireframe = false);
+    void handleKeyboard(unsigned char key);
+    void setRenderMode(RenderMode mode);
+    void renderKdTreePartitioning(KdNode* node,
+        float xmin, float xmax,
+        float ymin, float ymax,
+        float zmin, float zmax,
+        int depth); // ✅ ahora coincide con el .cpp
+
+    void computeBoundingBox();
+    void buildKdTree();
+    void setPoints(const std::vector<Point3D>& pts);
+
+        
+    
+    int renderDepth = 4;
+    int maxRenderDepth = 10;
+
+
+
+private:
+    std::vector<Point3D> points;
+    std::unique_ptr<Octree> tree;
+    float minZ = 0.0f, maxZ = 1.0f;
+    float centerX = 0, centerY = 0, centerZ = 0;
+    float sceneSize = 100;
+    RenderMode currentMode = RenderMode::KdTree;
+    BoundingBox bbox;
+    KdTree kdtree;
+    
+
+
+
+
+    void computeZRange();
+};
+
+#endif

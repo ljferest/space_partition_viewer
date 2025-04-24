@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/viewer.dir/OctreeRenderer.cpp.o"
-  "CMakeFiles/viewer.dir/OctreeRenderer.cpp.o.d"
+  "CMakeFiles/viewer.dir/PartitionRenderer.cpp.o"
+  "CMakeFiles/viewer.dir/PartitionRenderer.cpp.o.d"
   "CMakeFiles/viewer.dir/main.cpp.o"
   "CMakeFiles/viewer.dir/main.cpp.o.d"
   "viewer"

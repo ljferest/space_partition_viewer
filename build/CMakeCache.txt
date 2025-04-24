@@ -1157,6 +1157,9 @@ pkgcfg_lib_PKG_FONTCONFIG_fontconfig:FILEPATH=/usr/lib/x86_64-linux-gnu/libfontc
 //Path to a library.
 pkgcfg_lib_PKG_FONTCONFIG_freetype:FILEPATH=/usr/lib/x86_64-linux-gnu/libfreetype.so
 
+//Dependencies for the target
+pointcloud_loader_LIB_DEPENDS:STATIC=general;pcl_common;general;pcl_kdtree;general;pcl_octree;general;pcl_search;general;pcl_sample_consensus;general;pcl_filters;general;pcl_io;general;pcl_features;general;pcl_ml;general;pcl_segmentation;general;pcl_visualization;general;pcl_surface;general;pcl_registration;general;pcl_keypoints;general;pcl_tracking;general;pcl_recognition;general;pcl_stereo;general;pcl_apps;general;pcl_outofcore;general;pcl_people;general;Boost::system;general;Boost::filesystem;general;Boost::iostreams;general;Boost::serialization;general;/usr/lib/libOpenNI.so;general;libusb::libusb;general;/usr/lib/x86_64-linux-gnu/libOpenNI2.so;general;libusb::libusb;general;VTK::ChartsCore;general;VTK::CommonColor;general;VTK::CommonComputationalGeometry;general;VTK::CommonCore;general;VTK::CommonDataModel;general;VTK::CommonExecutionModel;general;VTK::CommonMath;general;VTK::CommonMisc;general;VTK::CommonTransforms;general;VTK::FiltersCore;general;VTK::FiltersExtraction;general;VTK::FiltersGeneral;general;VTK::FiltersGeometry;general;VTK::FiltersModeling;general;VTK::FiltersSources;general;VTK::ImagingCore;general;VTK::ImagingSources;general;VTK::InteractionImage;general;VTK::InteractionStyle;general;VTK::InteractionWidgets;general;VTK::IOCore;general;VTK::IOGeometry;general;VTK::IOImage;general;VTK::IOLegacy;general;VTK::IOPLY;general;VTK::RenderingAnnotation;general;VTK::RenderingCore;general;VTK::RenderingContext2D;general;VTK::RenderingLOD;general;VTK::RenderingFreeType;general;VTK::ViewsCore;general;VTK::ViewsContext2D;general;VTK::RenderingOpenGL2;general;VTK::RenderingContextOpenGL2;general;VTK::GUISupportQt;general;FLANN::FLANN;
+
 //Value Computed by CMake
 space_partition_BINARY_DIR:STATIC=/home/luis/projects/space_partition/build
 
@@ -1291,7 +1294,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

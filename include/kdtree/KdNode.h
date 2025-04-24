@@ -1,5 +1,5 @@
 #pragma once
-#include "Point3D.h"
+#include "common/Point3D.h"
 
 struct KdNode {
     Point3D* point;

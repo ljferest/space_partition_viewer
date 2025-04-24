@@ -130,6 +130,20 @@ kdtree/fast:
 	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/kdtree/CMakeFiles/kdtree.dir/build.make src/kdtree/CMakeFiles/kdtree.dir/build
 .PHONY : kdtree/fast
 
+# Convenience name for target.
+src/kdtree/CMakeFiles/test_kdtree.dir/rule:
+	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/kdtree/CMakeFiles/test_kdtree.dir/rule
+.PHONY : src/kdtree/CMakeFiles/test_kdtree.dir/rule
+
+# Convenience name for target.
+test_kdtree: src/kdtree/CMakeFiles/test_kdtree.dir/rule
+.PHONY : test_kdtree
+
+# fast build rule for target.
+test_kdtree/fast:
+	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/kdtree/CMakeFiles/test_kdtree.dir/build.make src/kdtree/CMakeFiles/test_kdtree.dir/build
+.PHONY : test_kdtree/fast
+
 KdTree.o: KdTree.cpp.o
 .PHONY : KdTree.o
 
@@ -154,6 +168,30 @@ KdTree.cpp.s:
 	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/kdtree/CMakeFiles/kdtree.dir/build.make src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.s
 .PHONY : KdTree.cpp.s
 
+test_kdtree.o: test_kdtree.cpp.o
+.PHONY : test_kdtree.o
+
+# target to build an object file
+test_kdtree.cpp.o:
+	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/kdtree/CMakeFiles/test_kdtree.dir/build.make src/kdtree/CMakeFiles/test_kdtree.dir/test_kdtree.cpp.o
+.PHONY : test_kdtree.cpp.o
+
+test_kdtree.i: test_kdtree.cpp.i
+.PHONY : test_kdtree.i
+
+# target to preprocess a source file
+test_kdtree.cpp.i:
+	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/kdtree/CMakeFiles/test_kdtree.dir/build.make src/kdtree/CMakeFiles/test_kdtree.dir/test_kdtree.cpp.i
+.PHONY : test_kdtree.cpp.i
+
+test_kdtree.s: test_kdtree.cpp.s
+.PHONY : test_kdtree.s
+
+# target to generate assembly for a file
+test_kdtree.cpp.s:
+	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/kdtree/CMakeFiles/test_kdtree.dir/build.make src/kdtree/CMakeFiles/test_kdtree.dir/test_kdtree.cpp.s
+.PHONY : test_kdtree.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -163,9 +201,13 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... kdtree"
+	@echo "... test_kdtree"
 	@echo "... KdTree.o"
 	@echo "... KdTree.i"
 	@echo "... KdTree.s"
+	@echo "... test_kdtree.o"
+	@echo "... test_kdtree.i"
+	@echo "... test_kdtree.s"
 .PHONY : help
 
 
