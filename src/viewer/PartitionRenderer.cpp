@@ -78,6 +78,13 @@ void PartitionRenderer::render(bool wireframe) {
                                  bbox.min.z, bbox.max.z,
                                 0);
     }
+    else if (currentMode == RenderMode::BSP) {
+        renderBSPPartitioning(bspTree.getRoot(),
+                              bbox.min.x, bbox.max.x,
+                              bbox.min.y, bbox.max.y,
+                              bbox.min.z, bbox.max.z);
+    }
+    
     else{
     // 🔹 Después, dibujamos los cubos del Octree
     tree->traverseLeavesUpToDepth(renderDepth, [=](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
@@ -230,7 +237,52 @@ void PartitionRenderer::buildKdTree() {
 
 void PartitionRenderer::setPoints(const std::vector<Point3D>& pts) {
     points = pts;
+
+    // Construir BSP Tree (🚀 ahora añadimos esto:)
+    std::vector<Point3D*> pointPtrs;
+    for (auto& p : points) {
+        pointPtrs.push_back(&p);
+    }
+    bspTree.build(pointPtrs, 10);
 }
 
+void PartitionRenderer::renderBSPPartitioning(BSPNode* node,
+    float xmin, float xmax,
+    float ymin, float ymax,
+    float zmin, float zmax,
+    int depth) {
+
+    if (!node) return;
+
+    glLineWidth(1.0f);
+    glColor3f(1.0f, 1.0f, 0.0f); // Amarillo para los planos
+
+    glBegin(GL_LINES);
+    const Plane& plane = node->dividingPlane;
+    
+    if (plane.normal.x == 1.0f) { // Plano perpendicular a X
+        glVertex3f(plane.d, ymin, zmin);
+        glVertex3f(plane.d, ymax, zmax);
+    } else if (plane.normal.y == 1.0f) { // Plano perpendicular a Y
+        glVertex3f(xmin, plane.d, zmin);
+        glVertex3f(xmax, plane.d, zmax);
+    } else { // Plano perpendicular a Z
+        glVertex3f(xmin, ymin, plane.d);
+        glVertex3f(xmax, ymax, plane.d);
+    }
+    glEnd();
+
+    // Recursión en subespacios
+    if (plane.normal.x == 1.0f) {
+        renderBSPPartitioning(node->front, plane.d, xmax, ymin, ymax, zmin, zmax, depth + 1);
+        renderBSPPartitioning(node->back, xmin, plane.d, ymin, ymax, zmin, zmax, depth + 1);
+    } else if (plane.normal.y == 1.0f) {
+        renderBSPPartitioning(node->front, xmin, xmax, plane.d, ymax, zmin, zmax, depth + 1);
+        renderBSPPartitioning(node->back, xmin, xmax, ymin, plane.d, zmin, zmax, depth + 1);
+    } else {
+        renderBSPPartitioning(node->front, xmin, xmax, ymin, ymax, plane.d, zmax, depth + 1);
+        renderBSPPartitioning(node->back, xmin, xmax, ymin, ymax, zmin, plane.d, depth + 1);
+    }
+}
 
 

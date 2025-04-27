@@ -7,6 +7,8 @@
 #include <memory>
 #include "kdtree/KdTree.h"
 #include "common/BoundingBox.h"
+#include "bsp/BSPTree.h"  
+
 
 
 
@@ -41,6 +43,7 @@ public:
     void computeBoundingBox();
     void buildKdTree();
     void setPoints(const std::vector<Point3D>& pts);
+    void renderBSPPartitioning(BSPNode* node, float xmin, float xmax, float ymin, float ymax, float zmin, float zmax, int depth = 0);
 
         
     
@@ -55,9 +58,10 @@ private:
     float minZ = 0.0f, maxZ = 1.0f;
     float centerX = 0, centerY = 0, centerZ = 0;
     float sceneSize = 100;
-    RenderMode currentMode = RenderMode::KdTree;
+    RenderMode currentMode = RenderMode::BSP;
     BoundingBox bbox;
     KdTree kdtree;
+    BSPTree bspTree;
     
 
 

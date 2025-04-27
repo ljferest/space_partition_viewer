@@ -194,6 +194,9 @@ src/viewer/CMakeFiles/viewer.dir/main.cpp.o: \
  /home/luis/projects/space_partition/include/kdtree/KdNode.h \
  /home/luis/projects/space_partition/include/common/BoundingBox.h \
  /home/luis/projects/space_partition/include/common/Point3D.h \
+ /home/luis/projects/space_partition/include/bsp/BSPTree.h \
+ /home/luis/projects/space_partition/include/bsp/BSPNode.h \
+ /home/luis/projects/space_partition/include/bsp/Plane.h \
  /home/luis/projects/space_partition/include/common/PointCloudLoader.h \
  /usr/include/pcl-1.14/pcl/io/pcd_io.h /usr/include/pcl-1.14/pcl/memory.h \
  /usr/include/pcl-1.14/pcl/type_traits.h \
