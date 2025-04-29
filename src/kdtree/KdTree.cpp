@@ -7,10 +7,13 @@
 // Referencia al paper de Bentley (1975)
 // https://doi.org/10.1145/361002.361007
 
-void KdTree::build(std::vector<Point3D>& pts) {
-    std::vector<Point3D*> ptrs;
-    for (auto& p : pts) ptrs.push_back(&p);
-    root = buildRecursive(ptrs, 0);
+void KdTree::build(std::vector<Point3D*>& pts) {
+    if (root) {
+        delete root;
+        root = nullptr;
+    }
+
+    root = buildRecursive(pts, 0);
 }
 
 KdNode* KdTree::getRoot() const {

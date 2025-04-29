@@ -8,7 +8,12 @@ int main() {
     std::cout << "[INFO] Cargados: " << cloud.size() << " puntos\n";
 
     KdTree tree;
-    tree.build(cloud);
+    std::vector<Point3D*> pointPtrs;
+    for (auto& pt : cloud) {
+        pointPtrs.push_back(&pt);
+    }
+
+    tree.build(pointPtrs); // Ahora correcto
 
     tree.diagnose();
 

@@ -17,7 +17,7 @@ public:
         root = std::make_unique<CNode>(0, centerX, centerY, centerZ, size);
     }
 
-    void build(const std::vector<Point3D>& points);
+    void build(const std::vector<Point3D*>& points);
     
     void queryRegion(float minX, float minY, float minZ,
                      float maxX, float maxY, float maxZ,

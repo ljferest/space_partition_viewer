@@ -6,14 +6,12 @@
 #include "common/Point3D.h"
 #include "common/PointCloudLoader.h"
 
-
 // PCL
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
 
 // Globals
 PartitionRenderer renderer;
-int currentResolution = 10;
 bool showWireframe = false;
 bool wireframeMode = false;
 
@@ -73,6 +71,7 @@ void keyboard(unsigned char key, int x, int y) {
         break;
 
     default:
+        renderer.handleKeyboard(key);  // ✅ También para cambiar modo Octree, KD-Tree o BSP
         break;
     }
 }
@@ -90,14 +89,11 @@ void initGL() {
     float size = renderer.getSceneSize();
 
     gluLookAt(
-        cx + size, cy + size, cz + size,  // cámara alejada en diagonal
-        cx, cy, cz,                       // mirando al centro de la escena
-        0, 0, 1                           // eje Z como "arriba"
+        cx + size, cy + size, cz + size,  // Cámara alejada en diagonal
+        cx, cy, cz,                       // Mirando al centro de la escena
+        0, 0, 1                           // Eje Z como "arriba"
     );
 }
-
-
-
 
 int main(int argc, char** argv) {
     try {
@@ -108,20 +104,16 @@ int main(int argc, char** argv) {
 
         initGL();
 
+        // 🔥 SOLO ESTA LÍNEA: cargar y construir todo
         std::vector<Point3D> cloud = loadFromPCD("../data/ufo.pcd");
-        renderer.setPoints(loadFromPCD("../data/ufo.pcd"));  // o el archivo que uses
-        renderer.computeBoundingBox();  // ⚠️ importante para render
-        renderer.buildKdTree();         // ⚠️ importante para que no esté vacío
+        renderer.loadPointCloud(cloud);
 
         std::cout << "[INFO] Puntos cargados: " << cloud.size() << std::endl;
         for (int i = 0; i < 10 && i < cloud.size(); ++i) {
             std::cout << "  P[" << i << "]: " << cloud[i].x << ", " << cloud[i].y << ", " << cloud[i].z << std::endl;
         }
 
-        renderer.loadPointCloud(cloud);
-        renderer.setResolution(currentResolution);
-        renderer.diagnoseOctree();
-        
+        renderer.diagnoseOctree(); // Opcional, para debug
 
         glutDisplayFunc(display);
         glutReshapeFunc(reshape);

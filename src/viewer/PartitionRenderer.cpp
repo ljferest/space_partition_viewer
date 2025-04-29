@@ -2,52 +2,50 @@
 #include <GL/glut.h>
 #include <algorithm>
 #include <iostream>
+#include <chrono>
 
 
 PartitionRenderer::PartitionRenderer() {}
 
 void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
     points = pts;
-    computeZRange();
-}
-
-void PartitionRenderer::setResolution(int depth) {
-    if (points.empty()) return;
-
-    float minX = points[0].x, maxX = points[0].x;
-    float minY = points[0].y, maxY = points[0].y;
-    float minZ = points[0].z, maxZ = points[0].z;
-
-    for (const auto& p : points) {
-        if (p.x < minX) minX = p.x;
-        if (p.x > maxX) maxX = p.x;
-        if (p.y < minY) minY = p.y;
-        if (p.y > maxY) maxY = p.y;
-        if (p.z < minZ) minZ = p.z;
-        if (p.z > maxZ) maxZ = p.z;
+    pointPtrs.clear();
+    for (auto& p : points) {
+        pointPtrs.push_back(&p);
     }
 
-    centerX = (minX + maxX) / 2.0f;
-    centerY = (minY + maxY) / 2.0f;
-    centerZ = (minZ + maxZ) / 2.0f;
+    computeBoundingBox();
 
-    float dx = maxX - minX;
-    float dy = maxY - minY;
-    float dz = maxZ - minZ;
-    sceneSize = std::max({dx, dy, dz}) * 1.1f;
+    centerX = (bbox.min.x + bbox.max.x) / 2.0f;
+    centerY = (bbox.min.y + bbox.max.y) / 2.0f;
+    centerZ = (bbox.min.z + bbox.max.z) / 2.0f;
+
+    float dx = bbox.max.x - bbox.min.x;
+    float dy = bbox.max.y - bbox.min.y;
+    float dz = bbox.max.z - bbox.min.z;
+    sceneSize = std::max({ dx, dy, dz }) * 1.1f;
 
     std::cout << "[INFO] Bounding Box: [" << dx << " x " << dy << " x " << dz << "]\n";
     std::cout << "[INFO] Centro: (" << centerX << ", " << centerY << ", " << centerZ << ") Tamaño: " << sceneSize << "\n";
 
-    int maxTreeDepth = 10;  // ⬅️ construimos una vez a profundidad 10
-    tree = std::make_unique<Octree>(centerX, centerY, centerZ, sceneSize, maxTreeDepth);
-    tree->build(points);
+    int maxTreeDepth = 10;
+    renderDepth = 4;
 
-    renderDepth = 4;  // ⬅️ empezamos renderizando a nivel 4
+    measureExecutionTime("Construcción Octree", [this, maxTreeDepth]() {
+        tree = std::make_unique<Octree>(centerX, centerY, centerZ, sceneSize, maxTreeDepth);
+        tree->build(pointPtrs);
+    });
+
+    measureExecutionTime("Construcción KD-Tree", [this]() {
+        kdtree.build(pointPtrs);
+    });
+
+    measureExecutionTime("Construcción BSP-Tree", [this]() {
+        bspTree.build(pointPtrs, 10);
+    });
+
+    computeZRange(); // Opcional si quieres seguir normalizando colores
 }
-
-
-
 
 void PartitionRenderer::computeZRange() {
     if (points.empty()) return;
@@ -79,10 +77,8 @@ void PartitionRenderer::render(bool wireframe) {
                                 0);
     }
     else if (currentMode == RenderMode::BSP) {
-        renderBSPPartitioning(bspTree.getRoot(),
-                              bbox.min.x, bbox.max.x,
-                              bbox.min.y, bbox.max.y,
-                              bbox.min.z, bbox.max.z);
+        glPointSize(3.0f); // hacer los puntos BSP más visibles
+        drawBSPRecursive(bspTree.getRoot());
     }
     
     else{
@@ -231,21 +227,6 @@ void PartitionRenderer::computeBoundingBox() {
     }
 }
 
-void PartitionRenderer::buildKdTree() {
-    kdtree.buildFromPoints(points); // Asegurate de tener este método en tu clase KdTree
-}
-
-void PartitionRenderer::setPoints(const std::vector<Point3D>& pts) {
-    points = pts;
-
-    // Construir BSP Tree (🚀 ahora añadimos esto:)
-    std::vector<Point3D*> pointPtrs;
-    for (auto& p : points) {
-        pointPtrs.push_back(&p);
-    }
-    bspTree.build(pointPtrs, 10);
-}
-
 void PartitionRenderer::renderBSPPartitioning(BSPNode* node,
     float xmin, float xmax,
     float ymin, float ymax,
@@ -285,4 +266,56 @@ void PartitionRenderer::renderBSPPartitioning(BSPNode* node,
     }
 }
 
+PartitionRenderer::Color PartitionRenderer::getRandomColor() {
+    static std::vector<Color> palette = {
+        {1.0f, 0.0f, 0.0f},  // Rojo
+        {0.0f, 1.0f, 0.0f},  // Verde
+        {0.0f, 0.0f, 1.0f},  // Azul
+        {1.0f, 1.0f, 0.0f},  // Amarillo
+        {1.0f, 0.0f, 1.0f},  // Magenta
+        {0.0f, 1.0f, 1.0f},  // Cian
+        {1.0f, 0.5f, 0.0f},  // Naranja
+        {0.5f, 0.0f, 1.0f},  // Violeta
+        {0.0f, 0.5f, 1.0f},  // Azul claro
+        {0.5f, 1.0f, 0.0f}   // Lima
+    };
+
+    int index = rand() % palette.size();  // Elegir un color de la paleta
+    return palette[index];
+}
+
+
+void PartitionRenderer::drawPoint(float x, float y, float z, const Color& color) {
+    glColor3f(color.r, color.g, color.b);
+    glVertex3f(x, y, z);
+}
+
+void PartitionRenderer::drawBSPRecursive(BSPNode* node) {
+    if (!node) return;
+
+    if (!node->front && !node->back) {
+        Color color = getRandomColor();
+
+        glBegin(GL_POINTS);
+        for (auto* pt : node->points) {
+            drawPoint(pt->x, pt->y, pt->z, color);
+        }
+        glEnd();
+    } else {
+        drawBSPRecursive(node->front);
+        drawBSPRecursive(node->back);
+    }
+}
+
+template <typename Func>
+void measureExecutionTime(const std::string& label, Func functionToMeasure) {
+    auto start = std::chrono::high_resolution_clock::now();
+
+    functionToMeasure(); // Ejecuta lo que quieras medir
+
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+
+    std::cout << "[TIMER] " << label << " tomó " << elapsed.count() << " segundos.\n";
+}
 
