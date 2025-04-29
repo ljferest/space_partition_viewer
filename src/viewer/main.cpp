@@ -105,7 +105,7 @@ int main(int argc, char** argv) {
         initGL();
 
         // 🔥 SOLO ESTA LÍNEA: cargar y construir todo
-        std::vector<Point3D> cloud = loadFromPCD("../data/hasselt.pcd");
+        std::vector<Point3D> cloud = loadFromPCD("../data/corridor_telin.pcd");
         renderer.loadPointCloud(cloud);
 
         std::cout << "[INFO] Puntos cargados: " << cloud.size() << std::endl;

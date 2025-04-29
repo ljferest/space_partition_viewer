@@ -57,45 +57,34 @@ void PartitionRenderer::computeZRange() {
 }
 
 void PartitionRenderer::render(bool wireframe) {
-    if (!tree || !tree->root) return;
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    
-   
-    // 🔹 Primero, dibujamos los puntos originales como GL_POINTS
-    glPointSize(1.0f); // puedes aumentar si querés más visibles
-    glBegin(GL_POINTS);
-    glColor3f(0, 1, 1); // cian
-    for (const auto& p : points) {
-        glVertex3f(p.x, p.y, p.z);
+    if (currentMode == RenderMode::Octree) {
+        if (!tree || !tree->root) return;
+
+        tree->traverseLeavesUpToDepth(renderDepth, [=](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
+            if (pts.empty()) return;
+            float colorZ = (cz - minZ) / (maxZ - minZ);
+            glColor3f(1.0f - colorZ, 0.0f, colorZ);
+
+            glPushMatrix();
+            glTranslatef(cx, cy, cz);
+            wireframe ? glutWireCube(size) : glutSolidCube(size);
+            glPopMatrix();
+        });
     }
-    glEnd();
-    if (currentMode == RenderMode::KdTree) {
+    else if (currentMode == RenderMode::KdTree) {
         renderKdTreePartitioning(kdtree.getRoot(),
                                  bbox.min.x, bbox.max.x,
                                  bbox.min.y, bbox.max.y,
                                  bbox.min.z, bbox.max.z,
-                                0);
+                                 0);
     }
     else if (currentMode == RenderMode::BSP) {
-        glPointSize(3.0f); // hacer los puntos BSP más visibles
+        glPointSize(3.0f);
         drawBSPRecursive(bspTree.getRoot());
     }
-    
-    else{
-    // 🔹 Después, dibujamos los cubos del Octree
-    tree->traverseLeavesUpToDepth(renderDepth, [=](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
-        if (pts.empty()) return;
-        float colorZ = (cz - minZ) / (maxZ - minZ);
-        glColor3f(1.0f - colorZ, 0.0f, colorZ);
-    
-        glPushMatrix();
-        glTranslatef(cx, cy, cz);
-        wireframe ? glutWireCube(size) : glutSolidCube(size);
-        glPopMatrix();
-    });}
-    
 }
-
 
 void PartitionRenderer::diagnoseOctree() {
     if (!tree || !tree->root) {
@@ -190,7 +179,7 @@ void PartitionRenderer::handleKeyboard(unsigned char key) {
     }
     else if (key == '3') {
         setRenderMode(RenderMode::BSP);
-        std::cout << "[MODE] BSP (no implementado aún)\n";
+        std::cout << "[MODE] BSP \n";
     }
 
     if (key == '+' && currentMode == RenderMode::Octree) {
@@ -208,6 +197,7 @@ void PartitionRenderer::handleKeyboard(unsigned char key) {
         maxRenderDepth--;
         std::cout << "[VISUAL] Profundidad KdTree - → " << maxRenderDepth << "\n";
     }
+    glutPostRedisplay();
 }
 
 void PartitionRenderer::setRenderMode(RenderMode mode) {
