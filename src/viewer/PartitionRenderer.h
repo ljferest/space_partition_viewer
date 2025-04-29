@@ -58,7 +58,7 @@ private:
     float minZ = 0.0f, maxZ = 1.0f;
     float centerX = 0, centerY = 0, centerZ = 0;
     float sceneSize = 100;
-    RenderMode currentMode = RenderMode::BSP;
+    RenderMode currentMode = RenderMode::Octree;
     BoundingBox bbox;
     KdTree kdtree;
     BSPTree bspTree;

@@ -20,3 +20,17 @@ void Octree::traverseLeavesUpToDepth(int renderDepth,
         root->traverseLeavesUpToDepth(renderDepth, visitor);
 }
 
+void Octree::movePoint(Point3D* pt, float newX, float newY, float newZ) {
+    auto it = pointToNodeMap.find(pt);
+    if (it == pointToNodeMap.end()) return;
+
+    CNode* current = it->second;
+    current->removePoint(pt);
+
+    pt->x = newX;
+    pt->y = newY;
+    pt->z = newZ;
+
+    root->insertPointWithMap(pt, maxDepth, pointToNodeMap);
+}
+

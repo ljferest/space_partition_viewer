@@ -28,6 +28,10 @@ public:
     void traverseLeaves(std::function<void(float, float, float, float, const std::vector<Point3D*>&)> visitor);
     void traverseLeavesUpToDepth(int maxRenderDepth,
         std::function<void(float, float, float, float, const std::vector<Point3D*>&)> visitor);
+    void removePoint(Point3D* pt);
+    void insertPointWithMap(Point3D* pt, int maxDepth, std::unordered_map<Point3D*, CNode*>& map);
+        
+        
     
 
 private:

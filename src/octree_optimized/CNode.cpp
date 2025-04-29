@@ -87,3 +87,25 @@ void CNode::traverseLeavesUpToDepth(int maxRenderDepth,
     }
 }
 
+void CNode::removePoint(Point3D* pt) {
+    auto it = std::find(points.begin(), points.end(), pt);
+    if (it != points.end()) {
+        points.erase(it);
+    }
+}
+
+// Insertar un punto en el árbol Y actualizar el mapa
+void CNode::insertPointWithMap(Point3D* pt, int maxDepth, std::unordered_map<Point3D*, CNode*>& map) {
+    if (depth == maxDepth || (isLeaf && points.size() < MAX_POINTS)) {
+        points.push_back(pt);
+        map[pt] = this;
+        return;
+    }
+
+    if (isLeaf) {
+        subdivide(maxDepth);
+    }
+
+    int index = getChildIndex(pt);
+    children[index]->insertPointWithMap(pt, maxDepth, map);
+}

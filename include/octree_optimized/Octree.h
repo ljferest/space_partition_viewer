@@ -10,6 +10,7 @@ class Octree {
 public:
     std::unique_ptr<CNode> root;
     int maxDepth;
+    std::unordered_map<Point3D*, CNode*> pointToNodeMap;
 
     Octree(float centerX, float centerY, float centerZ, float size, int depth)
         : maxDepth(depth) {
@@ -24,6 +25,9 @@ public:
 
     void traverseLeavesUpToDepth(int renderDepth,
         std::function<void(float, float, float, float, const std::vector<Point3D*>&)> visitor);
+
+    void movePoint(Point3D* pt, float newX, float newY, float newZ);
+
                     
 };
 
