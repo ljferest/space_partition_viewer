@@ -53,7 +53,12 @@ public:
     
     int renderDepth = 4;
     int maxRenderDepth = 10;
+    
+    void setCameraTarget(float x, float y, float z);
+    void setCameraDistance(float d);
+    void setWireframeMode(bool enabled);
 
+    
 
 
 private:
@@ -67,7 +72,12 @@ private:
     BoundingBox bbox;
     KdTree kdtree;
     BSPTree bspTree;
-    
+    float cameraTargetX = 0.0f;
+    float cameraTargetY = 0.0f;
+    float cameraTargetZ = 0.0f;
+    float cameraDistance = 1.0f;
+    bool wireframeMode = false;
+
 
 
 

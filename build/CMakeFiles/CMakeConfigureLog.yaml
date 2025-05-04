@@ -5513,3 +5513,585 @@ events:
         
       exitCode: 0
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:567 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-WvxqVn"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-WvxqVn"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-WvxqVn'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_dec23/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_dec23.dir/build.make CMakeFiles/cmTC_dec23.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-WvxqVn'
+        Building C object CMakeFiles/cmTC_dec23.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_dec23.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-WvxqVn/test_mpi.c
+        Linking C executable cmTC_dec23
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dec23.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_dec23.dir/test_mpi.c.o -o cmTC_dec23  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-WvxqVn'
+        
+      exitCode: 0
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:567 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-82xeHM"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-82xeHM"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-82xeHM'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ab180/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ab180.dir/build.make CMakeFiles/cmTC_ab180.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-82xeHM'
+        Building C object CMakeFiles/cmTC_ab180.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_ab180.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-82xeHM/test_mpi.c
+        Linking C executable cmTC_ab180
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ab180.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_ab180.dir/test_mpi.c.o -o cmTC_ab180  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-82xeHM'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:567 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-y8DrxK"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-y8DrxK"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-y8DrxK'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a5a7c/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_a5a7c.dir/build.make CMakeFiles/cmTC_a5a7c.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-y8DrxK'
+        Building C object CMakeFiles/cmTC_a5a7c.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_a5a7c.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-y8DrxK/test_mpi.c
+        Linking C executable cmTC_a5a7c
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a5a7c.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_a5a7c.dir/test_mpi.c.o -o cmTC_a5a7c  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-y8DrxK'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:567 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Le1Qkg"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Le1Qkg"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Le1Qkg'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9ab37/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_9ab37.dir/build.make CMakeFiles/cmTC_9ab37.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Le1Qkg'
+        Building C object CMakeFiles/cmTC_9ab37.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_9ab37.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Le1Qkg/test_mpi.c
+        Linking C executable cmTC_9ab37
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9ab37.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_9ab37.dir/test_mpi.c.o -o cmTC_9ab37  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Le1Qkg'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:570 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-oAXxKv"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-oAXxKv"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-oAXxKv'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_24d2f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_24d2f.dir/build.make CMakeFiles/cmTC_24d2f.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-oAXxKv'
+        Building C object CMakeFiles/cmTC_24d2f.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_24d2f.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-oAXxKv/test_mpi.c
+        Linking C executable cmTC_24d2f
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_24d2f.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_24d2f.dir/test_mpi.c.o -o cmTC_24d2f  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-oAXxKv'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:570 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Haaty6"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Haaty6"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Haaty6'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_37677/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_37677.dir/build.make CMakeFiles/cmTC_37677.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Haaty6'
+        Building C object CMakeFiles/cmTC_37677.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_37677.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Haaty6/test_mpi.c
+        Linking C executable cmTC_37677
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_37677.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_37677.dir/test_mpi.c.o -o cmTC_37677  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Haaty6'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:567 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-lUWZ7X"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-lUWZ7X"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-lUWZ7X'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_82844/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_82844.dir/build.make CMakeFiles/cmTC_82844.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-lUWZ7X'
+        Building C object CMakeFiles/cmTC_82844.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_82844.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-lUWZ7X/test_mpi.c
+        Linking C executable cmTC_82844
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_82844.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_82844.dir/test_mpi.c.o -o cmTC_82844  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-lUWZ7X'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:567 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Ny2t1Y"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Ny2t1Y"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Ny2t1Y'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0de9d/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_0de9d.dir/build.make CMakeFiles/cmTC_0de9d.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Ny2t1Y'
+        Building C object CMakeFiles/cmTC_0de9d.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_0de9d.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Ny2t1Y/test_mpi.c
+        Linking C executable cmTC_0de9d
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0de9d.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_0de9d.dir/test_mpi.c.o -o cmTC_0de9d  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-Ny2t1Y'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:567 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-fyFZ3a"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-fyFZ3a"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-fyFZ3a'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_4de46/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_4de46.dir/build.make CMakeFiles/cmTC_4de46.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-fyFZ3a'
+        Building C object CMakeFiles/cmTC_4de46.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_4de46.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-fyFZ3a/test_mpi.c
+        Linking C executable cmTC_4de46
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4de46.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_4de46.dir/test_mpi.c.o -o cmTC_4de46  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-fyFZ3a'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:567 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-jgPE7L"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-jgPE7L"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-jgPE7L'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d7574/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d7574.dir/build.make CMakeFiles/cmTC_d7574.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-jgPE7L'
+        Building C object CMakeFiles/cmTC_d7574.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_d7574.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-jgPE7L/test_mpi.c
+        Linking C executable cmTC_d7574
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d7574.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_d7574.dir/test_mpi.c.o -o cmTC_d7574  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-jgPE7L'
+        
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:567 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-nrN5Zm"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-nrN5Zm"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-nrN5Zm'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a9c9b/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_a9c9b.dir/build.make CMakeFiles/cmTC_a9c9b.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-nrN5Zm'
+        Building C object CMakeFiles/cmTC_a9c9b.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_a9c9b.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-nrN5Zm/test_mpi.c
+        Linking C executable cmTC_a9c9b
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a9c9b.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_a9c9b.dir/test_mpi.c.o -o cmTC_a9c9b  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-nrN5Zm'
+        
+      exitCode: 0
+...
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:567 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-HQgAEa"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-HQgAEa"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-HQgAEa'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_330ee/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_330ee.dir/build.make CMakeFiles/cmTC_330ee.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-HQgAEa'
+        Building C object CMakeFiles/cmTC_330ee.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_330ee.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-HQgAEa/test_mpi.c
+        Linking C executable cmTC_330ee
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_330ee.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_330ee.dir/test_mpi.c.o -o cmTC_330ee  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-HQgAEa'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:570 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-1yB2MD"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-1yB2MD"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-1yB2MD'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5b5ad/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_5b5ad.dir/build.make CMakeFiles/cmTC_5b5ad.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-1yB2MD'
+        Building C object CMakeFiles/cmTC_5b5ad.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_5b5ad.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-1yB2MD/test_mpi.c
+        Linking C executable cmTC_5b5ad
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5b5ad.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_5b5ad.dir/test_mpi.c.o -o cmTC_5b5ad  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-1yB2MD'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:567 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-qO4KK6"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-qO4KK6"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-qO4KK6'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_021f9/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_021f9.dir/build.make CMakeFiles/cmTC_021f9.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-qO4KK6'
+        Building C object CMakeFiles/cmTC_021f9.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_021f9.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-qO4KK6/test_mpi.c
+        Linking C executable cmTC_021f9
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_021f9.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_021f9.dir/test_mpi.c.o -o cmTC_021f9  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-qO4KK6'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/VTK-vtk-module-find-packages.cmake:397 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/vtk-config.cmake:150 (include)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:275 (find_package)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:324 (find_VTK)"
+      - "/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake:567 (find_external_library)"
+      - "CMakeLists.txt:10 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-edqKcW"
+      binary: "/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-edqKcW"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1/patches/99;/usr/lib/x86_64-linux-gnu/cmake/vtk-9.1;/usr/lib/x86_64-linux-gnu/cmake/pcl/Modules"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-edqKcW'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d99b2/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d99b2.dir/build.make CMakeFiles/cmTC_d99b2.dir/build
+        gmake[1]: Entering directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-edqKcW'
+        Building C object CMakeFiles/cmTC_d99b2.dir/test_mpi.c.o
+        /usr/bin/gcc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi  -o CMakeFiles/cmTC_d99b2.dir/test_mpi.c.o -c /home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-edqKcW/test_mpi.c
+        Linking C executable cmTC_d99b2
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d99b2.dir/link.txt --verbose=1
+        /usr/bin/gcc -L/usr/lib/x86_64-linux-gnu/openmpi/lib CMakeFiles/cmTC_d99b2.dir/test_mpi.c.o -o cmTC_d99b2  /usr/lib/x86_64-linux-gnu/libmpi.so 
+        gmake[1]: Leaving directory '/home/luis/projects/space_partition/build/CMakeFiles/CMakeScratch/TryCompile-edqKcW'
+        
+      exitCode: 0
+...

@@ -27,11 +27,34 @@ std::vector<Point3D> loadFromPCD(const std::string& path) {
     for (const auto& p : cloud->points) {
         result.push_back({p.x, p.y, p.z});
     }
+    // Calcular bounding box
+    float min_x = std::numeric_limits<float>::max(), max_x = -std::numeric_limits<float>::max();
+    float min_y = std::numeric_limits<float>::max(), max_y = -std::numeric_limits<float>::max();
+    float min_z = std::numeric_limits<float>::max(), max_z = -std::numeric_limits<float>::max();
+
+    for (const auto& pt : result) {
+        min_x = std::min(min_x, pt.x);
+        max_x = std::max(max_x, pt.x);
+        min_y = std::min(min_y, pt.y);
+        max_y = std::max(max_y, pt.y);
+        min_z = std::min(min_z, pt.z);
+        max_z = std::max(max_z, pt.z);
+    }
+
+    float center_x = (min_x + max_x) / 2.0f;
+    float center_y = (min_y + max_y) / 2.0f;
+    float center_z = (min_z + max_z) / 2.0f;
+    float radius = std::max({max_x - min_x, max_y - min_y, max_z - min_z}) / 2.0f;
+
+    renderer.setCameraTarget(center_x, center_y, center_z);
+    renderer.setCameraDistance(radius * 3.0f);
+
     return result;
 }
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glPolygonMode(GL_FRONT_AND_BACK, wireframeMode ? GL_LINE : GL_FILL);
     glPushMatrix();
     renderer.render(showWireframe);
     glPopMatrix();
@@ -67,6 +90,7 @@ void keyboard(unsigned char key, int x, int y) {
     case 'w':
     case 'W':
         wireframeMode = !wireframeMode;
+        renderer.setWireframeMode(wireframeMode);
         glutPostRedisplay();
         break;
 
@@ -105,7 +129,7 @@ int main(int argc, char** argv) {
         initGL();
 
         // 🔥 SOLO ESTA LÍNEA: cargar y construir todo
-        std::vector<Point3D> cloud = loadFromPCD("../data/corridor_telin.pcd");
+        std::vector<Point3D> cloud = loadFromPCD("../data/ufo.pcd");
         renderer.loadPointCloud(cloud);
 
         std::cout << "[INFO] Puntos cargados: " << cloud.size() << std::endl;

@@ -19,6 +19,12 @@ void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
     centerX = (bbox.min.x + bbox.max.x) / 2.0f;
     centerY = (bbox.min.y + bbox.max.y) / 2.0f;
     centerZ = (bbox.min.z + bbox.max.z) / 2.0f;
+    // Centrar la cámara en el modelo
+    cameraTargetX = centerX;
+    cameraTargetY = centerY;
+    cameraTargetZ = centerZ;
+    cameraDistance = sceneSize * 1.5f;  // Alejado para ver todo
+
 
     float dx = bbox.max.x - bbox.min.x;
     float dy = bbox.max.y - bbox.min.y;
@@ -34,6 +40,8 @@ void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
     measureExecutionTime("Construcción Octree", [this, maxTreeDepth]() {
         tree = std::make_unique<Octree>(centerX, centerY, centerZ, sceneSize, maxTreeDepth);
         tree->build(pointPtrs);
+        std::cout << "[POST-BUILD] tree = " << tree.get()
+          << ", root = " << (tree ? tree->root.get() : nullptr) << std::endl;
     });
 
     measureExecutionTime("Construcción KD-Tree", [this]() {
@@ -57,21 +65,69 @@ void PartitionRenderer::computeZRange() {
 }
 
 void PartitionRenderer::render(bool wireframe) {
+    if (!tree) {
+        std::cout << "[DEBUG] Árbol aún no cargado en renderer.\n";
+    } else {
+        std::cout << "[DEBUG] Árbol listo, renderizando...\n";
+    }
+
+    glLoadIdentity();
+    gluLookAt(
+        cameraTargetX, cameraTargetY, cameraTargetZ + cameraDistance,
+        cameraTargetX, cameraTargetY, cameraTargetZ,
+        0.0f, 1.0f, 0.0f
+    );
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (currentMode == RenderMode::Octree) {
-        if (!tree || !tree->root) return;
+        std::cout << "Render mode: Octree, wireframeMode = " << wireframeMode << std::endl;
+        std::cout << "[RENDER] tree = " << tree.get()
+          << ", root = " << (tree ? tree->root.get() : nullptr) << std::endl;
+          if (!tree) {
+            std::cout << "[FAIL] tree == nullptr" << std::endl;
+            return;
+        }
+        
+        if (!tree->root) {
+            std::cout << "[FAIL] tree->root == nullptr" << std::endl;
+            return;
+        }
+        std::cout << "[RENDER] tree = " << tree.get() << ", root = " << tree->root.get() << std::endl;
+    
+        if (wireframeMode) {
+            // Wireframe → recorrer todos los nodos ocupados (incluye padres con hijos)
+            tree->traverse([=](bool isLeaf, float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
+                std::cout << "[WIRE] Nodo: center=(" << cx << "," << cy << "," << cz << "), size=" << size << ", puntos=" << pts.size() << ", hoja=" << isLeaf << std::endl;
+                if (pts.empty()) return;
+    
+                float dz = maxZ - minZ;
+                float colorZ = (dz > 0.0f) ? (cz - minZ) / dz : 0.5f;
+                glColor3f(1.0f, 1.0f, 1.0f);  // wireframe en blanco neutro
 
-        tree->traverseLeavesUpToDepth(renderDepth, [=](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
-            if (pts.empty()) return;
-            float colorZ = (cz - minZ) / (maxZ - minZ);
-            glColor3f(1.0f - colorZ, 0.0f, colorZ);
+                std::cout << "Wireframe cube at: (" << cx << ", " << cy << ", " << cz << "), size: " << size << ", pts: " << pts.size() << std::endl;
 
-            glPushMatrix();
-            glTranslatef(cx, cy, cz);
-            wireframe ? glutWireCube(size) : glutSolidCube(size);
-            glPopMatrix();
-        });
+                glPushMatrix();
+                glTranslatef(cx, cy, cz);
+                glutWireCube(size);
+                glPopMatrix();
+            });
+        } else {
+            // Render sólido → solo hojas ocupadas
+            tree->traverseLeavesUpToDepth(renderDepth, [=](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
+                if (pts.empty()) return;
+    
+                float dz = maxZ - minZ;
+                float colorZ = (dz > 0.0f) ? (cz - minZ) / dz : 0.5f;
+                glColor3f(1.0f - colorZ, 0.0f, colorZ);  // color por altura   
+                
+                glPushMatrix();
+                glTranslatef(cx, cy, cz);
+                glutSolidCube(size);
+                glPopMatrix();
+            });
+        }
+        
     }
     else if (currentMode == RenderMode::KdTree) {
         renderKdTreePartitioning(kdtree.getRoot(),
@@ -309,3 +365,16 @@ void measureExecutionTime(const std::string& label, Func functionToMeasure) {
     std::cout << "[TIMER] " << label << " tomó " << elapsed.count() << " segundos.\n";
 }
 
+void PartitionRenderer::setCameraTarget(float x, float y, float z) {
+    cameraTargetX = x;
+    cameraTargetY = y;
+    cameraTargetZ = z;
+}
+
+void PartitionRenderer::setCameraDistance(float d) {
+    cameraDistance = d;
+}
+
+void PartitionRenderer::setWireframeMode(bool enabled) {
+    wireframeMode = enabled;
+}
