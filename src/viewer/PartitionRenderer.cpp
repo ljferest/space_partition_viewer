@@ -188,39 +188,59 @@ void PartitionRenderer::renderKdTreePartitioning(KdNode* node,
     float ymin, float ymax,
     float zmin, float zmax,
     int depth) {
-if (!node || !node->point || depth > maxRenderDepth) return;
 
-glLineWidth(1.5f);
-glBegin(GL_LINES);
+    if (!node || !node->point || depth > maxRenderDepth)
+        return;
 
-// Color por eje: X=Rojo, Y=Verde, Z=Azul
-if (node->axis == 0) {
-glColor3f(1.0f, 0.0f, 0.0f); // Rojo (X)
-glVertex3f(node->point->x, ymin, zmin);
-glVertex3f(node->point->x, ymax, zmax);
-} else if (node->axis == 1) {
-glColor3f(0.0f, 1.0f, 0.0f); // Verde (Y)
-glVertex3f(xmin, node->point->y, zmin);
-glVertex3f(xmax, node->point->y, zmax);
-} else {
-glColor3f(0.0f, 0.0f, 1.0f); // Azul (Z)
-glVertex3f(xmin, ymin, node->point->z);
-glVertex3f(xmax, ymax, node->point->z);
-}
+    // Colorear por altura z
+    float nodeZ = node->point->z;
+    float t = (nodeZ - minZ) / (maxZ - minZ); // Normalizar
+    float r = t;
+    float g = 0.2f * (1 - t);
+    float b = 1.0f - t;
+    glColor3f(r, g, b);
 
-glEnd();
+    glLineWidth(1.0f);
+    glBegin(GL_LINES);
 
-// Recursión adaptativa
-if (node->axis == 0) {
-renderKdTreePartitioning(node->left, xmin, node->point->x, ymin, ymax, zmin, zmax, depth + 1);
-renderKdTreePartitioning(node->right, node->point->x, xmax, ymin, ymax, zmin, zmax, depth + 1);
-} else if (node->axis == 1) {
-renderKdTreePartitioning(node->left, xmin, xmax, ymin, node->point->y, zmin, zmax, depth + 1);
-renderKdTreePartitioning(node->right, xmin, xmax, node->point->y, ymax, zmin, zmax, depth + 1);
-} else {
-renderKdTreePartitioning(node->left, xmin, xmax, ymin, ymax, zmin, node->point->z, depth + 1);
-renderKdTreePartitioning(node->right, xmin, xmax, ymin, ymax, node->point->z, zmax, depth + 1);
-}
+    float x[] = { xmin, xmax };
+    float y[] = { ymin, ymax };
+    float z[] = { zmin, zmax };
+
+    for (int xi : {0, 1}) {
+        for (int yi : {0, 1}) {
+            glVertex3f(x[xi], y[yi], z[0]);
+            glVertex3f(x[xi], y[yi], z[1]);
+        }
+    }
+
+    for (int xi : {0, 1}) {
+        for (int zi : {0, 1}) {
+            glVertex3f(x[xi], y[0], z[zi]);
+            glVertex3f(x[xi], y[1], z[zi]);
+        }
+    }
+
+    for (int yi : {0, 1}) {
+        for (int zi : {0, 1}) {
+            glVertex3f(x[0], y[yi], z[zi]);
+            glVertex3f(x[1], y[yi], z[zi]);
+        }
+    }
+
+    glEnd();
+
+    // Recursión
+    if (node->axis == 0) {
+        renderKdTreePartitioning(node->left, xmin, node->point->x, ymin, ymax, zmin, zmax, depth + 1);
+        renderKdTreePartitioning(node->right, node->point->x, xmax, ymin, ymax, zmin, zmax, depth + 1);
+    } else if (node->axis == 1) {
+        renderKdTreePartitioning(node->left, xmin, xmax, ymin, node->point->y, zmin, zmax, depth + 1);
+        renderKdTreePartitioning(node->right, xmin, xmax, node->point->y, ymax, zmin, zmax, depth + 1);
+    } else {
+        renderKdTreePartitioning(node->left, xmin, xmax, ymin, ymax, zmin, node->point->z, depth + 1);
+        renderKdTreePartitioning(node->right, xmin, xmax, ymin, ymax, node->point->z, zmax, depth + 1);
+    }
 }
 
 
