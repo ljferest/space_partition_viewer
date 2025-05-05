@@ -57,6 +57,8 @@ public:
     void mouseMotionCallback(int x, int y);
     void specialCallback(int key, int x, int y);
     void updateCameraDirection();
+    void getColorFromId(int id, float& r, float& g, float& b) ;
+    
 
     bool flyMode = false;
     float camPosX = 0.0f, camPosY = 0.0f, camPosZ = 5.0f;
@@ -67,6 +69,7 @@ public:
     float camDirX = 0, camDirY = 0, camDirZ = -1;
     int lastMouseX = 0, lastMouseY = 0;
     bool firstMouse = true;
+    
 
     
 

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <chrono>
 #include <cmath>
-
+#include <cstdlib>  // para std::srand, std::rand
 
 PartitionRenderer::PartitionRenderer() {
     // Posición inicial de la cámara (centrada en escena luego en loadPointCloud)
@@ -64,11 +64,13 @@ void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
     std::cout << "[INFO] Centro: (" << centerX << ", " << centerY << ", " << centerZ << ") Tamaño: " << sceneSize << "\n";
     std::cout << "[INFO] CameraDistance: " << cameraDistance << "\n";
 
-    int maxTreeDepth = 10;
-    renderDepth = 4;
+    int maxTreeDepth = std::min(15, static_cast<int>(std::ceil(std::log2(pointPtrs.size()))));
+    renderDepth = maxTreeDepth/2;
+    int maxPointsPerLeaf = 10;
 
-    measureExecutionTime("Construcción Octree", [this, maxTreeDepth]() {
-        tree = std::make_unique<Octree>(centerX, centerY, centerZ, sceneSize, maxTreeDepth);
+
+    measureExecutionTime("Construcción Octree", [this, maxTreeDepth, maxPointsPerLeaf]() {
+        tree = std::make_unique<Octree>(centerX, centerY, centerZ, sceneSize, maxTreeDepth, maxPointsPerLeaf);
         tree->build(pointPtrs);
         std::cout << "[POST-BUILD] tree = " << tree.get()
                   << ", root = " << (tree ? tree->root.get() : nullptr) << std::endl;
@@ -146,23 +148,33 @@ void PartitionRenderer::render(bool wireframe) {
         std::cout << "[RENDER] tree = " << tree.get() << ", root = " << tree->root.get() << std::endl;
     
         if (wireframeMode) {
-            // Wireframe → recorrer todos los nodos ocupados (incluye padres con hijos)
-            tree->traverse([=](bool isLeaf, float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
-                std::cout << "[WIRE] Nodo: center=(" << cx << "," << cy << "," << cz << "), size=" << size << ", puntos=" << pts.size() << ", hoja=" << isLeaf << std::endl;
-                if (pts.empty()) return;
-    
-                float dz = maxZ - minZ;
-                float colorZ = (dz > 0.0f) ? (cz - minZ) / dz : 0.5f;
-                glColor3f(1.0f, 1.0f, 1.0f);  // wireframe en blanco neutro
-
-                std::cout << "Wireframe cube at: (" << cx << ", " << cy << ", " << cz << "), size: " << size << ", pts: " << pts.size() << std::endl;
-
+            // 🔲 Mostrar contornos (todos los nodos)
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            glLineWidth(1.0f);
+            tree->traverse([&](bool isLeaf, float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
+                glColor3f(1.0f, 1.0f, 1.0f);
                 glPushMatrix();
                 glTranslatef(cx, cy, cz);
                 glutWireCube(size);
                 glPopMatrix();
             });
-        } else {
+        
+            // 🟥 Mostrar hojas con puntos (sólido y color)
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+            tree->traverseLeavesUpToDepth(renderDepth, [&](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
+                if (pts.empty()) return;
+        
+                float dz = maxZ - minZ;
+                float colorZ = (dz > 0.0f) ? (cz - minZ) / dz : 0.5f;
+                glColor3f(1.0f - colorZ, 0.0f, colorZ);
+        
+                glPushMatrix();
+                glTranslatef(cx, cy, cz);
+                glutSolidCube(size);
+                glPopMatrix();
+            });
+        }
+        else{
             // Render sólido → solo hojas ocupadas
             tree->traverseLeavesUpToDepth(renderDepth, [=](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
                 if (pts.empty()) return;
@@ -177,7 +189,6 @@ void PartitionRenderer::render(bool wireframe) {
                 glPopMatrix();
             });
         }
-        
     }
     else if (currentMode == RenderMode::KdTree) {
         renderKdTreePartitioning(kdtree.getRoot(),0, renderDepthKD);
@@ -401,7 +412,11 @@ void PartitionRenderer::drawBSPRecursive(BSPNode* node) {
     if (!node) return;
 
     if (!node->front && !node->back) {
-        Color color = getRandomColor();
+        float r, g, b;
+        getColorFromId(node->nodeId, r, g, b);
+        Color color = {r,g,b};
+        std::cout << "Node ID: " << node->nodeId 
+          << " | Color RGB: (" << r << ", " << g << ", " << b << ")" << std::endl;
 
         glBegin(GL_POINTS);
         for (auto* pt : node->points) {
@@ -527,4 +542,23 @@ void PartitionRenderer::updateCameraDirection() {
         camDirY /= len;
         camDirZ /= len;
     }
+}
+
+void PartitionRenderer::getColorFromId(int id, float& r, float& g, float& b) {
+    unsigned int hash = static_cast<unsigned int>(id) * 2654435761u;
+
+    r = ((hash >> 16) & 0xFF) / 255.0f;
+    g = ((hash >> 8) & 0xFF) / 255.0f;
+    b = (hash & 0xFF) / 255.0f;
+
+    // Evita colores muy oscuros
+    if (r + g + b < 0.3f) {
+        r += 0.3f;
+        g += 0.3f;
+    }
+
+    // Recorta si supera 1.0
+    r = std::min(r, 1.0f);
+    g = std::min(g, 1.0f);
+    b = std::min(b, 1.0f);
 }

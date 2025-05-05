@@ -9,6 +9,7 @@ BSPTree::~BSPTree() {
 
 void BSPTree::build(std::vector<Point3D*>& points, int maxDepth) {
     delete root;
+    nextNodeId = 0;
     root = buildRecursive(points, 0, maxDepth);
 }
 
@@ -20,7 +21,7 @@ BSPNode* BSPTree::buildRecursive(std::vector<Point3D*>& points, int depth, int m
     constexpr int minPoints = 50; // Puedes ajustar este valor
 
     if (points.empty() || depth >= maxDepth || points.size() <= minPoints) {
-        BSPNode* leaf = new BSPNode();
+        BSPNode* leaf = new BSPNode(nextNodeId++);
         leaf->points = points;
         return leaf;
     }
@@ -83,7 +84,7 @@ BSPNode* BSPTree::buildRecursive(std::vector<Point3D*>& points, int depth, int m
             backPoints.push_back(p);
     }
 
-    BSPNode* node = new BSPNode();
+    BSPNode* node = new BSPNode(nextNodeId++);
     node->dividingPlane = divider;
     node->front = buildRecursive(frontPoints, depth + 1, maxDepth);
     node->back = buildRecursive(backPoints, depth + 1, maxDepth);

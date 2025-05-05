@@ -8,8 +8,9 @@ struct BSPNode {
     std::vector<Point3D*> points;
     BSPNode* front;
     BSPNode* back;
+    int nodeId;
 
-    BSPNode() : front(nullptr), back(nullptr) {}
+    BSPNode(int id) : front(nullptr), back(nullptr), nodeId(id) {}
     ~BSPNode() {
         delete front;
         delete back;

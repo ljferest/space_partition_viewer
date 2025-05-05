@@ -5,8 +5,8 @@ int CNode::getChildIndex(Point3D* pt) const {
     return (pt->x > centerX) * 4 + (pt->y > centerY) * 2 + (pt->z > centerZ);
 }
 
-void CNode::addPoint(Point3D* pt, int maxDepth) {
-    if (depth == maxDepth || (isLeaf && points.size() < MAX_POINTS)) {
+void CNode::addPoint(Point3D* pt, int maxDepth, int maxPointsPerLeaf) {
+    if (depth == maxDepth || (isLeaf && points.size() < maxPointsPerLeaf)) {
         points.push_back(pt);
         return;
     }
@@ -15,14 +15,14 @@ void CNode::addPoint(Point3D* pt, int maxDepth) {
         subdivide(maxDepth);
         for (auto* p : points) {
             int idx = getChildIndex(p);
-            children[idx]->addPoint(p, maxDepth);
+            children[idx]->addPoint(p, maxDepth, maxPointsPerLeaf);
         }
         points.clear();
         isLeaf = false;
     }
 
     int idx = getChildIndex(pt);
-    children[idx]->addPoint(pt, maxDepth);
+    children[idx]->addPoint(pt, maxDepth, maxPointsPerLeaf);
 }
 
 void CNode::subdivide(int maxDepth) {
@@ -95,8 +95,8 @@ void CNode::removePoint(Point3D* pt) {
 }
 
 // Insertar un punto en el árbol Y actualizar el mapa
-void CNode::insertPointWithMap(Point3D* pt, int maxDepth, std::unordered_map<Point3D*, CNode*>& map) {
-    if (depth == maxDepth || (isLeaf && points.size() < MAX_POINTS)) {
+void CNode::insertPointWithMap(Point3D* pt, int maxDepth, std::unordered_map<Point3D*, CNode*>& map, int maxPointsPerLeaf) {
+    if (depth == maxDepth || (isLeaf && points.size() < maxPointsPerLeaf)) {
         points.push_back(pt);
         map[pt] = this;
         return;
@@ -107,5 +107,5 @@ void CNode::insertPointWithMap(Point3D* pt, int maxDepth, std::unordered_map<Poi
     }
 
     int index = getChildIndex(pt);
-    children[index]->insertPointWithMap(pt, maxDepth, map);
+    children[index]->insertPointWithMap(pt, maxDepth, map, maxPointsPerLeaf);
 }

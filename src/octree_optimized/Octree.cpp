@@ -4,7 +4,7 @@
 void Octree::build(const std::vector<Point3D*>& points) {
     std::cout << "[DEBUG] build(): puntos recibidos = " << points.size() << std::endl;
     for (auto* pt : points) {
-        root->addPoint(pt, maxDepth);
+        root->addPoint(pt, maxDepth, maxPointsPerLeaf);
     }
     std::cout << "[DEBUG] build(): root creado = " << (root ? "sí" : "NO") << std::endl;
 
@@ -35,12 +35,12 @@ void Octree::movePoint(Point3D* pt, float newX, float newY, float newZ) {
     pt->y = newY;
     pt->z = newZ;
 
-    root->insertPointWithMap(pt, maxDepth, pointToNodeMap);
+    root->insertPointWithMap(pt, maxDepth, pointToNodeMap, maxPointsPerLeaf);
 }
 
 void Octree::traverse(std::function<void(bool isLeaf, float cx, float cy, float cz, float size, const std::vector<Point3D*>&)> visitor) {
     std::function<void(CNode*)> recurse = [&](CNode* node) {
-        if (!node || node->points.empty()) return;
+        if (!node) return;
 
         bool isLeaf = node->children.empty();
         visitor(isLeaf, node->centerX, node->centerY, node->centerZ, node->size, node->points);

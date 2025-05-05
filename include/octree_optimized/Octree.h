@@ -10,10 +10,11 @@ class Octree {
 public:
     std::unique_ptr<CNode> root;
     int maxDepth;
+    int maxPointsPerLeaf;
     std::unordered_map<Point3D*, CNode*> pointToNodeMap;
 
-    Octree(float centerX, float centerY, float centerZ, float size, int depth)
-        : maxDepth(depth) {
+    Octree(float centerX, float centerY, float centerZ, float size, int depth, int maxPoints)
+        : maxDepth(depth), maxPointsPerLeaf(maxPoints) {
         root = std::make_unique<CNode>(0, centerX, centerY, centerZ, size);
     }
 

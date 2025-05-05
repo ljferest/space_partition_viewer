@@ -20,7 +20,7 @@ public:
     CNode(int d, float cx, float cy, float cz, float s)
         : depth(d), centerX(cx), centerY(cy), centerZ(cz), size(s) {}
 
-    void addPoint(Point3D* pt, int maxDepth);
+        void addPoint(Point3D* pt, int maxDepth, int maxPointsPerLeaf);
     void subdivide(int maxDepth);
     void getPointsInBox(float minX, float minY, float minZ,
                         float maxX, float maxY, float maxZ,
@@ -29,7 +29,7 @@ public:
     void traverseLeavesUpToDepth(int maxRenderDepth,
         std::function<void(float, float, float, float, const std::vector<Point3D*>&)> visitor);
     void removePoint(Point3D* pt);
-    void insertPointWithMap(Point3D* pt, int maxDepth, std::unordered_map<Point3D*, CNode*>& map);
+    void insertPointWithMap(Point3D* pt, int maxDepth, std::unordered_map<Point3D*, CNode*>& map, int maxPointsPerLeaf);
         
         
     
