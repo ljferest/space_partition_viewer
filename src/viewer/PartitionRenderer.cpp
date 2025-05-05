@@ -3,9 +3,29 @@
 #include <algorithm>
 #include <iostream>
 #include <chrono>
+#include <cmath>
 
 
-PartitionRenderer::PartitionRenderer() {}
+PartitionRenderer::PartitionRenderer() {
+    // Posición inicial de la cámara (centrada en escena luego en loadPointCloud)
+    camPosX = 0.0f;
+    camPosY = 0.0f;
+    camPosZ = 5.0f;
+
+    // Dirección inicial mirando al -Z
+    camDirX = 0.0f;
+    camDirY = 0.0f;
+    camDirZ = -1.0f;
+
+    // Ángulos yaw/pitch coherentes con esa dirección
+    yaw = -90.0f;
+    pitch = 0.0f;
+
+    sensitivity = 0.1f;
+    flySpeed = 0.1f;
+
+    firstMouse = true;
+}
 
 void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
     points = pts;
@@ -83,14 +103,32 @@ void PartitionRenderer::render(bool wireframe) {
         std::cout << "[DEBUG] Árbol listo, renderizando...\n";
     }
 
-    glLoadIdentity();
-    gluLookAt(
-        cameraTargetX, cameraTargetY, cameraTargetZ + cameraDistance,
-        cameraTargetX, cameraTargetY, cameraTargetZ,
-        0.0f, 1.0f, 0.0f
-    );
-
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    if (flyMode) {
+        float radYaw = yaw * M_PI / 180.0f;
+        float radPitch = pitch * M_PI / 180.0f;
+
+        float eyeX = centerX + cameraDistance * cos(radPitch) * sin(radYaw);
+        float eyeY = centerY + cameraDistance * sin(radPitch);
+        float eyeZ = centerZ + cameraDistance * cos(radPitch) * cos(radYaw);
+
+        gluLookAt(eyeX, eyeY, eyeZ,
+                centerX, centerY, centerZ,
+                0.0f, 1.0f, 0.0f);
+
+    }
+     
+    else {
+        // Tu modo cámara orbital normal
+        gluLookAt(
+            cameraTargetX, cameraTargetY, cameraTargetZ + cameraDistance,
+            cameraTargetX, cameraTargetY, cameraTargetZ,
+            0.0f, 1.0f, 0.0f
+        );
+    }
 
     if (currentMode == RenderMode::Octree) {
         std::cout << "Render mode: Octree, wireframeMode = " << wireframeMode << std::endl;
@@ -270,6 +308,12 @@ void PartitionRenderer::handleKeyboard(unsigned char key) {
         decreaseResolution();
     }
 
+    if (key == 'f') {
+        flyMode = !flyMode;
+        firstMouse = true;
+        std::cout << "[FLY MODE] " << (flyMode ? "Activado" : "Desactivado") << "\n";
+    }
+
     glutPostRedisplay();
 }
 
@@ -394,4 +438,93 @@ void PartitionRenderer::setCameraDistance(float d) {
 
 void PartitionRenderer::setWireframeMode(bool enabled) {
     wireframeMode = enabled;
+}
+
+void PartitionRenderer::mouseMotionCallback(int x, int y) {
+    if (!flyMode) return;
+
+    std::cout << "mouse moved: " << x << ", " << y << "\n";
+
+    if (firstMouse) {
+        lastMouseX = x;
+        lastMouseY = y;
+        firstMouse = false;
+        return;
+    }
+
+    float xoffset = x - lastMouseX;
+    float yoffset = lastMouseY - y; // Invertido porque Y crece hacia abajo
+    lastMouseX = x;
+    lastMouseY = y;
+
+    xoffset *= sensitivity;
+    yoffset *= sensitivity;
+
+    if (fabs(xoffset) < 0.01f && fabs(yoffset) < 0.01f) return;
+
+    yaw += xoffset;
+    pitch += yoffset;
+
+    if (pitch > 89.0f) pitch = 89.0f;
+    if (pitch < -89.0f) pitch = -89.0f;
+
+    float radYaw = yaw * M_PI / 180.0f;
+    float radPitch = pitch * M_PI / 180.0f;
+
+    camDirX = cos(radYaw) * cos(radPitch);
+    camDirY = sin(radPitch);
+    camDirZ = sin(radYaw) * cos(radPitch);
+
+    std::cout << "yaw: " << yaw << " pitch: " << pitch << "\n";
+    std::cout << "dir: " << camDirX << ", " << camDirY << ", " << camDirZ << "\n";
+
+
+    float len = sqrt(camDirX * camDirX + camDirY * camDirY + camDirZ * camDirZ);
+    camDirX /= len;
+    camDirY /= len;
+    camDirZ /= len;
+
+    glutPostRedisplay();
+}
+
+void PartitionRenderer::specialCallback(int key, int x, int y) {
+    if (!flyMode) return;
+
+    float angleStep = 2.5f;  // grados por pulsación
+
+    switch (key) {
+        case GLUT_KEY_LEFT:
+            yaw -= angleStep; // rotar a la izquierda
+            break;
+        case GLUT_KEY_RIGHT:
+            yaw += angleStep; // rotar a la derecha
+            break;
+        case GLUT_KEY_UP:
+            pitch += angleStep; // mirar hacia arriba
+            if (pitch > 89.0f) pitch = 89.0f;
+            break;
+        case GLUT_KEY_DOWN:
+            pitch -= angleStep; // mirar hacia abajo
+            if (pitch < -89.0f) pitch = -89.0f;
+            break;
+    }
+
+    updateCameraDirection();
+    glutPostRedisplay();
+}
+
+void PartitionRenderer::updateCameraDirection() {
+    float radYaw = yaw * M_PI / 180.0f;
+    float radPitch = pitch * M_PI / 180.0f;
+
+    camDirX = cos(radYaw) * cos(radPitch);
+    camDirY = sin(radPitch);
+    camDirZ = sin(radYaw) * cos(radPitch);
+
+    float len = sqrt(camDirX * camDirX + camDirY * camDirY + camDirZ * camDirZ);
+    if (len != 0.0f) {
+        camDirX /= len;
+        camDirY /= len;
+        camDirZ /= len;
+    }
 }

@@ -54,6 +54,19 @@ public:
     void setCameraTarget(float x, float y, float z);
     void setCameraDistance(float d);
     void setWireframeMode(bool enabled);
+    void mouseMotionCallback(int x, int y);
+    void specialCallback(int key, int x, int y);
+    void updateCameraDirection();
+
+    bool flyMode = false;
+    float camPosX = 0.0f, camPosY = 0.0f, camPosZ = 5.0f;
+    float yaw = -90.0f;     // ángulo horizontal
+    float pitch = 20.0f;     // ángulo vertical
+    float flySpeed = 0.5f;
+    float sensitivity = 0.1f;
+    float camDirX = 0, camDirY = 0, camDirZ = -1;
+    int lastMouseX = 0, lastMouseY = 0;
+    bool firstMouse = true;
 
     
 
@@ -72,7 +85,7 @@ private:
     float cameraTargetX = 0.0f;
     float cameraTargetY = 0.0f;
     float cameraTargetZ = 0.0f;
-    float cameraDistance = 1.0f;
+    float cameraDistance = 3.0f;
     bool wireframeMode = false;
 
 

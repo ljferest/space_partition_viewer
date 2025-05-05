@@ -129,7 +129,7 @@ int main(int argc, char** argv) {
         initGL();
 
         // 🔥 SOLO ESTA LÍNEA: cargar y construir todo
-        std::vector<Point3D> cloud = loadFromPCD("../data/ufo.pcd");
+        std::vector<Point3D> cloud = loadFromPCD("../data/bunny.pcd");
         renderer.loadPointCloud(cloud);
 
         std::cout << "[INFO] Puntos cargados: " << cloud.size() << std::endl;
@@ -142,6 +142,12 @@ int main(int argc, char** argv) {
         glutDisplayFunc(display);
         glutReshapeFunc(reshape);
         glutKeyboardFunc(keyboard);
+        glutSpecialFunc([](int key, int x, int y) {
+            renderer.specialCallback(key, x, y);
+        });        
+        glutPassiveMotionFunc([](int x, int y) {
+            renderer.mouseMotionCallback(x, y);
+        });        
         glutMainLoop();
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
