@@ -8,9 +8,9 @@ public:
     KdNode* getRoot() const;
 
     void build(std::vector<Point3D*>& pts);
-    void diagnose() const;
+    void diagnose(int& outMaxDepth) const;
     void queryRegion(float cx, float cy, float cz, float size, std::vector<Point3D*>& result) const;
-    void buildFromPoints(const std::vector<Point3D>& points);
+    //void buildFromPoints(const std::vector<Point3D>& points);
 
 
 
@@ -18,5 +18,7 @@ public:
 
 private:
     KdNode* root = nullptr;
-    KdNode* buildRecursive(std::vector<Point3D*>& pts, int depth);
+    KdNode* buildRecursive(std::vector<Point3D*>& pts, int depth, const BoundingBox& box);
 };
+
+BoundingBox computeBoundingBoxFromPoints(const std::vector<Point3D*>& pts);

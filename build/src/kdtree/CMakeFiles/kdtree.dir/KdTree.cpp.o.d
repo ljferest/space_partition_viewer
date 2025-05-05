@@ -54,6 +54,8 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: \
  /usr/include/c++/13/bits/uses_allocator_args.h /usr/include/c++/13/tuple \
  /home/luis/projects/space_partition/include/kdtree/KdNode.h \
  /home/luis/projects/space_partition/include/common/Point3D.h \
+ /home/luis/projects/space_partition/include/common/BoundingBox.h \
+ /home/luis/projects/space_partition/include/common/Point3D.h \
  /usr/include/c++/13/algorithm /usr/include/c++/13/bits/stl_algo.h \
  /usr/include/c++/13/bits/algorithmfwd.h \
  /usr/include/c++/13/bits/stl_heap.h \
@@ -173,4 +175,4 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: \
  /usr/include/c++/13/bits/enable_special_members.h \
  /usr/include/c++/13/bits/node_handle.h \
  /usr/include/c++/13/bits/erase_if.h /usr/include/c++/13/array \
- /usr/include/c++/13/compare
+ /usr/include/c++/13/compare /usr/include/c++/13/limits

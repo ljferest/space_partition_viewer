@@ -216,7 +216,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "src/octree_optimized/CMakeFiles/octree_optimized.dir/DependInfo.cmake"
   "src/kdtree/CMakeFiles/kdtree.dir/DependInfo.cmake"
-  "src/kdtree/CMakeFiles/test_kdtree.dir/DependInfo.cmake"
   "src/bsp/CMakeFiles/bsp.dir/DependInfo.cmake"
   "src/viewer/CMakeFiles/viewer.dir/DependInfo.cmake"
   "src/common/CMakeFiles/pointcloud_loader.dir/DependInfo.cmake"

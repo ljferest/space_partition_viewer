@@ -18,12 +18,6 @@
   "output": "src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o"
 },
 {
-  "directory": "/home/luis/projects/space_partition/build/src/kdtree",
-  "command": "/usr/bin/g++ -DBOOST_ATOMIC_DYN_LINK -DBOOST_ATOMIC_NO_LIB -DBOOST_FILESYSTEM_DYN_LINK -DBOOST_FILESYSTEM_NO_LIB -DBOOST_IOSTREAMS_DYN_LINK -DBOOST_IOSTREAMS_NO_LIB -DBOOST_SERIALIZATION_DYN_LINK -DBOOST_SERIALIZATION_NO_LIB -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -DEIGEN_HAS_CXX17_OVERALIGN=0 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DTBB_USE_DEBUG -DUSE_OPTIMIZED_OCTREE -Dkiss_fft_scalar=double -I/home/luis/projects/space_partition/src -I/home/luis/projects/space_partition/include -isystem /usr/include/eigen3 -isystem /usr/include/pcl-1.14 -isystem /usr/include/ni -isystem /usr/include/openni2 -isystem /usr/include/vtk-9.1 -isystem /usr/include/jsoncpp -isystem /usr/include/freetype2 -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtOpenGL -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -g -std=c++17 -fopenmp -fPIC -o CMakeFiles/test_kdtree.dir/test_kdtree.cpp.o -c /home/luis/projects/space_partition/src/kdtree/test_kdtree.cpp",
-  "file": "/home/luis/projects/space_partition/src/kdtree/test_kdtree.cpp",
-  "output": "src/kdtree/CMakeFiles/test_kdtree.dir/test_kdtree.cpp.o"
-},
-{
   "directory": "/home/luis/projects/space_partition/build/src/bsp",
   "command": "/usr/bin/g++ -DEIGEN_HAS_CXX17_OVERALIGN=0 -DUSE_OPTIMIZED_OCTREE -I/usr/include/eigen3 -I/usr/include/pcl-1.14 -I/usr/include/ni -I/usr/include/openni2 -I/home/luis/projects/space_partition/src -I/home/luis/projects/space_partition/include -g -std=c++17 -o CMakeFiles/bsp.dir/BSPTree.cpp.o -c /home/luis/projects/space_partition/src/bsp/BSPTree.cpp",
   "file": "/home/luis/projects/space_partition/src/bsp/BSPTree.cpp",

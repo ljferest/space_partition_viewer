@@ -143,19 +143,6 @@ kdtree/fast:
 .PHONY : kdtree/fast
 
 #=============================================================================
-# Target rules for targets named test_kdtree
-
-# Build rule for target.
-test_kdtree: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_kdtree
-.PHONY : test_kdtree
-
-# fast build rule for target.
-test_kdtree/fast:
-	$(MAKE) $(MAKESILENT) -f src/kdtree/CMakeFiles/test_kdtree.dir/build.make src/kdtree/CMakeFiles/test_kdtree.dir/build
-.PHONY : test_kdtree/fast
-
-#=============================================================================
 # Target rules for targets named bsp
 
 # Build rule for target.
@@ -206,7 +193,6 @@ help:
 	@echo "... kdtree"
 	@echo "... octree_optimized"
 	@echo "... pointcloud_loader"
-	@echo "... test_kdtree"
 	@echo "... viewer"
 .PHONY : help
 

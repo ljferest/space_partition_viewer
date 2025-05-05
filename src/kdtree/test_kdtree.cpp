@@ -1,3 +1,5 @@
+/*
+
 #include "common/PointCloudLoader.h"
 #include "kdtree/KdTree.h"
 #include "common/Point3D.h"
@@ -27,3 +29,5 @@ int main() {
 
     return 0;
 }
+
+*/

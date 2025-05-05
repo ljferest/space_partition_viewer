@@ -1,5 +1,6 @@
 #pragma once
 #include "common/Point3D.h"
+#include "common/BoundingBox.h"
 
 struct KdNode {
     Point3D* point;
@@ -7,6 +8,8 @@ struct KdNode {
     KdNode* left;
     KdNode* right;
 
-    KdNode(Point3D* pt, int ax)
-        : point(pt), axis(ax), left(nullptr), right(nullptr) {}
+    BoundingBox bbox;     // 📦 Bounding box del subespacio
+
+    KdNode(Point3D* pt, int ax,const BoundingBox& box)
+        : point(pt), axis(ax),bbox(box), left(nullptr), right(nullptr) {}
 };

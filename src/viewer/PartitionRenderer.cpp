@@ -56,6 +56,8 @@ void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
 
     measureExecutionTime("Construcción KD-Tree", [this]() {
         kdtree.build(pointPtrs);
+        kdtree.diagnose(maxRenderDepth); //Show stats od kdtree
+        renderDepthKD = maxRenderDepth/2;
     });
 
     measureExecutionTime("Construcción BSP-Tree", [this]() {
@@ -140,11 +142,7 @@ void PartitionRenderer::render(bool wireframe) {
         
     }
     else if (currentMode == RenderMode::KdTree) {
-        renderKdTreePartitioning(kdtree.getRoot(),
-                                 bbox.min.x, bbox.max.x,
-                                 bbox.min.y, bbox.max.y,
-                                 bbox.min.z, bbox.max.z,
-                                 0);
+        renderKdTreePartitioning(kdtree.getRoot(),0, renderDepthKD);
     }
     else if (currentMode == RenderMode::BSP) {
         glPointSize(3.0f);
@@ -180,77 +178,74 @@ void PartitionRenderer::diagnoseOctree() {
 }
 
 void PartitionRenderer::increaseResolution() {
-    if (tree && renderDepth < tree->maxDepth) {
-        renderDepth++;
-        std::cout << "[RES] Nueva resolución: " << renderDepth << "\n";
+    if (currentMode == RenderMode::Octree) {
+        if (tree && renderDepth < tree->maxDepth) {
+            renderDepth++;
+            std::cout << "[RES] Nueva resolución Octree: " << renderDepth << "\n";
+        }
+    } else if (currentMode == RenderMode::KdTree) {
+        if (renderDepthKD < maxRenderDepth) {
+            renderDepthKD++;
+            std::cout << "[RES] Nueva profundidad KdTree: " << renderDepthKD << "\n";
+        }
     }
 }
 
 void PartitionRenderer::decreaseResolution() {
-    if (renderDepth > 1) {
-        renderDepth--;
-        std::cout << "[RES] Resolución reducida: " << renderDepth << "\n";
+    if (currentMode == RenderMode::Octree) {
+        if (renderDepth > 1) {
+            renderDepth--;
+            std::cout << "[RES] Resolución reducida: " << renderDepth << "\n";
+        }
+    } else if (currentMode == RenderMode::KdTree) {
+        if (renderDepthKD > 1) {
+            renderDepthKD--;
+            std::cout << "[RES] Nueva profundidad KdTree: " << renderDepthKD << "\n";
+        }
     }
 }
 
-void PartitionRenderer::renderKdTreePartitioning(KdNode* node,
-    float xmin, float xmax,
-    float ymin, float ymax,
-    float zmin, float zmax,
-    int depth) {
-
-    if (!node || !node->point || depth > maxRenderDepth)
+void PartitionRenderer::renderKdTreePartitioning(KdNode* node, int depth, int max) {
+    if (!node || depth > max)
         return;
 
-    // Colorear por altura z
-    float nodeZ = node->point->z;
-    float t = (nodeZ - minZ) / (maxZ - minZ); // Normalizar
-    float r = t;
-    float g = 0.2f * (1 - t);
-    float b = 1.0f - t;
-    glColor3f(r, g, b);
+    const auto& box = node->bbox;
 
+    // 🧹 No renderizar cuboids invisibles
+    if ((box.max.x - box.min.x) < 1e-3f ||
+        (box.max.y - box.min.y) < 1e-3f ||
+        (box.max.z - box.min.z) < 1e-3f) {
+        return;
+    }
+
+    // 🎨 Colorear por altura Z (puedes cambiar por eje o profundidad)
+    float t = (node->point->z - minZ) / (maxZ - minZ);
+    glColor3f(t, 0.2f * (1 - t), 1.0f - t);
+
+    // 📦 Dibujar cuboid como líneas (wireframe)
     glLineWidth(1.0f);
     glBegin(GL_LINES);
+    float x[] = { box.min.x, box.max.x };
+    float y[] = { box.min.y, box.max.y };
+    float z[] = { box.min.z, box.max.z };
 
-    float x[] = { xmin, xmax };
-    float y[] = { ymin, ymax };
-    float z[] = { zmin, zmax };
-
-    for (int xi : {0, 1}) {
-        for (int yi : {0, 1}) {
-            glVertex3f(x[xi], y[yi], z[0]);
-            glVertex3f(x[xi], y[yi], z[1]);
-        }
+    for (int xi : {0, 1}) for (int yi : {0, 1}) {
+        glVertex3f(x[xi], y[yi], z[0]);
+        glVertex3f(x[xi], y[yi], z[1]);
     }
-
-    for (int xi : {0, 1}) {
-        for (int zi : {0, 1}) {
-            glVertex3f(x[xi], y[0], z[zi]);
-            glVertex3f(x[xi], y[1], z[zi]);
-        }
+    for (int xi : {0, 1}) for (int zi : {0, 1}) {
+        glVertex3f(x[xi], y[0], z[zi]);
+        glVertex3f(x[xi], y[1], z[zi]);
     }
-
-    for (int yi : {0, 1}) {
-        for (int zi : {0, 1}) {
-            glVertex3f(x[0], y[yi], z[zi]);
-            glVertex3f(x[1], y[yi], z[zi]);
-        }
+    for (int yi : {0, 1}) for (int zi : {0, 1}) {
+        glVertex3f(x[0], y[yi], z[zi]);
+        glVertex3f(x[1], y[yi], z[zi]);
     }
-
     glEnd();
 
-    // Recursión
-    if (node->axis == 0) {
-        renderKdTreePartitioning(node->left, xmin, node->point->x, ymin, ymax, zmin, zmax, depth + 1);
-        renderKdTreePartitioning(node->right, node->point->x, xmax, ymin, ymax, zmin, zmax, depth + 1);
-    } else if (node->axis == 1) {
-        renderKdTreePartitioning(node->left, xmin, xmax, ymin, node->point->y, zmin, zmax, depth + 1);
-        renderKdTreePartitioning(node->right, xmin, xmax, node->point->y, ymax, zmin, zmax, depth + 1);
-    } else {
-        renderKdTreePartitioning(node->left, xmin, xmax, ymin, ymax, zmin, node->point->z, depth + 1);
-        renderKdTreePartitioning(node->right, xmin, xmax, ymin, ymax, node->point->z, zmax, depth + 1);
-    }
+    // 🔁 Recursión
+    renderKdTreePartitioning(node->left, depth + 1,max);
+    renderKdTreePartitioning(node->right, depth + 1, max);
 }
 
 
@@ -268,21 +263,13 @@ void PartitionRenderer::handleKeyboard(unsigned char key) {
         std::cout << "[MODE] BSP \n";
     }
 
-    if (key == '+' && currentMode == RenderMode::Octree) {
+    if (key == '+' && (currentMode == RenderMode::Octree || currentMode == RenderMode::KdTree)) {
         increaseResolution();
     }
-    else if (key == '-' && currentMode == RenderMode::Octree) {
+    else if (key == '-' && (currentMode == RenderMode::Octree || currentMode == RenderMode::KdTree)) {
         decreaseResolution();
     }
 
-    if (key == ']' && currentMode == RenderMode::KdTree) {
-        maxRenderDepth++;
-        std::cout << "[VISUAL] Profundidad KdTree + → " << maxRenderDepth << "\n";
-    }
-    else if (key == '[' && currentMode == RenderMode::KdTree && maxRenderDepth > 0) {
-        maxRenderDepth--;
-        std::cout << "[VISUAL] Profundidad KdTree - → " << maxRenderDepth << "\n";
-    }
     glutPostRedisplay();
 }
 

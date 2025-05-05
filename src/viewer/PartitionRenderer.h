@@ -33,11 +33,7 @@ public:
     void render(bool wireframe = false);
     void handleKeyboard(unsigned char key);
     void setRenderMode(RenderMode mode);
-    void renderKdTreePartitioning(KdNode* node,
-        float xmin, float xmax,
-        float ymin, float ymax,
-        float zmin, float zmax,
-        int depth); // ✅ ahora coincide con el .cpp
+    void renderKdTreePartitioning(KdNode* node, int depth, int max);
 
     void computeBoundingBox();
     void renderBSPPartitioning(BSPNode* node, float xmin, float xmax, float ymin, float ymax, float zmin, float zmax, int depth = 0);
@@ -52,6 +48,7 @@ public:
     
     
     int renderDepth = 4;
+    int renderDepthKD;
     int maxRenderDepth = 10;
     
     void setCameraTarget(float x, float y, float z);
