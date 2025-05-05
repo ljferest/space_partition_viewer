@@ -16,23 +16,33 @@ void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
 
     computeBoundingBox();
 
+    // 🔄 Primero calcula dimensiones del bounding box
+    float dx = bbox.max.x - bbox.min.x;
+    float dy = bbox.max.y - bbox.min.y;
+    float dz = bbox.max.z - bbox.min.z;
+
+    // 🔐 Asegurar que no sean 0
+    if (dx < 1e-6f) dx = 1.0f;
+    if (dy < 1e-6f) dy = 1.0f;
+    if (dz < 1e-6f) dz = 1.0f;
+
+    // ✅ Calcular sceneSize correctamente antes de usarlo
+    sceneSize = std::max({ dx, dy, dz }) * 1.1f;
+
+    // 📌 Centro de la escena
     centerX = (bbox.min.x + bbox.max.x) / 2.0f;
     centerY = (bbox.min.y + bbox.max.y) / 2.0f;
     centerZ = (bbox.min.z + bbox.max.z) / 2.0f;
-    // Centrar la cámara en el modelo
+
+    // 🎯 Posicionar cámara
     cameraTargetX = centerX;
     cameraTargetY = centerY;
     cameraTargetZ = centerZ;
     cameraDistance = sceneSize * 1.5f;  // Alejado para ver todo
 
-
-    float dx = bbox.max.x - bbox.min.x;
-    float dy = bbox.max.y - bbox.min.y;
-    float dz = bbox.max.z - bbox.min.z;
-    sceneSize = std::max({ dx, dy, dz }) * 1.1f;
-
     std::cout << "[INFO] Bounding Box: [" << dx << " x " << dy << " x " << dz << "]\n";
     std::cout << "[INFO] Centro: (" << centerX << ", " << centerY << ", " << centerZ << ") Tamaño: " << sceneSize << "\n";
+    std::cout << "[INFO] CameraDistance: " << cameraDistance << "\n";
 
     int maxTreeDepth = 10;
     renderDepth = 4;
@@ -41,7 +51,7 @@ void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
         tree = std::make_unique<Octree>(centerX, centerY, centerZ, sceneSize, maxTreeDepth);
         tree->build(pointPtrs);
         std::cout << "[POST-BUILD] tree = " << tree.get()
-          << ", root = " << (tree ? tree->root.get() : nullptr) << std::endl;
+                  << ", root = " << (tree ? tree->root.get() : nullptr) << std::endl;
     });
 
     measureExecutionTime("Construcción KD-Tree", [this]() {
@@ -52,7 +62,7 @@ void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
         bspTree.build(pointPtrs, 10);
     });
 
-    computeZRange(); // Opcional si quieres seguir normalizando colores
+    computeZRange(); // Para colorear por altura
 }
 
 void PartitionRenderer::computeZRange() {
