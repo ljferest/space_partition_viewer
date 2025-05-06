@@ -7,16 +7,20 @@ BSPTree::~BSPTree() {
     delete root;
 }
 
+// To build the BSP tree from a vector of points.
 void BSPTree::build(std::vector<Point3D*>& points, int maxDepth) {
     delete root;
     nextNodeId = 0;
     root = buildRecursive(points, 0, maxDepth);
 }
 
+// To get the root node.
 BSPNode* BSPTree::getRoot() const {
     return root;
 }
 
+// Recursively builds the BSP tree by choosing the splitting axis by variance and partitioning the points.
+// The function also handles the case where the number of points is less than a certain threshold.
 BSPNode* BSPTree::buildRecursive(std::vector<Point3D*>& points, int depth, int maxDepth) {
     constexpr int minPoints = 50; // Puedes ajustar este valor
 
@@ -26,7 +30,6 @@ BSPNode* BSPTree::buildRecursive(std::vector<Point3D*>& points, int depth, int m
         return leaf;
     }
 
-    // Calcular medias
     float meanX = 0, meanY = 0, meanZ = 0;
     for (auto p : points) {
         meanX += p->x;
@@ -37,7 +40,6 @@ BSPNode* BSPTree::buildRecursive(std::vector<Point3D*>& points, int depth, int m
     meanY /= points.size();
     meanZ /= points.size();
 
-    // Calcular varianzas
     float varX = 0, varY = 0, varZ = 0;
     for (auto p : points) {
         varX += (p->x - meanX) * (p->x - meanX);
@@ -45,12 +47,13 @@ BSPNode* BSPTree::buildRecursive(std::vector<Point3D*>& points, int depth, int m
         varZ += (p->z - meanZ) * (p->z - meanZ);
     }
 
-    // Elegir eje de mayor varianza
-    int axis = 0; // 0->X, 1->Y, 2->Z
+    // Choose axis with highest variance.
+    // 0->X, 1->Y, 2->Z.
+    int axis = 0; 
     if (varY > varX && varY >= varZ) axis = 1;
     else if (varZ > varX && varZ >= varY) axis = 2;
 
-    // Encontrar mediana por nth_element (O(n))
+    // Find median point along chosen axis.
     size_t midIndex = points.size() / 2;
     std::nth_element(points.begin(), points.begin() + midIndex, points.end(),
         [axis](Point3D* a, Point3D* b) {
@@ -62,7 +65,7 @@ BSPNode* BSPTree::buildRecursive(std::vector<Point3D*>& points, int depth, int m
     Point3D* medianPoint = points[midIndex];
     float splitValue = (axis == 0) ? medianPoint->x : (axis == 1) ? medianPoint->y : medianPoint->z;
 
-    // Crear plano de corte
+    // Build plane.
     Point3D normal = {0, 0, 0};
     if (axis == 0) normal.x = 1.0f;
     else if (axis == 1) normal.y = 1.0f;
@@ -70,7 +73,7 @@ BSPNode* BSPTree::buildRecursive(std::vector<Point3D*>& points, int depth, int m
     
     Plane divider(normal, splitValue);
 
-    // Separar en dos sin copiar innecesariamente
+    // Split points into front and back.
     std::vector<Point3D*> frontPoints;
     std::vector<Point3D*> backPoints;
     frontPoints.reserve(points.size() / 2);

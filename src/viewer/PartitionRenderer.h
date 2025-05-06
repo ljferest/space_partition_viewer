@@ -27,7 +27,6 @@ public:
     float getCenterY() const { return centerY; }
     float getCenterZ() const { return centerZ; }
     float getSceneSize() const { return sceneSize; }
-    void diagnoseOctree();
     void increaseResolution(); // + tecla
     void decreaseResolution(); // - tecla
     void render(bool wireframe = false);
@@ -59,6 +58,8 @@ public:
     void specialCallback(int key, int x, int y);
     void updateCameraDirection();
     void getColorFromId(int id, float& r, float& g, float& b) ;
+    void renderOctreePartitioning(bool wireframe);
+
     
 
     bool flyMode = false;

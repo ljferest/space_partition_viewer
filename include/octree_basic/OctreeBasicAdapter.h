@@ -29,9 +29,9 @@ public:
 
     std::vector<OctreeDrawableNode> getDrawableNodes(int level) const override {
         std::vector<OctreeDrawableNode> nodes;
-        // Por ahora, devolvemos solo la raíz
+        
         nodes.push_back({center, halfSize});
-        // En el futuro: filtrar por nivel si Octree lo permite
+        
         return nodes;
     }
 };

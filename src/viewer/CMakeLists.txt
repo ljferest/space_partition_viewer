@@ -14,8 +14,8 @@ target_link_libraries(viewer
 )
 
 target_include_directories(viewer PUBLIC
-    ${CMAKE_SOURCE_DIR}/src       # para que "octree/Octree.h" resuelva a src/octree/Octree.h
-    ${CMAKE_SOURCE_DIR}/src/viewer # para encontrar OctreeRenderer.h y main.cpp
+    ${CMAKE_SOURCE_DIR}/src       
+    ${CMAKE_SOURCE_DIR}/src/viewer 
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/include/octree_optimized
     ${PROJECT_SOURCE_DIR}/src/octree/octree_basic

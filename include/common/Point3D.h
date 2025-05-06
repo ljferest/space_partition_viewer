@@ -8,4 +8,4 @@ struct Point3D {
     Point3D(float x_, float y_, float z_) : x(x_), y(y_), z(z_) {}
 };
 
-#endif // POINT3D_H
+#endif 

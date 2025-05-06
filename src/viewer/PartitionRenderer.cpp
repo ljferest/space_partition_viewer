@@ -139,68 +139,7 @@ void PartitionRenderer::render(bool wireframe) {
     }
 
     if (currentMode == RenderMode::Octree) {
-        /*
-        std::cout << "Render mode: Octree, wireframeMode = " << wireframeMode << std::endl;
-        std::cout << "[RENDER] tree = " << tree.get()
-          << ", root = " << (tree ? tree->root.get() : nullptr) << std::endl;
-        */
-        if (!tree) {
-            //std::cout << "[FAIL] tree == nullptr" << std::endl;
-            return;
-        }
-        
-        if (!tree->root) {
-            //std::cout << "[FAIL] tree->root == nullptr" << std::endl;
-            return;
-        }
-        //std::cout << "[RENDER] tree = " << tree.get() << ", root = " << tree->root.get() << std::endl;
-    
-        if (wireframeMode) {
-            // 🔲 Mostrar contornos (todos los nodos)
-            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-            glLineWidth(1.0f);
-            tree->traverse([&](bool isLeaf, float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
-                glColor3f(1.0f, 1.0f, 1.0f);
-                glPushMatrix();
-                glTranslatef(cx, cy, cz);
-                glutWireCube(size);
-                glPopMatrix();
-            });
-        
-            // 🟥 Mostrar hojas con puntos (sólido y color)
-            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-            tree->traverseLeavesUpToDepth(renderDepth, [&](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
-                /*std::cout << "[TRACE] Nodo recibido: center=(" << cx << ", " << cy << ", " << cz 
-                          << "), size=" << size << ", puntos=" << pts.size() << std::endl;
-            
-                
-            
-                std::cout << "  >> DIBUJANDO este nodo\n";
-                */
-                float dz = maxZ - minZ;
-                float colorZ = (dz > 0.0f) ? (cz - minZ) / dz : 0.5f;
-                glColor3f(1.0f - colorZ, 0.0f, colorZ);
-            
-                glPushMatrix();
-                glTranslatef(cx, cy, cz);
-                glutSolidCube(size);
-                glPopMatrix();
-            });            
-        }
-        else{
-            // Render sólido → solo hojas ocupadas
-            tree->traverseLeavesUpToDepth(renderDepth, [=](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
-    
-                float dz = maxZ - minZ;
-                float colorZ = (dz > 0.0f) ? (cz - minZ) / dz : 0.5f;
-                glColor3f(1.0f - colorZ, 0.0f, colorZ);  // color por altura   
-                
-                glPushMatrix();
-                glTranslatef(cx, cy, cz);
-                glutSolidCube(size);
-                glPopMatrix();
-            });
-        }
+        renderOctreePartitioning(wireframeMode);
     }
     else if (currentMode == RenderMode::KdTree) {
         renderKdTreePartitioning(kdtree->getRoot(),0, renderDepthKD);
@@ -236,6 +175,68 @@ void PartitionRenderer::decreaseResolution() {
             renderDepthKD--;
             std::cout << "[RES] Nueva profundidad KdTree: " << renderDepthKD << "\n";
         }
+    }
+}
+
+void PartitionRenderer::renderOctreePartitioning(bool wireframe) {
+    if (!tree || !tree->root) return;
+
+    if (!tree) {
+        //std::cout << "[FAIL] tree == nullptr" << std::endl;
+        return;
+    }
+    
+    if (!tree->root) {
+        //std::cout << "[FAIL] tree->root == nullptr" << std::endl;
+        return;
+    }
+    //std::cout << "[RENDER] tree = " << tree.get() << ", root = " << tree->root.get() << std::endl;
+
+    if (wireframeMode) {
+        // 🔲 Mostrar contornos (todos los nodos)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        glLineWidth(1.0f);
+        tree->traverse([&](bool isLeaf, float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
+            glColor3f(1.0f, 1.0f, 1.0f);
+            glPushMatrix();
+            glTranslatef(cx, cy, cz);
+            glutWireCube(size);
+            glPopMatrix();
+        });
+    
+        // 🟥 Mostrar hojas con puntos (sólido y color)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        tree->traverseLeavesUpToDepth(renderDepth, [&](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
+            /*std::cout << "[TRACE] Nodo recibido: center=(" << cx << ", " << cy << ", " << cz 
+                      << "), size=" << size << ", puntos=" << pts.size() << std::endl;
+        
+            
+        
+            std::cout << "  >> DIBUJANDO este nodo\n";
+            */
+            float dz = maxZ - minZ;
+            float colorZ = (dz > 0.0f) ? (cz - minZ) / dz : 0.5f;
+            glColor3f(1.0f - colorZ, 0.0f, colorZ);
+        
+            glPushMatrix();
+            glTranslatef(cx, cy, cz);
+            glutSolidCube(size);
+            glPopMatrix();
+        });            
+    }
+    else{
+        // Render sólido → solo hojas ocupadas
+        tree->traverseLeavesUpToDepth(renderDepth, [=](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
+
+            float dz = maxZ - minZ;
+            float colorZ = (dz > 0.0f) ? (cz - minZ) / dz : 0.5f;
+            glColor3f(1.0f - colorZ, 0.0f, colorZ);  // color por altura   
+            
+            glPushMatrix();
+            glTranslatef(cx, cy, cz);
+            glutSolidCube(size);
+            glPopMatrix();
+        });
     }
 }
 

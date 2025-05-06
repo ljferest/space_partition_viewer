@@ -2,10 +2,12 @@
 #include <cmath>
 #include <iostream>
 
+// To get the child index based on the point's position relative to the center.
 int CNode::getChildIndex(Point3D* pt) const {
     return (pt->x > centerX) * 4 + (pt->y > centerY) * 2 + (pt->z > centerZ);
 }
 
+// Add a point to the node, subdividing if necessary with the subdivide method.
 void CNode::addPoint(Point3D* pt, int maxDepth, int maxPointsPerLeaf) {
     if (depth == maxDepth || (isLeaf && points.size() < maxPointsPerLeaf)) {
         points.push_back(pt);
@@ -26,6 +28,7 @@ void CNode::addPoint(Point3D* pt, int maxDepth, int maxPointsPerLeaf) {
     children[idx]->addPoint(pt, maxDepth, maxPointsPerLeaf);
 }
 
+// Subdivide the node into 8 children.
 void CNode::subdivide(int maxDepth) {
     float h = size / 2.0f;
     for (int i = 0; i < 8; ++i) {
@@ -42,6 +45,7 @@ void CNode::subdivide(int maxDepth) {
     }
 }
 
+// To get the index of the child node where the point belongs.
 void CNode::getPointsInBox(float minX, float minY, float minZ,
                             float maxX, float maxY, float maxZ,
                             std::vector<Point3D*>& result) {
@@ -67,6 +71,7 @@ void CNode::getPointsInBox(float minX, float minY, float minZ,
     }
 }
 
+// Traverse the leaves of the octree and apply the visitor function.
 void CNode::traverseLeaves(std::function<void(float, float, float, float, const std::vector<Point3D*>&)> visitor) {
     if (isLeaf) {
         visitor(centerX, centerY, centerZ, size, points);
@@ -77,6 +82,7 @@ void CNode::traverseLeaves(std::function<void(float, float, float, float, const 
     }
 }
 
+// Traverse the leaves of the octree up to a certain depth and apply the visitor function.
 void CNode::traverseLeavesUpToDepth(int maxRenderDepth,
     std::function<void(float, float, float, float, const std::vector<Point3D*>&)> visitor) {
 
@@ -103,6 +109,7 @@ void CNode::traverseLeavesUpToDepth(int maxRenderDepth,
     }
 }
 
+// Remove a point from the node.
 void CNode::removePoint(Point3D* pt) {
     auto it = std::find(points.begin(), points.end(), pt);
     if (it != points.end()) {
@@ -110,7 +117,7 @@ void CNode::removePoint(Point3D* pt) {
     }
 }
 
-// Insertar un punto en el árbol Y actualizar el mapa
+// To insert a point into the octree and map it to the node.
 void CNode::insertPointWithMap(Point3D* pt, int maxDepth, std::unordered_map<Point3D*, CNode*>& map, int maxPointsPerLeaf) {
     if (depth == maxDepth || (isLeaf && points.size() < maxPointsPerLeaf)) {
         points.push_back(pt);

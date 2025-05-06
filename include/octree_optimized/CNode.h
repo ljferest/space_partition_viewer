@@ -38,4 +38,4 @@ private:
     int getChildIndex(Point3D* pt) const;
 };
 
-#endif // CNODE_H
+#endif

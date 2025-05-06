@@ -113,9 +113,9 @@ void initGL() {
     float size = renderer.getSceneSize();
 
     gluLookAt(
-        cx + size, cy + size, cz + size,  // Cámara alejada en diagonal
-        cx, cy, cz,                       // Mirando al centro de la escena
-        0, 0, 1                           // Eje Z como "arriba"
+        cx + size, cy + size, cz + size,  
+        cx, cy, cz,                       
+        0, 0, 1                           
     );
 }
 
@@ -128,7 +128,7 @@ int main(int argc, char** argv) {
 
         initGL();
 
-        // 🔥 SOLO ESTA LÍNEA: cargar y construir todo
+        //Download and load the point cloud
         std::vector<Point3D> cloud = loadFromPCD("../data/bunny.pcd");
         renderer.loadPointCloud(cloud);
 

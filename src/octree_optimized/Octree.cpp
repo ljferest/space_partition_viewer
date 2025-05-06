@@ -2,6 +2,7 @@
 #include <iostream>
 #include <limits>
 
+//To build the octree, we need to define the center and size of the root node.
 void Octree::build(const std::vector<Point3D*>& points) {
     std::cout << "[DEBUG] build(): puntos recibidos = " << points.size() << std::endl;
     for (auto* pt : points) {
@@ -11,6 +12,7 @@ void Octree::build(const std::vector<Point3D*>& points) {
 
 }
 
+// The queryRegion function retrieves all points within a specified 3D box.
 void Octree::queryRegion(float minX, float minY, float minZ,
                          float maxX, float maxY, float maxZ,
                          std::vector<Point3D*>& result) {
@@ -19,12 +21,14 @@ void Octree::queryRegion(float minX, float minY, float minZ,
     }
 }
 
+// The traverseLeavesUpToDepth function allows the user to visit all leaves of the octree up to a specified depth.
 void Octree::traverseLeavesUpToDepth(int renderDepth,
     std::function<void(float, float, float, float, const std::vector<Point3D*>&)> visitor) {
     if (root)
         root->traverseLeavesUpToDepth(renderDepth, visitor);
 }
 
+// The movePoint function updates the position of a point in the octree.
 void Octree::movePoint(Point3D* pt, float newX, float newY, float newZ) {
     auto it = pointToNodeMap.find(pt);
     if (it == pointToNodeMap.end()) return;
@@ -39,6 +43,7 @@ void Octree::movePoint(Point3D* pt, float newX, float newY, float newZ) {
     root->insertPointWithMap(pt, maxDepth, pointToNodeMap, maxPointsPerLeaf);
 }
 
+// The traverse function allows the user to visit all nodes in the octree for the wireframe.
 void Octree::traverse(std::function<void(bool isLeaf, float cx, float cy, float cz, float size, const std::vector<Point3D*>&)> visitor) {
     std::function<void(CNode*)> recurse = [&](CNode* node) {
         if (!node) return;
@@ -54,6 +59,7 @@ void Octree::traverse(std::function<void(bool isLeaf, float cx, float cy, float 
     recurse(root.get());
 }
 
+// The diagnose function provides a summary of the octree's structure, including the number of leaves, non-empty leaves, and their sizes.
 void Octree::diagnose(int& maxDepth) const {
     int totalLeaves = 0;
     int nonEmptyLeaves = 0;
@@ -65,7 +71,6 @@ void Octree::diagnose(int& maxDepth) const {
     std::function<void(const CNode*, int)> recurse = [&](const CNode* node, int depth) {
         if (!node) return;
 
-        // Comprobar si es hoja: todos los hijos son nulos
         bool isLeaf = true;
         for (const auto& child : node->children) {
             if (child) {

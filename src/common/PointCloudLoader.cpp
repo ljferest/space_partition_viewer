@@ -3,6 +3,7 @@
 #include <pcl/point_types.h>
 #include <iostream>
 
+// This function loads a PCD file and returns a vector of Point3D objects.
 std::vector<Point3D> loadFromPCD(const std::string& filename) {
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
     if (pcl::io::loadPCDFile<pcl::PointXYZ>(filename, *cloud) == -1) {

@@ -6,9 +6,11 @@
 #include <cmath>
 
 
-// Referencia al paper de Bentley (1975)
+// Reference to Bentley paper (1975)
 // https://doi.org/10.1145/361002.361007
 
+// This function builds a KdTree from a set of points.
+//It uses a recursive method called buildRecursive to create the tree.
 void KdTree::build(std::vector<Point3D*>& pts) {
     this->points = &pts;
 
@@ -19,7 +21,7 @@ void KdTree::build(std::vector<Point3D*>& pts) {
 
     int N = static_cast<int>(points->size());
 
-    // 📈 Cálculo dinámico de parámetros
+    // Dinamically calculate maxDepth and minPointsPerLeaf.
     int maxDepth = std::ceil(std::log2(N));
     int minPointsPerLeaf = std::max(2, N / (1 << (maxDepth - 1)));
 
@@ -30,10 +32,12 @@ void KdTree::build(std::vector<Point3D*>& pts) {
     root = buildRecursive(*points, 0, fullBox, maxDepth, minPointsPerLeaf);
 }
 
+//To get the root of the KdTree.
 KdNode* KdTree::getRoot() const {
     return root;
 }
 
+// Recursively builds the KdTree by choosing the splitting axis and partitioning the points.
 KdNode* KdTree::buildRecursive(std::vector<Point3D*>& pts, int depth,
     const BoundingBox& box,
     int maxDepth, int minPointsPerLeaf) {
@@ -84,6 +88,7 @@ node->right = buildRecursive(right_pts, depth + 1, right_box, maxDepth, minPoint
 return node;
 }
 
+//This function seearrches for all the points within a given region defined by a center point and size.
 void KdTree::queryRegion(float cx, float cy, float cz, float size, std::vector<Point3D*>& result) const {
     float half = size / 2.0f;
 
@@ -95,14 +100,13 @@ void KdTree::queryRegion(float cx, float cy, float cz, float size, std::vector<P
         float y = node->point->y;
         float z = node->point->z;
 
-        // ✅ Chequeo de inclusión
         if (x >= cx - half && x <= cx + half &&
             y >= cy - half && y <= cy + half &&
             z >= cz - half && z <= cz + half) {
             result.push_back(node->point);
         }
 
-        // ✅ Poda inteligente según eje de división
+        //Depending on the axis, check if we need to traverse left or right.
         int axis = node->axis;
         float coord = (axis == 0) ? x : (axis == 1) ? y : z;
         float minBound = (axis == 0) ? cx - half : (axis == 1) ? cy - half : cz - half;
@@ -118,7 +122,6 @@ void KdTree::queryRegion(float cx, float cy, float cz, float size, std::vector<P
 }
 /*
 void KdTree::buildFromPoints(const std::vector<Point3D>& points) {
-    // Limpia árbol anterior si lo hubiera
     if (root) {
         delete root;
         root = nullptr;
@@ -133,13 +136,14 @@ void KdTree::buildFromPoints(const std::vector<Point3D>& points) {
     root = buildRecursive(pointPtrs, 0); // Tu función recursiva interna
 }*/
 
+//Calculates the bounding box of a set of points.
 BoundingBox computeBoundingBoxFromPoints(const std::vector<Point3D*>& pts) {
     BoundingBox box;
 
     if (pts.empty()) {
         std::cerr << "[ERROR] computeBoundingBoxFromPoints(): No hay puntos.\n";
         box.min = Point3D(0, 0, 0);
-        box.max = Point3D(1, 1, 1);  // fallback
+        box.max = Point3D(1, 1, 1);
         return box;
     }
 
@@ -160,7 +164,7 @@ BoundingBox computeBoundingBoxFromPoints(const std::vector<Point3D*>& pts) {
         maxZ = std::max(maxZ, p->z);
     }
 
-    // 🧱 Asegurar volumen mínimo si está colapsado
+    
     const float minLen = 0.01f;
     if (maxX - minX < minLen) maxX = minX + minLen;
     if (maxY - minY < minLen) maxY = minY + minLen;
@@ -171,6 +175,7 @@ BoundingBox computeBoundingBoxFromPoints(const std::vector<Point3D*>& pts) {
     return box;
 }
 
+//This function provides a diagnostic of the KdTree, including the number of nodes, leaf nodes, maximum depth, and average leaf volume.
 void KdTree::diagnose(int& outMaxDepth) const {
     int totalNodes = 0;
     int leafNodes = 0;
@@ -211,5 +216,5 @@ void KdTree::diagnose(int& outMaxDepth) const {
     std::cout << "Volumen promedio hojas: " << avgLeafVolume << "\n";
     std::cout << "--------------------------------\n";
 
-    outMaxDepth = maxDepth;  // devolver profundidad calculada
+    outMaxDepth = maxDepth;  
 }
