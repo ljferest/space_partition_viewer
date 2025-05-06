@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/luis/projects/space_partition
+CMAKE_SOURCE_DIR = "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/luis/projects/space_partition/build
+CMAKE_BINARY_DIR = "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build"
 
 # Include any dependencies generated for this target.
 include src/viewer/CMakeFiles/viewer.dir/depend.make
@@ -70,32 +70,32 @@ include src/viewer/CMakeFiles/viewer.dir/progress.make
 include src/viewer/CMakeFiles/viewer.dir/flags.make
 
 src/viewer/CMakeFiles/viewer.dir/main.cpp.o: src/viewer/CMakeFiles/viewer.dir/flags.make
-src/viewer/CMakeFiles/viewer.dir/main.cpp.o: /home/luis/projects/space_partition/src/viewer/main.cpp
+src/viewer/CMakeFiles/viewer.dir/main.cpp.o: /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/src/viewer/main.cpp
 src/viewer/CMakeFiles/viewer.dir/main.cpp.o: src/viewer/CMakeFiles/viewer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/viewer/CMakeFiles/viewer.dir/main.cpp.o"
-	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/viewer/CMakeFiles/viewer.dir/main.cpp.o -MF CMakeFiles/viewer.dir/main.cpp.o.d -o CMakeFiles/viewer.dir/main.cpp.o -c /home/luis/projects/space_partition/src/viewer/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/viewer/CMakeFiles/viewer.dir/main.cpp.o"
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/viewer" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/viewer/CMakeFiles/viewer.dir/main.cpp.o -MF CMakeFiles/viewer.dir/main.cpp.o.d -o CMakeFiles/viewer.dir/main.cpp.o -c "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/viewer/main.cpp"
 
 src/viewer/CMakeFiles/viewer.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/viewer.dir/main.cpp.i"
-	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luis/projects/space_partition/src/viewer/main.cpp > CMakeFiles/viewer.dir/main.cpp.i
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/viewer" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/viewer/main.cpp" > CMakeFiles/viewer.dir/main.cpp.i
 
 src/viewer/CMakeFiles/viewer.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/viewer.dir/main.cpp.s"
-	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luis/projects/space_partition/src/viewer/main.cpp -o CMakeFiles/viewer.dir/main.cpp.s
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/viewer" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/viewer/main.cpp" -o CMakeFiles/viewer.dir/main.cpp.s
 
 src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.o: src/viewer/CMakeFiles/viewer.dir/flags.make
-src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.o: /home/luis/projects/space_partition/src/viewer/PartitionRenderer.cpp
+src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.o: /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/src/viewer/PartitionRenderer.cpp
 src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.o: src/viewer/CMakeFiles/viewer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.o"
-	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.o -MF CMakeFiles/viewer.dir/PartitionRenderer.cpp.o.d -o CMakeFiles/viewer.dir/PartitionRenderer.cpp.o -c /home/luis/projects/space_partition/src/viewer/PartitionRenderer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.o"
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/viewer" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.o -MF CMakeFiles/viewer.dir/PartitionRenderer.cpp.o.d -o CMakeFiles/viewer.dir/PartitionRenderer.cpp.o -c "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/viewer/PartitionRenderer.cpp"
 
 src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/viewer.dir/PartitionRenderer.cpp.i"
-	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luis/projects/space_partition/src/viewer/PartitionRenderer.cpp > CMakeFiles/viewer.dir/PartitionRenderer.cpp.i
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/viewer" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/viewer/PartitionRenderer.cpp" > CMakeFiles/viewer.dir/PartitionRenderer.cpp.i
 
 src/viewer/CMakeFiles/viewer.dir/PartitionRenderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/viewer.dir/PartitionRenderer.cpp.s"
-	cd /home/luis/projects/space_partition/build/src/viewer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luis/projects/space_partition/src/viewer/PartitionRenderer.cpp -o CMakeFiles/viewer.dir/PartitionRenderer.cpp.s
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/viewer" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/viewer/PartitionRenderer.cpp" -o CMakeFiles/viewer.dir/PartitionRenderer.cpp.s
 
 # Object files for target viewer
 viewer_OBJECTS = \
@@ -122,6 +122,7 @@ src/viewer/viewer: /usr/lib/x86_64-linux-gnu/libflann_cpp.so.1.9.2
 src/viewer/viewer: /usr/lib/x86_64-linux-gnu/libGL.so
 src/viewer/viewer: /usr/lib/x86_64-linux-gnu/libGLU.so
 src/viewer/viewer: /usr/lib/x86_64-linux-gnu/libglut.so
+src/viewer/viewer: /usr/lib/x86_64-linux-gnu/libXi.so
 src/viewer/viewer: /usr/lib/x86_64-linux-gnu/libglfw.so.3.3
 src/viewer/viewer: /usr/lib/x86_64-linux-gnu/libpcl_surface.so
 src/viewer/viewer: /usr/lib/x86_64-linux-gnu/libpcl_keypoints.so
@@ -203,18 +204,18 @@ src/viewer/viewer: /usr/lib/x86_64-linux-gnu/libflann_cpp_s.a
 src/viewer/viewer: /usr/lib/x86_64-linux-gnu/liblz4.so
 src/viewer/viewer: /usr/lib/x86_64-linux-gnu/libqhull_r.so.8.0.2
 src/viewer/viewer: src/viewer/CMakeFiles/viewer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable viewer"
-	cd /home/luis/projects/space_partition/build/src/viewer && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/viewer.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable viewer"
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/viewer" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/viewer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/viewer/CMakeFiles/viewer.dir/build: src/viewer/viewer
 .PHONY : src/viewer/CMakeFiles/viewer.dir/build
 
 src/viewer/CMakeFiles/viewer.dir/clean:
-	cd /home/luis/projects/space_partition/build/src/viewer && $(CMAKE_COMMAND) -P CMakeFiles/viewer.dir/cmake_clean.cmake
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/viewer" && $(CMAKE_COMMAND) -P CMakeFiles/viewer.dir/cmake_clean.cmake
 .PHONY : src/viewer/CMakeFiles/viewer.dir/clean
 
 src/viewer/CMakeFiles/viewer.dir/depend:
-	cd /home/luis/projects/space_partition/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/luis/projects/space_partition /home/luis/projects/space_partition/src/viewer /home/luis/projects/space_partition/build /home/luis/projects/space_partition/build/src/viewer /home/luis/projects/space_partition/build/src/viewer/CMakeFiles/viewer.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/viewer" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/viewer" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/viewer/CMakeFiles/viewer.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : src/viewer/CMakeFiles/viewer.dir/depend
 

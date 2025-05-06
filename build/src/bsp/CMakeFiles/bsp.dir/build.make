@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/luis/projects/space_partition
+CMAKE_SOURCE_DIR = "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/luis/projects/space_partition/build
+CMAKE_BINARY_DIR = "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build"
 
 # Include any dependencies generated for this target.
 include src/bsp/CMakeFiles/bsp.dir/depend.make
@@ -70,18 +70,18 @@ include src/bsp/CMakeFiles/bsp.dir/progress.make
 include src/bsp/CMakeFiles/bsp.dir/flags.make
 
 src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o: src/bsp/CMakeFiles/bsp.dir/flags.make
-src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o: /home/luis/projects/space_partition/src/bsp/BSPTree.cpp
+src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o: /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/src/bsp/BSPTree.cpp
 src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o: src/bsp/CMakeFiles/bsp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o"
-	cd /home/luis/projects/space_partition/build/src/bsp && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o -MF CMakeFiles/bsp.dir/BSPTree.cpp.o.d -o CMakeFiles/bsp.dir/BSPTree.cpp.o -c /home/luis/projects/space_partition/src/bsp/BSPTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o"
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/bsp" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o -MF CMakeFiles/bsp.dir/BSPTree.cpp.o.d -o CMakeFiles/bsp.dir/BSPTree.cpp.o -c "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/bsp/BSPTree.cpp"
 
 src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bsp.dir/BSPTree.cpp.i"
-	cd /home/luis/projects/space_partition/build/src/bsp && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luis/projects/space_partition/src/bsp/BSPTree.cpp > CMakeFiles/bsp.dir/BSPTree.cpp.i
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/bsp" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/bsp/BSPTree.cpp" > CMakeFiles/bsp.dir/BSPTree.cpp.i
 
 src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bsp.dir/BSPTree.cpp.s"
-	cd /home/luis/projects/space_partition/build/src/bsp && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luis/projects/space_partition/src/bsp/BSPTree.cpp -o CMakeFiles/bsp.dir/BSPTree.cpp.s
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/bsp" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/bsp/BSPTree.cpp" -o CMakeFiles/bsp.dir/BSPTree.cpp.s
 
 # Object files for target bsp
 bsp_OBJECTS = \
@@ -93,19 +93,19 @@ bsp_EXTERNAL_OBJECTS =
 src/bsp/libbsp.a: src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o
 src/bsp/libbsp.a: src/bsp/CMakeFiles/bsp.dir/build.make
 src/bsp/libbsp.a: src/bsp/CMakeFiles/bsp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libbsp.a"
-	cd /home/luis/projects/space_partition/build/src/bsp && $(CMAKE_COMMAND) -P CMakeFiles/bsp.dir/cmake_clean_target.cmake
-	cd /home/luis/projects/space_partition/build/src/bsp && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/bsp.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libbsp.a"
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/bsp" && $(CMAKE_COMMAND) -P CMakeFiles/bsp.dir/cmake_clean_target.cmake
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/bsp" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/bsp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/bsp/CMakeFiles/bsp.dir/build: src/bsp/libbsp.a
 .PHONY : src/bsp/CMakeFiles/bsp.dir/build
 
 src/bsp/CMakeFiles/bsp.dir/clean:
-	cd /home/luis/projects/space_partition/build/src/bsp && $(CMAKE_COMMAND) -P CMakeFiles/bsp.dir/cmake_clean.cmake
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/bsp" && $(CMAKE_COMMAND) -P CMakeFiles/bsp.dir/cmake_clean.cmake
 .PHONY : src/bsp/CMakeFiles/bsp.dir/clean
 
 src/bsp/CMakeFiles/bsp.dir/depend:
-	cd /home/luis/projects/space_partition/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/luis/projects/space_partition /home/luis/projects/space_partition/src/bsp /home/luis/projects/space_partition/build /home/luis/projects/space_partition/build/src/bsp /home/luis/projects/space_partition/build/src/bsp/CMakeFiles/bsp.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/bsp" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/bsp" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/bsp/CMakeFiles/bsp.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : src/bsp/CMakeFiles/bsp.dir/depend
 

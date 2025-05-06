@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/luis/projects/space_partition
+CMAKE_SOURCE_DIR = "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/luis/projects/space_partition/build
+CMAKE_BINARY_DIR = "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build"
 
 # Include any dependencies generated for this target.
 include src/kdtree/CMakeFiles/kdtree.dir/depend.make
@@ -70,18 +70,18 @@ include src/kdtree/CMakeFiles/kdtree.dir/progress.make
 include src/kdtree/CMakeFiles/kdtree.dir/flags.make
 
 src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: src/kdtree/CMakeFiles/kdtree.dir/flags.make
-src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partition/src/kdtree/KdTree.cpp
+src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/src/kdtree/KdTree.cpp
 src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: src/kdtree/CMakeFiles/kdtree.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o"
-	cd /home/luis/projects/space_partition/build/src/kdtree && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o -MF CMakeFiles/kdtree.dir/KdTree.cpp.o.d -o CMakeFiles/kdtree.dir/KdTree.cpp.o -c /home/luis/projects/space_partition/src/kdtree/KdTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o"
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/kdtree" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o -MF CMakeFiles/kdtree.dir/KdTree.cpp.o.d -o CMakeFiles/kdtree.dir/KdTree.cpp.o -c "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/kdtree/KdTree.cpp"
 
 src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/kdtree.dir/KdTree.cpp.i"
-	cd /home/luis/projects/space_partition/build/src/kdtree && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luis/projects/space_partition/src/kdtree/KdTree.cpp > CMakeFiles/kdtree.dir/KdTree.cpp.i
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/kdtree" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/kdtree/KdTree.cpp" > CMakeFiles/kdtree.dir/KdTree.cpp.i
 
 src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kdtree.dir/KdTree.cpp.s"
-	cd /home/luis/projects/space_partition/build/src/kdtree && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luis/projects/space_partition/src/kdtree/KdTree.cpp -o CMakeFiles/kdtree.dir/KdTree.cpp.s
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/kdtree" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/kdtree/KdTree.cpp" -o CMakeFiles/kdtree.dir/KdTree.cpp.s
 
 # Object files for target kdtree
 kdtree_OBJECTS = \
@@ -93,19 +93,19 @@ kdtree_EXTERNAL_OBJECTS =
 src/kdtree/libkdtree.a: src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o
 src/kdtree/libkdtree.a: src/kdtree/CMakeFiles/kdtree.dir/build.make
 src/kdtree/libkdtree.a: src/kdtree/CMakeFiles/kdtree.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libkdtree.a"
-	cd /home/luis/projects/space_partition/build/src/kdtree && $(CMAKE_COMMAND) -P CMakeFiles/kdtree.dir/cmake_clean_target.cmake
-	cd /home/luis/projects/space_partition/build/src/kdtree && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/kdtree.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libkdtree.a"
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/kdtree" && $(CMAKE_COMMAND) -P CMakeFiles/kdtree.dir/cmake_clean_target.cmake
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/kdtree" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/kdtree.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/kdtree/CMakeFiles/kdtree.dir/build: src/kdtree/libkdtree.a
 .PHONY : src/kdtree/CMakeFiles/kdtree.dir/build
 
 src/kdtree/CMakeFiles/kdtree.dir/clean:
-	cd /home/luis/projects/space_partition/build/src/kdtree && $(CMAKE_COMMAND) -P CMakeFiles/kdtree.dir/cmake_clean.cmake
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/kdtree" && $(CMAKE_COMMAND) -P CMakeFiles/kdtree.dir/cmake_clean.cmake
 .PHONY : src/kdtree/CMakeFiles/kdtree.dir/clean
 
 src/kdtree/CMakeFiles/kdtree.dir/depend:
-	cd /home/luis/projects/space_partition/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/luis/projects/space_partition /home/luis/projects/space_partition/src/kdtree /home/luis/projects/space_partition/build /home/luis/projects/space_partition/build/src/kdtree /home/luis/projects/space_partition/build/src/kdtree/CMakeFiles/kdtree.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/kdtree" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/kdtree" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/kdtree/CMakeFiles/kdtree.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : src/kdtree/CMakeFiles/kdtree.dir/depend
 

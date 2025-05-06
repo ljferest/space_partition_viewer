@@ -54,15 +54,16 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/luis/projects/space_partition
+CMAKE_SOURCE_DIR = "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/luis/projects/space_partition/build
+CMAKE_BINARY_DIR = "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build"
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/SpacePartitionViewer.dir/all
 all: src/octree_optimized/all
 all: src/kdtree/all
 all: src/bsp/all
@@ -79,6 +80,7 @@ preinstall: src/common/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/SpacePartitionViewer.dir/clean
 clean: src/octree_optimized/clean
 clean: src/kdtree/clean
 clean: src/bsp/clean
@@ -162,20 +164,46 @@ src/viewer/clean: src/viewer/CMakeFiles/viewer.dir/clean
 .PHONY : src/viewer/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/SpacePartitionViewer.dir
+
+# All Build rule for target.
+CMakeFiles/SpacePartitionViewer.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" --progress-num=1,2,3,4,5,6,7 "Built target SpacePartitionViewer"
+.PHONY : CMakeFiles/SpacePartitionViewer.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/SpacePartitionViewer.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 7
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/SpacePartitionViewer.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 0
+.PHONY : CMakeFiles/SpacePartitionViewer.dir/rule
+
+# Convenience name for target.
+SpacePartitionViewer: CMakeFiles/SpacePartitionViewer.dir/rule
+.PHONY : SpacePartitionViewer
+
+# clean rule for target.
+CMakeFiles/SpacePartitionViewer.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/clean
+.PHONY : CMakeFiles/SpacePartitionViewer.dir/clean
+
+#=============================================================================
 # Target rules for target src/octree_optimized/CMakeFiles/octree_optimized.dir
 
 # All Build rule for target.
 src/octree_optimized/CMakeFiles/octree_optimized.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/octree_optimized/CMakeFiles/octree_optimized.dir/build.make src/octree_optimized/CMakeFiles/octree_optimized.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/octree_optimized/CMakeFiles/octree_optimized.dir/build.make src/octree_optimized/CMakeFiles/octree_optimized.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=5,6,7 "Built target octree_optimized"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" --progress-num=12,13,14 "Built target octree_optimized"
 .PHONY : src/octree_optimized/CMakeFiles/octree_optimized.dir/all
 
 # Build rule for subdir invocation for target.
 src/octree_optimized/CMakeFiles/octree_optimized.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/octree_optimized/CMakeFiles/octree_optimized.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 0
 .PHONY : src/octree_optimized/CMakeFiles/octree_optimized.dir/rule
 
 # Convenience name for target.
@@ -194,14 +222,14 @@ src/octree_optimized/CMakeFiles/octree_optimized.dir/clean:
 src/kdtree/CMakeFiles/kdtree.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/kdtree/CMakeFiles/kdtree.dir/build.make src/kdtree/CMakeFiles/kdtree.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/kdtree/CMakeFiles/kdtree.dir/build.make src/kdtree/CMakeFiles/kdtree.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=3,4 "Built target kdtree"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" --progress-num=10,11 "Built target kdtree"
 .PHONY : src/kdtree/CMakeFiles/kdtree.dir/all
 
 # Build rule for subdir invocation for target.
 src/kdtree/CMakeFiles/kdtree.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/kdtree/CMakeFiles/kdtree.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 0
 .PHONY : src/kdtree/CMakeFiles/kdtree.dir/rule
 
 # Convenience name for target.
@@ -220,14 +248,14 @@ src/kdtree/CMakeFiles/kdtree.dir/clean:
 src/bsp/CMakeFiles/bsp.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/bsp/CMakeFiles/bsp.dir/build.make src/bsp/CMakeFiles/bsp.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/bsp/CMakeFiles/bsp.dir/build.make src/bsp/CMakeFiles/bsp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=1,2 "Built target bsp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" --progress-num=8,9 "Built target bsp"
 .PHONY : src/bsp/CMakeFiles/bsp.dir/all
 
 # Build rule for subdir invocation for target.
 src/bsp/CMakeFiles/bsp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/bsp/CMakeFiles/bsp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 0
 .PHONY : src/bsp/CMakeFiles/bsp.dir/rule
 
 # Convenience name for target.
@@ -248,14 +276,14 @@ src/viewer/CMakeFiles/viewer.dir/all: src/kdtree/CMakeFiles/kdtree.dir/all
 src/viewer/CMakeFiles/viewer.dir/all: src/bsp/CMakeFiles/bsp.dir/all
 	$(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/viewer/CMakeFiles/viewer.dir/build.make src/viewer/CMakeFiles/viewer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=10,11,12 "Built target viewer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" --progress-num=17,18,19 "Built target viewer"
 .PHONY : src/viewer/CMakeFiles/viewer.dir/all
 
 # Build rule for subdir invocation for target.
 src/viewer/CMakeFiles/viewer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/viewer/CMakeFiles/viewer.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 0
 .PHONY : src/viewer/CMakeFiles/viewer.dir/rule
 
 # Convenience name for target.
@@ -274,14 +302,14 @@ src/viewer/CMakeFiles/viewer.dir/clean:
 src/common/CMakeFiles/pointcloud_loader.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/pointcloud_loader.dir/build.make src/common/CMakeFiles/pointcloud_loader.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/pointcloud_loader.dir/build.make src/common/CMakeFiles/pointcloud_loader.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/luis/projects/space_partition/build/CMakeFiles --progress-num=8,9 "Built target pointcloud_loader"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" --progress-num=15,16 "Built target pointcloud_loader"
 .PHONY : src/common/CMakeFiles/pointcloud_loader.dir/all
 
 # Build rule for subdir invocation for target.
 src/common/CMakeFiles/pointcloud_loader.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/common/CMakeFiles/pointcloud_loader.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 0
 .PHONY : src/common/CMakeFiles/pointcloud_loader.dir/rule
 
 # Convenience name for target.

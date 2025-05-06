@@ -1,10 +1,10 @@
 src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o: \
- /home/luis/projects/space_partition/src/bsp/BSPTree.cpp \
+ /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/src/bsp/BSPTree.cpp \
  /usr/include/stdc-predef.h \
- /home/luis/projects/space_partition/include/bsp/BSPTree.h \
- /home/luis/projects/space_partition/include/bsp/BSPNode.h \
- /home/luis/projects/space_partition/include/bsp/Plane.h \
- /home/luis/projects/space_partition/include/common/Point3D.h \
+ /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/include/bsp/BSPTree.h \
+ /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/include/bsp/BSPNode.h \
+ /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/include/bsp/Plane.h \
+ /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/include/common/Point3D.h \
  /usr/include/c++/13/vector /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \

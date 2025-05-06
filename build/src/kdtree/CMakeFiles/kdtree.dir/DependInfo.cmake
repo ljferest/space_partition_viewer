@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/luis/projects/space_partition/src/kdtree/KdTree.cpp" "src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o" "gcc" "src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o.d"
+  "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/kdtree/KdTree.cpp" "src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o" "gcc" "src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

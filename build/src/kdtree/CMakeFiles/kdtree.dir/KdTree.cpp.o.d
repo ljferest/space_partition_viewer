@@ -1,7 +1,7 @@
 src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: \
- /home/luis/projects/space_partition/src/kdtree/KdTree.cpp \
+ /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/src/kdtree/KdTree.cpp \
  /usr/include/stdc-predef.h \
- /home/luis/projects/space_partition/include/kdtree/KdTree.h \
+ /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/include/kdtree/KdTree.h \
  /usr/include/c++/13/vector /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -52,10 +52,10 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
  /usr/include/c++/13/bits/uses_allocator.h \
  /usr/include/c++/13/bits/uses_allocator_args.h /usr/include/c++/13/tuple \
- /home/luis/projects/space_partition/include/kdtree/KdNode.h \
- /home/luis/projects/space_partition/include/common/Point3D.h \
- /home/luis/projects/space_partition/include/common/BoundingBox.h \
- /home/luis/projects/space_partition/include/common/Point3D.h \
+ /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/include/kdtree/KdNode.h \
+ /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/include/common/Point3D.h \
+ /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/include/common/BoundingBox.h \
+ /home/alvarosd/Escritorio/Computer\ Graphics/projects\ (2)/space_partition_viewer/include/common/Point3D.h \
  /usr/include/c++/13/algorithm /usr/include/c++/13/bits/stl_algo.h \
  /usr/include/c++/13/bits/algorithmfwd.h \
  /usr/include/c++/13/bits/stl_heap.h \

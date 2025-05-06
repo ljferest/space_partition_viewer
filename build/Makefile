@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/luis/projects/space_partition
+CMAKE_SOURCE_DIR = "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/luis/projects/space_partition/build
+CMAKE_BINARY_DIR = "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles /home/luis/projects/space_partition/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -115,6 +115,19 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named SpacePartitionViewer
+
+# Build rule for target.
+SpacePartitionViewer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SpacePartitionViewer
+.PHONY : SpacePartitionViewer
+
+# fast build rule for target.
+SpacePartitionViewer/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/build
+.PHONY : SpacePartitionViewer/fast
 
 #=============================================================================
 # Target rules for targets named octree_optimized
@@ -181,6 +194,150 @@ pointcloud_loader/fast:
 	$(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/pointcloud_loader.dir/build.make src/common/CMakeFiles/pointcloud_loader.dir/build
 .PHONY : pointcloud_loader/fast
 
+src/bsp/BSPTree.o: src/bsp/BSPTree.cpp.o
+.PHONY : src/bsp/BSPTree.o
+
+# target to build an object file
+src/bsp/BSPTree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/bsp/BSPTree.cpp.o
+.PHONY : src/bsp/BSPTree.cpp.o
+
+src/bsp/BSPTree.i: src/bsp/BSPTree.cpp.i
+.PHONY : src/bsp/BSPTree.i
+
+# target to preprocess a source file
+src/bsp/BSPTree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/bsp/BSPTree.cpp.i
+.PHONY : src/bsp/BSPTree.cpp.i
+
+src/bsp/BSPTree.s: src/bsp/BSPTree.cpp.s
+.PHONY : src/bsp/BSPTree.s
+
+# target to generate assembly for a file
+src/bsp/BSPTree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/bsp/BSPTree.cpp.s
+.PHONY : src/bsp/BSPTree.cpp.s
+
+src/kdtree/KdTree.o: src/kdtree/KdTree.cpp.o
+.PHONY : src/kdtree/KdTree.o
+
+# target to build an object file
+src/kdtree/KdTree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/kdtree/KdTree.cpp.o
+.PHONY : src/kdtree/KdTree.cpp.o
+
+src/kdtree/KdTree.i: src/kdtree/KdTree.cpp.i
+.PHONY : src/kdtree/KdTree.i
+
+# target to preprocess a source file
+src/kdtree/KdTree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/kdtree/KdTree.cpp.i
+.PHONY : src/kdtree/KdTree.cpp.i
+
+src/kdtree/KdTree.s: src/kdtree/KdTree.cpp.s
+.PHONY : src/kdtree/KdTree.s
+
+# target to generate assembly for a file
+src/kdtree/KdTree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/kdtree/KdTree.cpp.s
+.PHONY : src/kdtree/KdTree.cpp.s
+
+src/octree_optimized/CNode.o: src/octree_optimized/CNode.cpp.o
+.PHONY : src/octree_optimized/CNode.o
+
+# target to build an object file
+src/octree_optimized/CNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/octree_optimized/CNode.cpp.o
+.PHONY : src/octree_optimized/CNode.cpp.o
+
+src/octree_optimized/CNode.i: src/octree_optimized/CNode.cpp.i
+.PHONY : src/octree_optimized/CNode.i
+
+# target to preprocess a source file
+src/octree_optimized/CNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/octree_optimized/CNode.cpp.i
+.PHONY : src/octree_optimized/CNode.cpp.i
+
+src/octree_optimized/CNode.s: src/octree_optimized/CNode.cpp.s
+.PHONY : src/octree_optimized/CNode.s
+
+# target to generate assembly for a file
+src/octree_optimized/CNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/octree_optimized/CNode.cpp.s
+.PHONY : src/octree_optimized/CNode.cpp.s
+
+src/octree_optimized/Octree.o: src/octree_optimized/Octree.cpp.o
+.PHONY : src/octree_optimized/Octree.o
+
+# target to build an object file
+src/octree_optimized/Octree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/octree_optimized/Octree.cpp.o
+.PHONY : src/octree_optimized/Octree.cpp.o
+
+src/octree_optimized/Octree.i: src/octree_optimized/Octree.cpp.i
+.PHONY : src/octree_optimized/Octree.i
+
+# target to preprocess a source file
+src/octree_optimized/Octree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/octree_optimized/Octree.cpp.i
+.PHONY : src/octree_optimized/Octree.cpp.i
+
+src/octree_optimized/Octree.s: src/octree_optimized/Octree.cpp.s
+.PHONY : src/octree_optimized/Octree.s
+
+# target to generate assembly for a file
+src/octree_optimized/Octree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/octree_optimized/Octree.cpp.s
+.PHONY : src/octree_optimized/Octree.cpp.s
+
+src/viewer/PartitionRenderer.o: src/viewer/PartitionRenderer.cpp.o
+.PHONY : src/viewer/PartitionRenderer.o
+
+# target to build an object file
+src/viewer/PartitionRenderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/viewer/PartitionRenderer.cpp.o
+.PHONY : src/viewer/PartitionRenderer.cpp.o
+
+src/viewer/PartitionRenderer.i: src/viewer/PartitionRenderer.cpp.i
+.PHONY : src/viewer/PartitionRenderer.i
+
+# target to preprocess a source file
+src/viewer/PartitionRenderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/viewer/PartitionRenderer.cpp.i
+.PHONY : src/viewer/PartitionRenderer.cpp.i
+
+src/viewer/PartitionRenderer.s: src/viewer/PartitionRenderer.cpp.s
+.PHONY : src/viewer/PartitionRenderer.s
+
+# target to generate assembly for a file
+src/viewer/PartitionRenderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/viewer/PartitionRenderer.cpp.s
+.PHONY : src/viewer/PartitionRenderer.cpp.s
+
+src/viewer/main.o: src/viewer/main.cpp.o
+.PHONY : src/viewer/main.o
+
+# target to build an object file
+src/viewer/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/viewer/main.cpp.o
+.PHONY : src/viewer/main.cpp.o
+
+src/viewer/main.i: src/viewer/main.cpp.i
+.PHONY : src/viewer/main.i
+
+# target to preprocess a source file
+src/viewer/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/viewer/main.cpp.i
+.PHONY : src/viewer/main.cpp.i
+
+src/viewer/main.s: src/viewer/main.cpp.s
+.PHONY : src/viewer/main.s
+
+# target to generate assembly for a file
+src/viewer/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpacePartitionViewer.dir/build.make CMakeFiles/SpacePartitionViewer.dir/src/viewer/main.cpp.s
+.PHONY : src/viewer/main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -189,11 +346,30 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... SpacePartitionViewer"
 	@echo "... bsp"
 	@echo "... kdtree"
 	@echo "... octree_optimized"
 	@echo "... pointcloud_loader"
 	@echo "... viewer"
+	@echo "... src/bsp/BSPTree.o"
+	@echo "... src/bsp/BSPTree.i"
+	@echo "... src/bsp/BSPTree.s"
+	@echo "... src/kdtree/KdTree.o"
+	@echo "... src/kdtree/KdTree.i"
+	@echo "... src/kdtree/KdTree.s"
+	@echo "... src/octree_optimized/CNode.o"
+	@echo "... src/octree_optimized/CNode.i"
+	@echo "... src/octree_optimized/CNode.s"
+	@echo "... src/octree_optimized/Octree.o"
+	@echo "... src/octree_optimized/Octree.i"
+	@echo "... src/octree_optimized/Octree.s"
+	@echo "... src/viewer/PartitionRenderer.o"
+	@echo "... src/viewer/PartitionRenderer.i"
+	@echo "... src/viewer/PartitionRenderer.s"
+	@echo "... src/viewer/main.o"
+	@echo "... src/viewer/main.i"
+	@echo "... src/viewer/main.s"
 .PHONY : help
 
 

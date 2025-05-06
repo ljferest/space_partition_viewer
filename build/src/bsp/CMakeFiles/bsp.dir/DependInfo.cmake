@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/luis/projects/space_partition/src/bsp/BSPTree.cpp" "src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o" "gcc" "src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o.d"
+  "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/src/bsp/BSPTree.cpp" "src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o" "gcc" "src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

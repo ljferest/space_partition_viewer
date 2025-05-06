@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/luis/projects/space_partition
+CMAKE_SOURCE_DIR = "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/luis/projects/space_partition/build
+CMAKE_BINARY_DIR = "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/luis/projects/space_partition/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles /home/luis/projects/space_partition/build/src/bsp//CMakeFiles/progress.marks
-	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/bsp/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/projects/space_partition/build/CMakeFiles 0
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/bsp//CMakeFiles/progress.marks"
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/bsp/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/bsp/clean
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/bsp/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/bsp/preinstall
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/bsp/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/bsp/preinstall
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/bsp/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/luis/projects/space_partition/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/bsp/CMakeFiles/bsp.dir/rule:
-	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/bsp/CMakeFiles/bsp.dir/rule
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/bsp/CMakeFiles/bsp.dir/rule
 .PHONY : src/bsp/CMakeFiles/bsp.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ bsp: src/bsp/CMakeFiles/bsp.dir/rule
 
 # fast build rule for target.
 bsp/fast:
-	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/bsp/CMakeFiles/bsp.dir/build.make src/bsp/CMakeFiles/bsp.dir/build
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(MAKE) $(MAKESILENT) -f src/bsp/CMakeFiles/bsp.dir/build.make src/bsp/CMakeFiles/bsp.dir/build
 .PHONY : bsp/fast
 
 BSPTree.o: BSPTree.cpp.o
@@ -135,7 +135,7 @@ BSPTree.o: BSPTree.cpp.o
 
 # target to build an object file
 BSPTree.cpp.o:
-	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/bsp/CMakeFiles/bsp.dir/build.make src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(MAKE) $(MAKESILENT) -f src/bsp/CMakeFiles/bsp.dir/build.make src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.o
 .PHONY : BSPTree.cpp.o
 
 BSPTree.i: BSPTree.cpp.i
@@ -143,7 +143,7 @@ BSPTree.i: BSPTree.cpp.i
 
 # target to preprocess a source file
 BSPTree.cpp.i:
-	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/bsp/CMakeFiles/bsp.dir/build.make src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.i
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(MAKE) $(MAKESILENT) -f src/bsp/CMakeFiles/bsp.dir/build.make src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.i
 .PHONY : BSPTree.cpp.i
 
 BSPTree.s: BSPTree.cpp.s
@@ -151,7 +151,7 @@ BSPTree.s: BSPTree.cpp.s
 
 # target to generate assembly for a file
 BSPTree.cpp.s:
-	cd /home/luis/projects/space_partition/build && $(MAKE) $(MAKESILENT) -f src/bsp/CMakeFiles/bsp.dir/build.make src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.s
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(MAKE) $(MAKESILENT) -f src/bsp/CMakeFiles/bsp.dir/build.make src/bsp/CMakeFiles/bsp.dir/BSPTree.cpp.s
 .PHONY : BSPTree.cpp.s
 
 # Help Target
@@ -177,6 +177,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/luis/projects/space_partition/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

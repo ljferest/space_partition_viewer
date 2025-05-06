@@ -1,4 +1,4 @@
-# Install script for directory: /home/luis/projects/space_partition
+# Install script for directory: /home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -12,7 +12,7 @@ if(NOT DEFINED CMAKE_INSTALL_CONFIG_NAME)
     string(REGEX REPLACE "^[^A-Za-z0-9_]+" ""
            CMAKE_INSTALL_CONFIG_NAME "${BUILD_TYPE}")
   else()
-    set(CMAKE_INSTALL_CONFIG_NAME "Debug")
+    set(CMAKE_INSTALL_CONFIG_NAME "")
   endif()
   message(STATUS "Install configuration: \"${CMAKE_INSTALL_CONFIG_NAME}\"")
 endif()
@@ -44,11 +44,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/luis/projects/space_partition/build/src/octree_optimized/cmake_install.cmake")
-  include("/home/luis/projects/space_partition/build/src/kdtree/cmake_install.cmake")
-  include("/home/luis/projects/space_partition/build/src/bsp/cmake_install.cmake")
-  include("/home/luis/projects/space_partition/build/src/viewer/cmake_install.cmake")
-  include("/home/luis/projects/space_partition/build/src/common/cmake_install.cmake")
+  include("/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/octree_optimized/cmake_install.cmake")
+  include("/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/kdtree/cmake_install.cmake")
+  include("/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/bsp/cmake_install.cmake")
+  include("/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/viewer/cmake_install.cmake")
+  include("/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/src/common/cmake_install.cmake")
 
 endif()
 
@@ -60,5 +60,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/luis/projects/space_partition/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/alvarosd/Escritorio/Computer Graphics/projects (2)/space_partition_viewer/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
