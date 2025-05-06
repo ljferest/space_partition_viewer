@@ -72,18 +72,21 @@ void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
     measureExecutionTime("Construcción Octree", [this, maxTreeDepth, maxPointsPerLeaf]() {
         tree = std::make_unique<Octree>(centerX, centerY, centerZ, sceneSize, maxTreeDepth, maxPointsPerLeaf);
         tree->build(pointPtrs);
-        std::cout << "[POST-BUILD] tree = " << tree.get()
-                  << ", root = " << (tree ? tree->root.get() : nullptr) << std::endl;
+        std::cout << "[DEBUG] Diagnosing Octree instance: " << tree.get() << "\n";
+        tree->diagnose(maxRenderTreeDepth);
     });
 
     measureExecutionTime("Construcción KD-Tree", [this]() {
-        kdtree.build(pointPtrs);
-        kdtree.diagnose(maxRenderDepth); //Show stats od kdtree
+        kdtree = std::make_unique<KdTree>();
+        kdtree->build(pointPtrs);
+        kdtree->diagnose(maxRenderDepth); //Show stats od kdtree
         renderDepthKD = maxRenderDepth/2;
     });
 
     measureExecutionTime("Construcción BSP-Tree", [this]() {
-        bspTree.build(pointPtrs, 10);
+        bspTree = std::make_unique<BSPTree>();
+        bspTree->build(pointPtrs, 10);
+
     });
 
     computeZRange(); // Para colorear por altura
@@ -99,11 +102,14 @@ void PartitionRenderer::computeZRange() {
 }
 
 void PartitionRenderer::render(bool wireframe) {
+    
+    /*
     if (!tree) {
         std::cout << "[DEBUG] Árbol aún no cargado en renderer.\n";
     } else {
         std::cout << "[DEBUG] Árbol listo, renderizando...\n";
     }
+    */
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -133,19 +139,21 @@ void PartitionRenderer::render(bool wireframe) {
     }
 
     if (currentMode == RenderMode::Octree) {
+        /*
         std::cout << "Render mode: Octree, wireframeMode = " << wireframeMode << std::endl;
         std::cout << "[RENDER] tree = " << tree.get()
           << ", root = " << (tree ? tree->root.get() : nullptr) << std::endl;
-          if (!tree) {
-            std::cout << "[FAIL] tree == nullptr" << std::endl;
+        */
+        if (!tree) {
+            //std::cout << "[FAIL] tree == nullptr" << std::endl;
             return;
         }
         
         if (!tree->root) {
-            std::cout << "[FAIL] tree->root == nullptr" << std::endl;
+            //std::cout << "[FAIL] tree->root == nullptr" << std::endl;
             return;
         }
-        std::cout << "[RENDER] tree = " << tree.get() << ", root = " << tree->root.get() << std::endl;
+        //std::cout << "[RENDER] tree = " << tree.get() << ", root = " << tree->root.get() << std::endl;
     
         if (wireframeMode) {
             // 🔲 Mostrar contornos (todos los nodos)
@@ -191,44 +199,17 @@ void PartitionRenderer::render(bool wireframe) {
         }
     }
     else if (currentMode == RenderMode::KdTree) {
-        renderKdTreePartitioning(kdtree.getRoot(),0, renderDepthKD);
+        renderKdTreePartitioning(kdtree->getRoot(),0, renderDepthKD);
     }
     else if (currentMode == RenderMode::BSP) {
         glPointSize(3.0f);
-        drawBSPRecursive(bspTree.getRoot());
+        drawBSPRecursive(bspTree->getRoot());
     }
-}
-
-void PartitionRenderer::diagnoseOctree() {
-    if (!tree || !tree->root) {
-        std::cout << "[ERROR] No hay árbol cargado.\n";
-        return;
-    }
-
-    int totalLeaves = 0;
-    int nonEmptyLeaves = 0;
-    int maxDepth = 0;
-    float minSize = 1e6, maxSize = -1;
-
-    tree->root->traverseLeaves([&](float cx, float cy, float cz, float size, const std::vector<Point3D*>& leafPoints) {
-        totalLeaves++;
-        if (!leafPoints.empty()) nonEmptyLeaves++;
-        if (size < minSize) minSize = size;
-        if (size > maxSize) maxSize = size;
-    });
-
-    std::cout << "------ Diagnóstico Octree ------\n";
-    std::cout << "Total de hojas:       " << totalLeaves << "\n";
-    std::cout << "Hojas con puntos:     " << nonEmptyLeaves << "\n";
-    std::cout << "Tamaño mínimo hoja:   " << minSize << "\n";
-    std::cout << "Tamaño máximo hoja:   " << maxSize << "\n";
-    std::cout << "Resolución pedida:    " << tree->maxDepth << "\n";
-    std::cout << "--------------------------------\n";
 }
 
 void PartitionRenderer::increaseResolution() {
     if (currentMode == RenderMode::Octree) {
-        if (tree && renderDepth < tree->maxDepth) {
+        if (renderDepth < maxRenderTreeDepth){
             renderDepth++;
             std::cout << "[RES] Nueva resolución Octree: " << renderDepth << "\n";
         }
@@ -415,9 +396,10 @@ void PartitionRenderer::drawBSPRecursive(BSPNode* node) {
         float r, g, b;
         getColorFromId(node->nodeId, r, g, b);
         Color color = {r,g,b};
+        /*
         std::cout << "Node ID: " << node->nodeId 
           << " | Color RGB: (" << r << ", " << g << ", " << b << ")" << std::endl;
-
+        */
         glBegin(GL_POINTS);
         for (auto* pt : node->points) {
             drawPoint(pt->x, pt->y, pt->z, color);
@@ -458,7 +440,7 @@ void PartitionRenderer::setWireframeMode(bool enabled) {
 void PartitionRenderer::mouseMotionCallback(int x, int y) {
     if (!flyMode) return;
 
-    std::cout << "mouse moved: " << x << ", " << y << "\n";
+    //std::cout << "mouse moved: " << x << ", " << y << "\n";
 
     if (firstMouse) {
         lastMouseX = x;
@@ -490,9 +472,10 @@ void PartitionRenderer::mouseMotionCallback(int x, int y) {
     camDirY = sin(radPitch);
     camDirZ = sin(radYaw) * cos(radPitch);
 
+    /*
     std::cout << "yaw: " << yaw << " pitch: " << pitch << "\n";
     std::cout << "dir: " << camDirX << ", " << camDirY << ", " << camDirZ << "\n";
-
+    */
 
     float len = sqrt(camDirX * camDirX + camDirY * camDirY + camDirZ * camDirZ);
     camDirX /= len;

@@ -132,12 +132,12 @@ int main(int argc, char** argv) {
         std::vector<Point3D> cloud = loadFromPCD("../data/bunny.pcd");
         renderer.loadPointCloud(cloud);
 
+        /*
         std::cout << "[INFO] Puntos cargados: " << cloud.size() << std::endl;
         for (int i = 0; i < 10 && i < cloud.size(); ++i) {
             std::cout << "  P[" << i << "]: " << cloud[i].x << ", " << cloud[i].y << ", " << cloud[i].z << std::endl;
         }
-
-        renderer.diagnoseOctree(); // Opcional, para debug
+        */
 
         glutDisplayFunc(display);
         glutReshapeFunc(reshape);

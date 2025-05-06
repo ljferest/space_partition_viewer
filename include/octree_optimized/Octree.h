@@ -29,6 +29,7 @@ public:
 
     void movePoint(Point3D* pt, float newX, float newY, float newZ);
     void traverse(std::function<void(bool isLeaf, float cx, float cy, float cz, float size, const std::vector<Point3D*>&)> visitor);
+    void diagnose(int& maxDepth) const;
 
                     
 };

@@ -50,6 +50,7 @@ public:
     int renderDepth = 4;
     int renderDepthKD;
     int maxRenderDepth = 10;
+    int maxRenderTreeDepth;
     
     void setCameraTarget(float x, float y, float z);
     void setCameraDistance(float d);
@@ -83,8 +84,8 @@ private:
     float sceneSize = 100;
     RenderMode currentMode = RenderMode::Octree;
     BoundingBox bbox;
-    KdTree kdtree;
-    BSPTree bspTree;
+    std::unique_ptr<KdTree> kdtree;
+    std::unique_ptr<BSPTree> bspTree;
     float cameraTargetX = 0.0f;
     float cameraTargetY = 0.0f;
     float cameraTargetZ = 0.0f;
