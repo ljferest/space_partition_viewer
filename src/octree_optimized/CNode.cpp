@@ -1,5 +1,6 @@
 #include "CNode.h"
 #include <cmath>
+#include <iostream>
 
 int CNode::getChildIndex(Point3D* pt) const {
     return (pt->x > centerX) * 4 + (pt->y > centerY) * 2 + (pt->z > centerZ);
@@ -79,9 +80,24 @@ void CNode::traverseLeaves(std::function<void(float, float, float, float, const 
 void CNode::traverseLeavesUpToDepth(int maxRenderDepth,
     std::function<void(float, float, float, float, const std::vector<Point3D*>&)> visitor) {
 
-    if (depth >= maxRenderDepth || isLeaf) {
+    /*
+    std::cout << "[TRACE] Nodo depth=" << depth
+              << ", isLeaf=" << (isLeaf ? "true" : "false")
+              << ", size=" << size
+              << ", puntos=" << points.size() << "\n";
+    */
+    if (depth == maxRenderDepth || isLeaf) {
+        if(isLeaf && points.empty()) {
+            //std::cout << "  >> NO HAY PUNTOS en este nodo\n";
+            return;
+
+        }
+        else{
+        //std::cout << "  >> DIBUJANDO este nodo\n";
         visitor(centerX, centerY, centerZ, size, points);
+        }
     } else {
+        //std::cout << "  >> PROFUNDIZANDO en hijos\n";
         for (auto& child : children)
             if (child) child->traverseLeavesUpToDepth(maxRenderDepth, visitor);
     }

@@ -3,76 +3,85 @@
 #include <iostream>
 #include <functional>
 #include <limits>
+#include <cmath>
 
 
 // Referencia al paper de Bentley (1975)
 // https://doi.org/10.1145/361002.361007
 
 void KdTree::build(std::vector<Point3D*>& pts) {
-    if (root) {
-        delete root;
-        root = nullptr;
-    }
+    this->points = &pts;
 
-    BoundingBox fullBox = computeBoundingBoxFromPoints(pts);  // asegúrate de tener esta función
-    root = buildRecursive(pts, 0, fullBox);
+    BoundingBox fullBox;
+    for (auto* p : *points) {
+        fullBox.expandToInclude(*p);
+    }    
+
+    int N = static_cast<int>(points->size());
+
+    // 📈 Cálculo dinámico de parámetros
+    int maxDepth = std::ceil(std::log2(N));
+    int minPointsPerLeaf = std::max(2, N / (1 << (maxDepth - 1)));
+
+    std::cout << "[KDTree] Construyendo con N=" << N
+              << ", maxDepth=" << maxDepth
+              << ", minPointsPerLeaf=" << minPointsPerLeaf << "\n";
+
+    root = buildRecursive(*points, 0, fullBox, maxDepth, minPointsPerLeaf);
 }
 
 KdNode* KdTree::getRoot() const {
     return root;
 }
 
-KdNode* KdTree::buildRecursive(std::vector<Point3D*>& pts, int depth, const BoundingBox& box) {
-    if (pts.empty()) return nullptr;
+KdNode* KdTree::buildRecursive(std::vector<Point3D*>& pts, int depth,
+    const BoundingBox& box,
+    int maxDepth, int minPointsPerLeaf) {
+if (pts.empty()) return nullptr;
 
-    // 🧹 Evitar subdivisiones sin volumen significativo
-    float sx = box.max.x - box.min.x;
-    float sy = box.max.y - box.min.y;
-    float sz = box.max.z - box.min.z;
-    const float minSize = 1e-4f;
+if (depth >= maxDepth || pts.size() <= minPointsPerLeaf) {
+Point3D* median_point = pts[pts.size() / 2];
+return new KdNode(median_point, depth % 3, box);
+}
 
-    if (sx < minSize && sy < minSize && sz < minSize) {
-        return nullptr;
-    }
+int axis = depth % 3;
 
-    if (pts.size() <= MAX_POINTS_PER_LEAF) {
-        return new KdNode(pts[0], depth % 3, box);  // Nodo hoja con bbox
-    }
+std::nth_element(pts.begin(), pts.begin() + pts.size() / 2, pts.end(),
+[axis](Point3D* a, Point3D* b) {
+if (axis == 0) return a->x < b->x;
+if (axis == 1) return a->y < b->y;
+return a->z < b->z;
+});
 
-    int axis = depth % 3;
-    size_t mid = pts.size() / 2;
+size_t median_idx = pts.size() / 2;
+Point3D* median_point = pts[median_idx];
 
-    std::nth_element(pts.begin(), pts.begin() + mid, pts.end(),
-        [axis](Point3D* a, Point3D* b) {
-            return (axis == 0) ? a->x < b->x :
-                   (axis == 1) ? a->y < b->y :
-                                 a->z < b->z;
-        });
+std::vector<Point3D*> left_pts(pts.begin(), pts.begin() + median_idx);
+std::vector<Point3D*> right_pts(pts.begin() + median_idx + 1, pts.end());
 
-    Point3D* pivot = pts[mid];
-    BoundingBox leftBox = box;
-    BoundingBox rightBox = box;
+BoundingBox left_box = box;
+BoundingBox right_box = box;
 
-    if (axis == 0) {
-        leftBox.max.x = pivot->x;
-        rightBox.min.x = pivot->x;
-    } else if (axis == 1) {
-        leftBox.max.y = pivot->y;
-        rightBox.min.y = pivot->y;
-    } else {
-        leftBox.max.z = pivot->z;
-        rightBox.min.z = pivot->z;
-    }
+float split_value = (axis == 0 ? median_point->x :
+axis == 1 ? median_point->y :
+          median_point->z);
 
-    KdNode* node = new KdNode(pivot, axis, box);
+if (axis == 0) {
+left_box.max.x = split_value;
+right_box.min.x = split_value;
+} else if (axis == 1) {
+left_box.max.y = split_value;
+right_box.min.y = split_value;
+} else {
+left_box.max.z = split_value;
+right_box.min.z = split_value;
+}
 
-    std::vector<Point3D*> left(pts.begin(), pts.begin() + mid);
-    std::vector<Point3D*> right(pts.begin() + mid + 1, pts.end());
+KdNode* node = new KdNode(median_point, axis, box);
+node->left = buildRecursive(left_pts, depth + 1, left_box, maxDepth, minPointsPerLeaf);
+node->right = buildRecursive(right_pts, depth + 1, right_box, maxDepth, minPointsPerLeaf);
 
-    node->left = buildRecursive(left, depth + 1, leftBox);
-    node->right = buildRecursive(right, depth + 1, rightBox);
-
-    return node;
+return node;
 }
 
 void KdTree::queryRegion(float cx, float cy, float cz, float size, std::vector<Point3D*>& result) const {

@@ -58,6 +58,7 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
   /usr/include/c++/13/bits/range_access.h \
   /usr/include/c++/13/bits/refwrap.h \
   /usr/include/c++/13/bits/requires_hosted.h \
+  /usr/include/c++/13/bits/specfun.h \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/std_function.h \
   /usr/include/c++/13/bits/stl_algo.h \
@@ -86,6 +87,7 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
   /usr/include/c++/13/cctype \
   /usr/include/c++/13/cerrno \
   /usr/include/c++/13/clocale \
+  /usr/include/c++/13/cmath \
   /usr/include/c++/13/compare \
   /usr/include/c++/13/cstddef \
   /usr/include/c++/13/cstdio \
@@ -118,6 +120,18 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
   /usr/include/c++/13/string \
   /usr/include/c++/13/string_view \
   /usr/include/c++/13/system_error \
+  /usr/include/c++/13/tr1/bessel_function.tcc \
+  /usr/include/c++/13/tr1/beta_function.tcc \
+  /usr/include/c++/13/tr1/ell_integral.tcc \
+  /usr/include/c++/13/tr1/exp_integral.tcc \
+  /usr/include/c++/13/tr1/gamma.tcc \
+  /usr/include/c++/13/tr1/hypergeometric.tcc \
+  /usr/include/c++/13/tr1/legendre_function.tcc \
+  /usr/include/c++/13/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/13/tr1/poly_hermite.tcc \
+  /usr/include/c++/13/tr1/poly_laguerre.tcc \
+  /usr/include/c++/13/tr1/riemann_zeta.tcc \
+  /usr/include/c++/13/tr1/special_function_util.h \
   /usr/include/c++/13/tuple \
   /usr/include/c++/13/type_traits \
   /usr/include/c++/13/typeinfo \
@@ -130,6 +144,7 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
   /usr/include/features.h \
   /usr/include/linux/errno.h \
   /usr/include/locale.h \
+  /usr/include/math.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
   /usr/include/stdc-predef.h \
@@ -147,9 +162,18 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
   /usr/include/x86_64-linux-gnu/bits/errno.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
   /usr/include/x86_64-linux-gnu/bits/locale.h \
   /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
   /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
@@ -231,15 +255,11 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:
 
-/usr/include/x86_64-linux-gnu/c++/13/bits/error_constants.h:
-
 /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_base.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h:
-
-/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
@@ -252,8 +272,6 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
@@ -295,7 +313,15 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
+
 /usr/include/x86_64-linux-gnu/bits/locale.h:
+
+/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
@@ -319,8 +345,6 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/stdio.h:
 
-/usr/include/stdc-predef.h:
-
 /usr/include/sched.h:
 
 /usr/include/pthread.h:
@@ -329,11 +353,23 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/linux/errno.h:
 
-/usr/include/x86_64-linux-gnu/bits/errno.h:
+/usr/include/features.h:
 
-/usr/include/wctype.h:
+/usr/include/ctype.h:
 
-/usr/include/c++/13/exception:
+/usr/include/c++/13/vector:
+
+/usr/include/c++/13/unordered_map:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h:
+
+/usr/include/c++/13/tuple:
+
+/usr/include/stdc-predef.h:
+
+/usr/include/c++/13/tr1/special_function_util.h:
+
+/usr/include/c++/13/tr1/poly_hermite.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
@@ -343,11 +379,13 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/c++/13/stdexcept:
 
-/usr/include/c++/13/bits/uses_allocator.h:
+/usr/include/c++/13/bits/specfun.h:
 
-/usr/include/c++/13/bits/std_abs.h:
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
 
-/usr/include/c++/13/bits/postypes.h:
+/usr/include/c++/13/tr1/poly_laguerre.tcc:
+
+/usr/include/c++/13/bits/basic_string.h:
 
 /usr/include/time.h:
 
@@ -361,9 +399,9 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/c++/13/bits/locale_classes.tcc:
 
-/usr/include/c++/13/bits/locale_classes.h:
+/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
-/usr/include/ctype.h:
+/usr/include/c++/13/bits/locale_classes.h:
 
 /usr/include/c++/13/bits/ostream.tcc:
 
@@ -371,9 +409,19 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/c++/13/bits/ios_base.h:
 
+/usr/include/x86_64-linux-gnu/sys/single_threaded.h:
+
+/usr/include/c++/13/type_traits:
+
+/usr/include/c++/13/tr1/hypergeometric.tcc:
+
 /usr/include/c++/13/bits/ostream_insert.h:
 
 /usr/include/c++/13/bits/hashtable.h:
+
+/usr/include/errno.h:
+
+/usr/include/c++/13/bits/functional_hash.h:
 
 /usr/include/c++/13/bits/nested_exception.h:
 
@@ -399,11 +447,21 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/c++/13/bits/exception.h:
 
+/usr/include/c++/13/typeinfo:
+
+/usr/include/c++/13/bits/cxxabi_init_exception.h:
+
+/usr/include/x86_64-linux-gnu/bits/math-vector.h:
+
 /usr/include/c++/13/bits/hash_bytes.h:
 
 /usr/include/asm-generic/errno-base.h:
 
 /usr/include/c++/13/array:
+
+/usr/include/features-time64.h:
+
+/usr/include/c++/13/string_view:
 
 /usr/include/c++/13/algorithm:
 
@@ -435,19 +493,9 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/c++/13/bits/erase_if.h:
 
-/usr/include/c++/13/vector:
-
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
-
-/usr/include/c++/13/bits/basic_string.h:
-
 /usr/include/c++/13/bits/basic_string.tcc:
 
 /usr/include/c++/13/bit:
-
-/usr/include/x86_64-linux-gnu/sys/single_threaded.h:
-
-/usr/include/c++/13/type_traits:
 
 /usr/include/c++/13/bits/enable_special_members.h:
 
@@ -458,6 +506,10 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
 /home/luis/projects/space_partition/include/common/BoundingBox.h:
+
+/usr/include/c++/13/tr1/legendre_function.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
 /usr/include/c++/13/bits/algorithmfwd.h:
 
@@ -471,11 +523,17 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/c++/13/bits/string_view.tcc:
 
-/usr/include/features.h:
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/c++/13/tr1/modified_bessel_func.tcc:
 
 /usr/include/c++/13/backward/binders.h:
 
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
 /usr/include/c++/13/bits/localefwd.h:
+
+/usr/include/math.h:
 
 /usr/include/c++/13/bits/exception_defines.h:
 
@@ -498,6 +556,20 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 /usr/include/c++/13/bits/cpp_type_traits.h:
 
 /usr/include/c++/13/bits/cxxabi_forced.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+
+/usr/include/c++/13/bits/std_abs.h:
+
+/usr/include/c++/13/bits/postypes.h:
+
+/usr/include/c++/13/bits/uses_allocator.h:
+
+/usr/include/x86_64-linux-gnu/bits/errno.h:
+
+/usr/include/wctype.h:
+
+/usr/include/c++/13/exception:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
 
@@ -547,6 +619,10 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/c++/13/bits/unordered_map.h:
 
+/usr/include/endian.h:
+
+/usr/include/c++/13/bits/streambuf.tcc:
+
 /usr/include/c++/13/bits/stringfwd.h:
 
 /usr/include/c++/13/bits/uniform_int_dist.h:
@@ -557,13 +633,19 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/c++/13/bits/uses_allocator_args.h:
 
-/usr/include/c++/13/bits/stl_function.h:
-
-/usr/include/c++/13/bits/utility.h:
-
 /usr/include/c++/13/bits/vector.tcc:
 
 /usr/include/c++/13/clocale:
+
+/usr/include/x86_64-linux-gnu/c++/13/bits/error_constants.h:
+
+/usr/include/c++/13/cmath:
+
+/usr/include/c++/13/tr1/riemann_zeta.tcc:
+
+/usr/include/c++/13/bits/streambuf_iterator.h:
+
+/usr/include/c++/13/ostream:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
 
@@ -579,23 +661,11 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/c++/13/debug/assertions.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h:
-
-/usr/include/c++/13/tuple:
-
-/usr/include/c++/13/bits/functional_hash.h:
-
-/usr/include/errno.h:
-
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
 /usr/include/locale.h:
 
 /usr/include/c++/13/ext/aligned_buffer.h:
-
-/usr/include/c++/13/cctype:
-
-/usr/include/c++/13/ext/atomicity.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
@@ -615,17 +685,11 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/c++/13/initializer_list:
 
+/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
+
 /usr/include/c++/13/istream:
 
-/usr/include/c++/13/string_view:
-
-/usr/include/features-time64.h:
-
 /usr/include/c++/13/limits:
-
-/usr/include/c++/13/bits/streambuf_iterator.h:
-
-/usr/include/c++/13/ostream:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h:
 
@@ -641,12 +705,20 @@ src/kdtree/CMakeFiles/kdtree.dir/KdTree.cpp.o: /home/luis/projects/space_partiti
 
 /usr/include/c++/13/system_error:
 
-/usr/include/c++/13/bits/cxxabi_init_exception.h:
+/usr/include/c++/13/tr1/bessel_function.tcc:
 
-/usr/include/c++/13/typeinfo:
+/usr/include/c++/13/tr1/exp_integral.tcc:
 
-/usr/include/c++/13/unordered_map:
+/usr/include/c++/13/bits/stl_function.h:
 
-/usr/include/c++/13/bits/streambuf.tcc:
+/usr/include/c++/13/bits/utility.h:
 
-/usr/include/endian.h:
+/usr/include/c++/13/tr1/beta_function.tcc:
+
+/usr/include/c++/13/tr1/ell_integral.tcc:
+
+/usr/include/c++/13/cctype:
+
+/usr/include/c++/13/ext/atomicity.h:
+
+/usr/include/c++/13/tr1/gamma.tcc:

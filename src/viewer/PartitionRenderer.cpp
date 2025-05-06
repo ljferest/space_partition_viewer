@@ -170,22 +170,26 @@ void PartitionRenderer::render(bool wireframe) {
             // 🟥 Mostrar hojas con puntos (sólido y color)
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
             tree->traverseLeavesUpToDepth(renderDepth, [&](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
-                if (pts.empty()) return;
-        
+                /*std::cout << "[TRACE] Nodo recibido: center=(" << cx << ", " << cy << ", " << cz 
+                          << "), size=" << size << ", puntos=" << pts.size() << std::endl;
+            
+                
+            
+                std::cout << "  >> DIBUJANDO este nodo\n";
+                */
                 float dz = maxZ - minZ;
                 float colorZ = (dz > 0.0f) ? (cz - minZ) / dz : 0.5f;
                 glColor3f(1.0f - colorZ, 0.0f, colorZ);
-        
+            
                 glPushMatrix();
                 glTranslatef(cx, cy, cz);
                 glutSolidCube(size);
                 glPopMatrix();
-            });
+            });            
         }
         else{
             // Render sólido → solo hojas ocupadas
             tree->traverseLeavesUpToDepth(renderDepth, [=](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
-                if (pts.empty()) return;
     
                 float dz = maxZ - minZ;
                 float colorZ = (dz > 0.0f) ? (cz - minZ) / dz : 0.5f;
@@ -236,46 +240,74 @@ void PartitionRenderer::decreaseResolution() {
 }
 
 void PartitionRenderer::renderKdTreePartitioning(KdNode* node, int depth, int max) {
-    if (!node || depth > max)
+    if (!node || depth > max) return;
+
+    bool reachedLimit = (depth == max);
+    bool isLeaf = !node->left && !node->right;
+
+    // ❌ Si el subárbol no contiene puntos, no renderizar
+    int numPts = countPointsInSubtree(node);
+    if (numPts == 0) return;
+
+    // 🔁 Si no es hoja y no llegó al límite de profundidad, seguir bajando
+    if (!isLeaf && !reachedLimit) {
+        renderKdTreePartitioning(node->left, depth + 1, max);
+        renderKdTreePartitioning(node->right, depth + 1, max);
         return;
+    }
 
     const auto& box = node->bbox;
 
-    // 🧹 No renderizar cuboids invisibles
+    // Evitar cajas planas o invisibles
     if ((box.max.x - box.min.x) < 1e-3f ||
         (box.max.y - box.min.y) < 1e-3f ||
-        (box.max.z - box.min.z) < 1e-3f) {
-        return;
-    }
+        (box.max.z - box.min.z) < 1e-3f) return;
 
-    // 🎨 Colorear por altura Z (puedes cambiar por eje o profundidad)
-    float t = (node->point->z - minZ) / (maxZ - minZ);
-    glColor3f(t, 0.2f * (1 - t), 1.0f - t);
+    // 🎨 Color por altura Z
+    float t = (node->point->z - minZ) / (maxZ - minZ + 1e-6f);
+    glColor3f(1.0f - t, 0.0f, t);
 
-    // 📦 Dibujar cuboid como líneas (wireframe)
-    glLineWidth(1.0f);
-    glBegin(GL_LINES);
-    float x[] = { box.min.x, box.max.x };
-    float y[] = { box.min.y, box.max.y };
-    float z[] = { box.min.z, box.max.z };
+    // 📦 Dibujo de cubo opaco
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    glBegin(GL_QUADS);
 
-    for (int xi : {0, 1}) for (int yi : {0, 1}) {
-        glVertex3f(x[xi], y[yi], z[0]);
-        glVertex3f(x[xi], y[yi], z[1]);
-    }
-    for (int xi : {0, 1}) for (int zi : {0, 1}) {
-        glVertex3f(x[xi], y[0], z[zi]);
-        glVertex3f(x[xi], y[1], z[zi]);
-    }
-    for (int yi : {0, 1}) for (int zi : {0, 1}) {
-        glVertex3f(x[0], y[yi], z[zi]);
-        glVertex3f(x[1], y[yi], z[zi]);
-    }
+    // Cara inferior (Z-)
+    glVertex3f(box.min.x, box.min.y, box.min.z);
+    glVertex3f(box.max.x, box.min.y, box.min.z);
+    glVertex3f(box.max.x, box.max.y, box.min.z);
+    glVertex3f(box.min.x, box.max.y, box.min.z);
+
+    // Cara superior (Z+)
+    glVertex3f(box.min.x, box.min.y, box.max.z);
+    glVertex3f(box.max.x, box.min.y, box.max.z);
+    glVertex3f(box.max.x, box.max.y, box.max.z);
+    glVertex3f(box.min.x, box.max.y, box.max.z);
+
+    // Cara frontal (Y+)
+    glVertex3f(box.min.x, box.max.y, box.min.z);
+    glVertex3f(box.max.x, box.max.y, box.min.z);
+    glVertex3f(box.max.x, box.max.y, box.max.z);
+    glVertex3f(box.min.x, box.max.y, box.max.z);
+
+    // Cara trasera (Y-)
+    glVertex3f(box.min.x, box.min.y, box.min.z);
+    glVertex3f(box.max.x, box.min.y, box.min.z);
+    glVertex3f(box.max.x, box.min.y, box.max.z);
+    glVertex3f(box.min.x, box.min.y, box.max.z);
+
+    // Cara izquierda (X-)
+    glVertex3f(box.min.x, box.min.y, box.min.z);
+    glVertex3f(box.min.x, box.max.y, box.min.z);
+    glVertex3f(box.min.x, box.max.y, box.max.z);
+    glVertex3f(box.min.x, box.min.y, box.max.z);
+
+    // Cara derecha (X+)
+    glVertex3f(box.max.x, box.min.y, box.min.z);
+    glVertex3f(box.max.x, box.max.y, box.min.z);
+    glVertex3f(box.max.x, box.max.y, box.max.z);
+    glVertex3f(box.max.x, box.min.y, box.max.z);
+
     glEnd();
-
-    // 🔁 Recursión
-    renderKdTreePartitioning(node->left, depth + 1,max);
-    renderKdTreePartitioning(node->right, depth + 1, max);
 }
 
 
@@ -544,4 +576,10 @@ void PartitionRenderer::getColorFromId(int id, float& r, float& g, float& b) {
     r = std::min(r, 1.0f);
     g = std::min(g, 1.0f);
     b = std::min(b, 1.0f);
+}
+
+int PartitionRenderer::countPointsInSubtree(KdNode* node) {
+    if (!node) return 0;
+    if (!node->left && !node->right && node->point) return 1;
+    return countPointsInSubtree(node->left) + countPointsInSubtree(node->right);
 }

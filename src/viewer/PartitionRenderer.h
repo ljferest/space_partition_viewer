@@ -70,6 +70,7 @@ public:
     float camDirX = 0, camDirY = 0, camDirZ = -1;
     int lastMouseX = 0, lastMouseY = 0;
     bool firstMouse = true;
+    int countPointsInSubtree(KdNode* node);
     
 
     

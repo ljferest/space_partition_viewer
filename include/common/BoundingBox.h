@@ -24,5 +24,14 @@ struct BoundingBox {
                        (min.y + max.y) / 2.0f,
                        (min.z + max.z) / 2.0f);
     }
+    void expandToInclude(const Point3D& p) {
+        min.x = std::min(min.x, p.x);
+        min.y = std::min(min.y, p.y);
+        min.z = std::min(min.z, p.z);
+        max.x = std::max(max.x, p.x);
+        max.y = std::max(max.y, p.y);
+        max.z = std::max(max.z, p.z);
+    }
+    
 };
 
