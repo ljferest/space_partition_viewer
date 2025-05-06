@@ -27,8 +27,8 @@ public:
     float getCenterY() const { return centerY; }
     float getCenterZ() const { return centerZ; }
     float getSceneSize() const { return sceneSize; }
-    void increaseResolution(); // + tecla
-    void decreaseResolution(); // - tecla
+    void increaseResolution(); 
+    void decreaseResolution(); 
     void render(bool wireframe = false);
     void handleKeyboard(unsigned char key);
     void setRenderMode(RenderMode mode);
@@ -64,8 +64,8 @@ public:
 
     bool flyMode = false;
     float camPosX = 0.0f, camPosY = 0.0f, camPosZ = 5.0f;
-    float yaw = -90.0f;     // ángulo horizontal
-    float pitch = 20.0f;     // ángulo vertical
+    float yaw = -90.0f;     
+    float pitch = 20.0f;     
     float flySpeed = 0.5f;
     float sensitivity = 0.1f;
     float camDirX = 0, camDirY = 0, camDirZ = -1;
@@ -101,7 +101,7 @@ private:
     void computeZRange();
 };
 
-// Declaración de utilidad para medir tiempo
+// To measure the execution time of a function.
 template <typename Func>
 void measureExecutionTime(const std::string& label, Func functionToMeasure);
 

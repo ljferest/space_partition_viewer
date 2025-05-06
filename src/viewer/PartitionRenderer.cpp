@@ -4,20 +4,20 @@
 #include <iostream>
 #include <chrono>
 #include <cmath>
-#include <cstdlib>  // para std::srand, std::rand
+#include <cstdlib>
 
 PartitionRenderer::PartitionRenderer() {
-    // Posición inicial de la cámara (centrada en escena luego en loadPointCloud)
+    // Initial position of the camera.
     camPosX = 0.0f;
     camPosY = 0.0f;
     camPosZ = 5.0f;
 
-    // Dirección inicial mirando al -Z
+    // Initial direction of the camera.
     camDirX = 0.0f;
     camDirY = 0.0f;
     camDirZ = -1.0f;
 
-    // Ángulos yaw/pitch coherentes con esa dirección
+    // Angles yaw/pitch coherents with the camera direction.
     yaw = -90.0f;
     pitch = 0.0f;
 
@@ -27,6 +27,7 @@ PartitionRenderer::PartitionRenderer() {
     firstMouse = true;
 }
 
+//load PointCloud.
 void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
     points = pts;
     pointPtrs.clear();
@@ -36,29 +37,27 @@ void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
 
     computeBoundingBox();
 
-    // 🔄 Primero calcula dimensiones del bounding box
+    // First it calculate the dimensions of the bounding box.
     float dx = bbox.max.x - bbox.min.x;
     float dy = bbox.max.y - bbox.min.y;
     float dz = bbox.max.z - bbox.min.z;
 
-    // 🔐 Asegurar que no sean 0
     if (dx < 1e-6f) dx = 1.0f;
     if (dy < 1e-6f) dy = 1.0f;
     if (dz < 1e-6f) dz = 1.0f;
 
-    // ✅ Calcular sceneSize correctamente antes de usarlo
     sceneSize = std::max({ dx, dy, dz }) * 1.1f;
 
-    // 📌 Centro de la escena
+    // Center of the scene.
     centerX = (bbox.min.x + bbox.max.x) / 2.0f;
     centerY = (bbox.min.y + bbox.max.y) / 2.0f;
     centerZ = (bbox.min.z + bbox.max.z) / 2.0f;
 
-    // 🎯 Posicionar cámara
+    // Camera position.
     cameraTargetX = centerX;
     cameraTargetY = centerY;
     cameraTargetZ = centerZ;
-    cameraDistance = sceneSize * 1.5f;  // Alejado para ver todo
+    cameraDistance = sceneSize * 1.5f; 
 
     std::cout << "[INFO] Bounding Box: [" << dx << " x " << dy << " x " << dz << "]\n";
     std::cout << "[INFO] Centro: (" << centerX << ", " << centerY << ", " << centerZ << ") Tamaño: " << sceneSize << "\n";
@@ -79,7 +78,7 @@ void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
     measureExecutionTime("Construcción KD-Tree", [this]() {
         kdtree = std::make_unique<KdTree>();
         kdtree->build(pointPtrs);
-        kdtree->diagnose(maxRenderDepth); //Show stats od kdtree
+        kdtree->diagnose(maxRenderDepth);
         renderDepthKD = maxRenderDepth/2;
     });
 
@@ -89,9 +88,10 @@ void PartitionRenderer::loadPointCloud(const std::vector<Point3D>& pts) {
 
     });
 
-    computeZRange(); // Para colorear por altura
+    computeZRange(); 
 }
 
+//To color by height.
 void PartitionRenderer::computeZRange() {
     if (points.empty()) return;
     minZ = maxZ = points[0].z;
@@ -101,6 +101,8 @@ void PartitionRenderer::computeZRange() {
     }
 }
 
+//The method that renders the scene.
+// It is called every time the window needs to be redrawn.
 void PartitionRenderer::render(bool wireframe) {
     
     /*
@@ -130,7 +132,6 @@ void PartitionRenderer::render(bool wireframe) {
     }
      
     else {
-        // Tu modo cámara orbital normal
         gluLookAt(
             cameraTargetX, cameraTargetY, cameraTargetZ + cameraDistance,
             cameraTargetX, cameraTargetY, cameraTargetZ,
@@ -150,6 +151,7 @@ void PartitionRenderer::render(bool wireframe) {
     }
 }
 
+//To increase the resolution of the octree or Kdtree.
 void PartitionRenderer::increaseResolution() {
     if (currentMode == RenderMode::Octree) {
         if (renderDepth < maxRenderTreeDepth){
@@ -164,6 +166,7 @@ void PartitionRenderer::increaseResolution() {
     }
 }
 
+//To decrease the resolution of the octree or Kdtree.
 void PartitionRenderer::decreaseResolution() {
     if (currentMode == RenderMode::Octree) {
         if (renderDepth > 1) {
@@ -178,6 +181,7 @@ void PartitionRenderer::decreaseResolution() {
     }
 }
 
+//To render the octree partitioning.
 void PartitionRenderer::renderOctreePartitioning(bool wireframe) {
     if (!tree || !tree->root) return;
 
@@ -193,7 +197,6 @@ void PartitionRenderer::renderOctreePartitioning(bool wireframe) {
     //std::cout << "[RENDER] tree = " << tree.get() << ", root = " << tree->root.get() << std::endl;
 
     if (wireframeMode) {
-        // 🔲 Mostrar contornos (todos los nodos)
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         glLineWidth(1.0f);
         tree->traverse([&](bool isLeaf, float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
@@ -203,8 +206,6 @@ void PartitionRenderer::renderOctreePartitioning(bool wireframe) {
             glutWireCube(size);
             glPopMatrix();
         });
-    
-        // 🟥 Mostrar hojas con puntos (sólido y color)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         tree->traverseLeavesUpToDepth(renderDepth, [&](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
             /*std::cout << "[TRACE] Nodo recibido: center=(" << cx << ", " << cy << ", " << cz 
@@ -225,12 +226,11 @@ void PartitionRenderer::renderOctreePartitioning(bool wireframe) {
         });            
     }
     else{
-        // Render sólido → solo hojas ocupadas
         tree->traverseLeavesUpToDepth(renderDepth, [=](float cx, float cy, float cz, float size, const std::vector<Point3D*>& pts) {
 
             float dz = maxZ - minZ;
             float colorZ = (dz > 0.0f) ? (cz - minZ) / dz : 0.5f;
-            glColor3f(1.0f - colorZ, 0.0f, colorZ);  // color por altura   
+            glColor3f(1.0f - colorZ, 0.0f, colorZ);   
             
             glPushMatrix();
             glTranslatef(cx, cy, cz);
@@ -240,17 +240,16 @@ void PartitionRenderer::renderOctreePartitioning(bool wireframe) {
     }
 }
 
+//To render the KdTree partitioning.
 void PartitionRenderer::renderKdTreePartitioning(KdNode* node, int depth, int max) {
     if (!node || depth > max) return;
 
     bool reachedLimit = (depth == max);
     bool isLeaf = !node->left && !node->right;
 
-    // ❌ Si el subárbol no contiene puntos, no renderizar
     int numPts = countPointsInSubtree(node);
     if (numPts == 0) return;
 
-    // 🔁 Si no es hoja y no llegó al límite de profundidad, seguir bajando
     if (!isLeaf && !reachedLimit) {
         renderKdTreePartitioning(node->left, depth + 1, max);
         renderKdTreePartitioning(node->right, depth + 1, max);
@@ -259,50 +258,47 @@ void PartitionRenderer::renderKdTreePartitioning(KdNode* node, int depth, int ma
 
     const auto& box = node->bbox;
 
-    // Evitar cajas planas o invisibles
     if ((box.max.x - box.min.x) < 1e-3f ||
         (box.max.y - box.min.y) < 1e-3f ||
         (box.max.z - box.min.z) < 1e-3f) return;
 
-    // 🎨 Color por altura Z
     float t = (node->point->z - minZ) / (maxZ - minZ + 1e-6f);
     glColor3f(1.0f - t, 0.0f, t);
 
-    // 📦 Dibujo de cubo opaco
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glBegin(GL_QUADS);
 
-    // Cara inferior (Z-)
+    // Inferior face (Z-).
     glVertex3f(box.min.x, box.min.y, box.min.z);
     glVertex3f(box.max.x, box.min.y, box.min.z);
     glVertex3f(box.max.x, box.max.y, box.min.z);
     glVertex3f(box.min.x, box.max.y, box.min.z);
 
-    // Cara superior (Z+)
+    // Top face (Z+).
     glVertex3f(box.min.x, box.min.y, box.max.z);
     glVertex3f(box.max.x, box.min.y, box.max.z);
     glVertex3f(box.max.x, box.max.y, box.max.z);
     glVertex3f(box.min.x, box.max.y, box.max.z);
 
-    // Cara frontal (Y+)
+    // Frontal face (Y+).
     glVertex3f(box.min.x, box.max.y, box.min.z);
     glVertex3f(box.max.x, box.max.y, box.min.z);
     glVertex3f(box.max.x, box.max.y, box.max.z);
     glVertex3f(box.min.x, box.max.y, box.max.z);
 
-    // Cara trasera (Y-)
+    // Back face (Y-).
     glVertex3f(box.min.x, box.min.y, box.min.z);
     glVertex3f(box.max.x, box.min.y, box.min.z);
     glVertex3f(box.max.x, box.min.y, box.max.z);
     glVertex3f(box.min.x, box.min.y, box.max.z);
 
-    // Cara izquierda (X-)
+    // Left face (X-).
     glVertex3f(box.min.x, box.min.y, box.min.z);
     glVertex3f(box.min.x, box.max.y, box.min.z);
     glVertex3f(box.min.x, box.max.y, box.max.z);
     glVertex3f(box.min.x, box.min.y, box.max.z);
 
-    // Cara derecha (X+)
+    // Right face (X+).
     glVertex3f(box.max.x, box.min.y, box.min.z);
     glVertex3f(box.max.x, box.max.y, box.min.z);
     glVertex3f(box.max.x, box.max.y, box.max.z);
@@ -311,7 +307,7 @@ void PartitionRenderer::renderKdTreePartitioning(KdNode* node, int depth, int ma
     glEnd();
 }
 
-
+//To handle keyboard input.
 void PartitionRenderer::handleKeyboard(unsigned char key) {
     if (key == '1') {
         setRenderMode(RenderMode::Octree);
@@ -342,10 +338,12 @@ void PartitionRenderer::handleKeyboard(unsigned char key) {
     glutPostRedisplay();
 }
 
+//To change the render mode.
 void PartitionRenderer::setRenderMode(RenderMode mode) {
     currentMode = mode;
 }
 
+//To compute the bounding box.
 void PartitionRenderer::computeBoundingBox() {
     if (points.empty()) return;
     bbox.min = bbox.max = points[0];
@@ -359,6 +357,7 @@ void PartitionRenderer::computeBoundingBox() {
     }
 }
 
+//To render the partitioning of the BSP tree.
 void PartitionRenderer::renderBSPPartitioning(BSPNode* node,
     float xmin, float xmax,
     float ymin, float ymax,
@@ -368,24 +367,23 @@ void PartitionRenderer::renderBSPPartitioning(BSPNode* node,
     if (!node) return;
 
     glLineWidth(1.0f);
-    glColor3f(1.0f, 1.0f, 0.0f); // Amarillo para los planos
+    glColor3f(1.0f, 1.0f, 0.0f);
 
     glBegin(GL_LINES);
     const Plane& plane = node->dividingPlane;
     
-    if (plane.normal.x == 1.0f) { // Plano perpendicular a X
+    if (plane.normal.x == 1.0f) { 
         glVertex3f(plane.d, ymin, zmin);
         glVertex3f(plane.d, ymax, zmax);
-    } else if (plane.normal.y == 1.0f) { // Plano perpendicular a Y
+    } else if (plane.normal.y == 1.0f) { 
         glVertex3f(xmin, plane.d, zmin);
         glVertex3f(xmax, plane.d, zmax);
-    } else { // Plano perpendicular a Z
+    } else { 
         glVertex3f(xmin, ymin, plane.d);
         glVertex3f(xmax, ymax, plane.d);
     }
     glEnd();
 
-    // Recursión en subespacios
     if (plane.normal.x == 1.0f) {
         renderBSPPartitioning(node->front, plane.d, xmax, ymin, ymax, zmin, zmax, depth + 1);
         renderBSPPartitioning(node->back, xmin, plane.d, ymin, ymax, zmin, zmax, depth + 1);
@@ -398,30 +396,32 @@ void PartitionRenderer::renderBSPPartitioning(BSPNode* node,
     }
 }
 
+//To get a color.
 PartitionRenderer::Color PartitionRenderer::getRandomColor() {
     static std::vector<Color> palette = {
-        {1.0f, 0.0f, 0.0f},  // Rojo
-        {0.0f, 1.0f, 0.0f},  // Verde
-        {0.0f, 0.0f, 1.0f},  // Azul
-        {1.0f, 1.0f, 0.0f},  // Amarillo
-        {1.0f, 0.0f, 1.0f},  // Magenta
-        {0.0f, 1.0f, 1.0f},  // Cian
-        {1.0f, 0.5f, 0.0f},  // Naranja
-        {0.5f, 0.0f, 1.0f},  // Violeta
-        {0.0f, 0.5f, 1.0f},  // Azul claro
-        {0.5f, 1.0f, 0.0f}   // Lima
+        {1.0f, 0.0f, 0.0f},  
+        {0.0f, 1.0f, 0.0f},  
+        {0.0f, 0.0f, 1.0f}, 
+        {1.0f, 1.0f, 0.0f},  
+        {1.0f, 0.0f, 1.0f},  
+        {0.0f, 1.0f, 1.0f}, 
+        {1.0f, 0.5f, 0.0f},  
+        {0.5f, 0.0f, 1.0f},  
+        {0.0f, 0.5f, 1.0f},  
+        {0.5f, 1.0f, 0.0f}   
     };
 
-    int index = rand() % palette.size();  // Elegir un color de la paleta
+    int index = rand() % palette.size();
     return palette[index];
 }
 
-
+//To draw a point.
 void PartitionRenderer::drawPoint(float x, float y, float z, const Color& color) {
     glColor3f(color.r, color.g, color.b);
     glVertex3f(x, y, z);
 }
 
+//To draw the points of the BSP tree.
 void PartitionRenderer::drawBSPRecursive(BSPNode* node) {
     if (!node) return;
 
@@ -445,10 +445,11 @@ void PartitionRenderer::drawBSPRecursive(BSPNode* node) {
 }
 
 template <typename Func>
+// A method to measure the execution time of a function.
 void measureExecutionTime(const std::string& label, Func functionToMeasure) {
     auto start = std::chrono::high_resolution_clock::now();
 
-    functionToMeasure(); // Ejecuta lo que quieras medir
+    functionToMeasure(); 
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
@@ -456,20 +457,24 @@ void measureExecutionTime(const std::string& label, Func functionToMeasure) {
     std::cout << "[TIMER] " << label << " tomó " << elapsed.count() << " segundos.\n";
 }
 
+//To set the camera target.
 void PartitionRenderer::setCameraTarget(float x, float y, float z) {
     cameraTargetX = x;
     cameraTargetY = y;
     cameraTargetZ = z;
 }
 
+//To set the camera distance.
 void PartitionRenderer::setCameraDistance(float d) {
     cameraDistance = d;
 }
 
+//To set the wireframe mode.
 void PartitionRenderer::setWireframeMode(bool enabled) {
     wireframeMode = enabled;
 }
 
+//To handle mouse motion.
 void PartitionRenderer::mouseMotionCallback(int x, int y) {
     if (!flyMode) return;
 
@@ -483,7 +488,7 @@ void PartitionRenderer::mouseMotionCallback(int x, int y) {
     }
 
     float xoffset = x - lastMouseX;
-    float yoffset = lastMouseY - y; // Invertido porque Y crece hacia abajo
+    float yoffset = lastMouseY - y;
     lastMouseX = x;
     lastMouseY = y;
 
@@ -518,24 +523,25 @@ void PartitionRenderer::mouseMotionCallback(int x, int y) {
     glutPostRedisplay();
 }
 
+//To handle special keys.
 void PartitionRenderer::specialCallback(int key, int x, int y) {
     if (!flyMode) return;
 
-    float angleStep = 2.5f;  // grados por pulsación
+    float angleStep = 2.5f;  
 
     switch (key) {
         case GLUT_KEY_LEFT:
-            yaw -= angleStep; // rotar a la izquierda
+            yaw -= angleStep; 
             break;
         case GLUT_KEY_RIGHT:
-            yaw += angleStep; // rotar a la derecha
+            yaw += angleStep; 
             break;
         case GLUT_KEY_UP:
-            pitch += angleStep; // mirar hacia arriba
+            pitch += angleStep; 
             if (pitch > 89.0f) pitch = 89.0f;
             break;
         case GLUT_KEY_DOWN:
-            pitch -= angleStep; // mirar hacia abajo
+            pitch -= angleStep; 
             if (pitch < -89.0f) pitch = -89.0f;
             break;
     }
@@ -544,6 +550,7 @@ void PartitionRenderer::specialCallback(int key, int x, int y) {
     glutPostRedisplay();
 }
 
+//To update the camera direction based on yaw and pitch.
 void PartitionRenderer::updateCameraDirection() {
     float radYaw = yaw * M_PI / 180.0f;
     float radPitch = pitch * M_PI / 180.0f;
@@ -560,6 +567,7 @@ void PartitionRenderer::updateCameraDirection() {
     }
 }
 
+//To get a color from an ID.
 void PartitionRenderer::getColorFromId(int id, float& r, float& g, float& b) {
     unsigned int hash = static_cast<unsigned int>(id) * 2654435761u;
 
@@ -567,18 +575,17 @@ void PartitionRenderer::getColorFromId(int id, float& r, float& g, float& b) {
     g = ((hash >> 8) & 0xFF) / 255.0f;
     b = (hash & 0xFF) / 255.0f;
 
-    // Evita colores muy oscuros
     if (r + g + b < 0.3f) {
         r += 0.3f;
         g += 0.3f;
     }
 
-    // Recorta si supera 1.0
     r = std::min(r, 1.0f);
     g = std::min(g, 1.0f);
     b = std::min(b, 1.0f);
 }
 
+//To count the number of points in a subtree for the KdTree.
 int PartitionRenderer::countPointsInSubtree(KdNode* node) {
     if (!node) return 0;
     if (!node->left && !node->right && node->point) return 1;

@@ -15,7 +15,7 @@ PartitionRenderer renderer;
 bool showWireframe = false;
 bool wireframeMode = false;
 
-// Cargar nube de puntos desde .pcd
+// Load cloud from PCD file
 std::vector<Point3D> loadFromPCD(const std::string& path) {
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
     if (pcl::io::loadPCDFile<pcl::PointXYZ>(path, *cloud) == -1) {
@@ -27,7 +27,6 @@ std::vector<Point3D> loadFromPCD(const std::string& path) {
     for (const auto& p : cloud->points) {
         result.push_back({p.x, p.y, p.z});
     }
-    // Calcular bounding box
     float min_x = std::numeric_limits<float>::max(), max_x = -std::numeric_limits<float>::max();
     float min_y = std::numeric_limits<float>::max(), max_y = -std::numeric_limits<float>::max();
     float min_z = std::numeric_limits<float>::max(), max_z = -std::numeric_limits<float>::max();
@@ -52,6 +51,8 @@ std::vector<Point3D> loadFromPCD(const std::string& path) {
     return result;
 }
 
+// to display the scene
+// This function is called every time the window needs to be redrawn
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glPolygonMode(GL_FRONT_AND_BACK, wireframeMode ? GL_LINE : GL_FILL);
@@ -61,6 +62,7 @@ void display() {
     glutSwapBuffers();
 }
 
+// to reshape the window
 void reshape(int w, int h) {
     if (h == 0) h = 1;
     float ratio = 1.0f * w / h;
@@ -71,9 +73,11 @@ void reshape(int w, int h) {
     glViewport(0, 0, w, h);
 }
 
+// to handle keyboard input
+// This function is called every time a key is pressed
 void keyboard(unsigned char key, int x, int y) {
     switch (key) {
-    case 27: // ESC
+    case 27: 
         exit(0);
         break;
 
@@ -95,11 +99,13 @@ void keyboard(unsigned char key, int x, int y) {
         break;
 
     default:
-        renderer.handleKeyboard(key);  // ✅ También para cambiar modo Octree, KD-Tree o BSP
+        renderer.handleKeyboard(key); 
         break;
     }
 }
 
+// to initialize OpenGL settings
+// This function is called once at the beginning of the program
 void initGL() {
     glEnable(GL_DEPTH_TEST);
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -119,6 +125,7 @@ void initGL() {
     );
 }
 
+// Main function where the program starts and initializes everything
 int main(int argc, char** argv) {
     try {
         glutInit(&argc, argv);
